@@ -21,35 +21,30 @@ export function Day5() {
     <div className="open-scene">
       <p className="eyebrow">Jour 5</p>
       <h2 className="font-serif italic">Barrette écran</h2>
-      <div className="open-stage">
-        <div className="lcd-clip" data-powered={on ? "yes" : "no"}>
-          <GiftPhoto src="stickers/jour-5/bow-hairpin.webp" alt="Barrette" className="clip-photo" />
-          <div className="lcd">
-            <button
-              type="button"
-              className={`lcd-screen ${on ? "is-on" : "is-off"}`}
-              aria-pressed={on}
-              onClick={() => setOn(true)}
-            >
-              {on ? (
-                <span className="lcd-marquee">
-                  <span className="lcd-run">
-                    <span>NOÉMIE</span>
-                    <PixelHeart />
-                    <span>NOÉMIE</span>
-                    <PixelHeart />
-                    <span>NOÉMIE</span>
-                    <PixelHeart />
-                  </span>
-                </span>
-              ) : (
-                <span className="lcd-idle">tapoter</span>
-              )}
-              <span className="sr-only">{on ? `NOÉMIE. ${spoken}` : "Écran éteint"}</span>
-            </button>
-            <p className="mt-2 text-center font-pixel text-[9px] tracking-[0.2em] text-mute">LCD</p>
-          </div>
-        </div>
+      <div className="collage clip-collage" data-powered={on ? "yes" : "no"}>
+        <GiftPhoto src="stickers/jour-5/butterfly-clip.webp" alt="" className="cut side-l" />
+        <GiftPhoto src="stickers/jour-5/hairpin-flower.webp" alt="" className="cut side-r" />
+        <GiftPhoto src="stickers/jour-5/bow-hairpin.webp" alt="Barrette" className="cut hero-still" />
+        <button
+          type="button"
+          className={`lcd-chip ${on ? "is-on" : "is-off"}`}
+          aria-pressed={on}
+          onClick={() => setOn(true)}
+        >
+          {on ? (
+            <span className="lcd-marquee">
+              <span className="lcd-run">
+                <span>NOÉMIE</span>
+                <PixelHeart />
+                <span>NOÉMIE</span>
+                <PixelHeart />
+              </span>
+            </span>
+          ) : (
+            <span>tapoter</span>
+          )}
+          <span className="sr-only">{on ? `NOÉMIE. ${spoken}` : "Écran éteint"}</span>
+        </button>
       </div>
       <p className="open-caption">{on ? "Le prénom défile, tout petit." : teaserFor(5)}</p>
       <p className="open-caption">{giftFor(5)}</p>

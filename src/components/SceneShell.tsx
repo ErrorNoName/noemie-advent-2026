@@ -16,7 +16,7 @@ export function SceneShell({
   onBack: () => void;
   children: ReactNode;
 }) {
-  const { reduced, fade, pop } = useGentle();
+  const { reduced, fade } = useGentle();
   const [lid, setLid] = useState(reduced);
   const [ready, setReady] = useState(reduced);
 
@@ -30,8 +30,8 @@ export function SceneShell({
 
   useEffect(() => {
     if (reduced) return;
-    const openLid = window.setTimeout(() => setLid(true), 180);
-    const show = window.setTimeout(() => setReady(true), 720);
+    const openLid = window.setTimeout(() => setLid(true), 220);
+    const show = window.setTimeout(() => setReady(true), 980);
     return () => {
       window.clearTimeout(openLid);
       window.clearTimeout(show);
@@ -64,15 +64,11 @@ export function SceneShell({
             ) : (
               <motion.div
                 key="lid"
-                className="lid-exit"
-                initial={{ opacity: 0, y: 16, rotate: -2 }}
-                animate={{ opacity: 1, y: 0, rotate: 0 }}
-                exit={
-                  reduced
-                    ? { opacity: 0 }
-                    : { opacity: 0, y: -210, x: 36, rotate: -18, scale: 0.62 }
-                }
-                transition={reduced ? { duration: 0 } : { ...pop, opacity: { duration: 0.35 } }}
+                className="lid-hold"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
+                transition={reduced ? { duration: 0 } : { duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
                 role="status"
                 aria-label="La case s’ouvre"
               >

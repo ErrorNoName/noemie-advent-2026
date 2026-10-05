@@ -266,7 +266,7 @@ button {
 }
 
 .parcel.is-open .parcel-cut {
-  transform: translateY(-8px) rotate(-6deg) scale(1.03);
+  transform: scale(0.96);
 }
 
 .parcel.is-locked .parcel-cut {
@@ -1383,10 +1383,11 @@ button {
   }
 }
 
-.lid-exit {
+.lid-hold {
   min-height: 52dvh;
   display: grid;
   place-items: center;
+  transform-origin: center center;
 }
 
 .open-scene {
@@ -1436,30 +1437,286 @@ button {
   min-width: 132px;
 }
 
-.foil-stage {
+.collage {
   position: relative;
-  width: 100%;
-  min-height: 300px;
-  aspect-ratio: 4 / 4.35;
-  border-radius: 28px;
+  width: min(280px, 100%);
+  height: 280px;
+  margin: 0 auto;
   overflow: hidden;
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at 14% 16%, rgba(255, 255, 255, 0.95) 0 34px, transparent 38px),
-    radial-gradient(circle at 86% 78%, rgba(255, 255, 255, 0.72) 0 28px, transparent 32px),
-    radial-gradient(circle at 74% 12%, rgba(255, 255, 255, 0.5) 0 14px, transparent 18px),
-    linear-gradient(165deg, #e8f5fd 0%, #cfe7f8 46%, #d7eef8 100%);
 }
 
-.foil-hit {
-  width: 74%;
+.collage .cut,
+.collage .hero-hit,
+.collage .machine-hit {
+  position: absolute;
+  object-fit: contain;
   border: 0;
   background: transparent;
   padding: 0;
+  filter: drop-shadow(0 10px 14px rgba(58, 42, 50, 0.14));
+}
+
+.collage .fill-cut {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: none;
+}
+
+.collage .hero-hit,
+.collage .machine-hit {
+  width: 62%;
+  height: 72%;
+  left: 19%;
+  bottom: 6%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.collage .side-l {
+  width: 30%;
+  height: 38%;
+  left: 0;
+  bottom: 14%;
+  z-index: 1;
+}
+
+.collage .side-r {
+  width: 28%;
+  height: 36%;
+  right: 0;
+  top: 8%;
+  z-index: 1;
+}
+
+.foil-stage {
+  position: relative;
+  width: min(248px, 100%);
+  aspect-ratio: 3 / 4;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #d7eef8;
+}
+
+.foil-hit,
+.foil-prize {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.foil-hit {
   cursor: pointer;
   z-index: 1;
-  filter: drop-shadow(0 16px 14px rgba(70, 110, 150, 0.25));
+}
+
+.foil-hit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.foil-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--sx) var(--sy), rgba(255, 255, 255, 0.55), transparent 32%);
+  mix-blend-mode: soft-light;
+}
+
+.gacha-collage {
+  height: 300px;
+}
+
+.gacha-collage .machine-hit {
+  width: 94%;
+  height: 94%;
+  left: 3%;
+  top: 3%;
+  bottom: auto;
+}
+
+.capsule-cut {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  left: 50%;
+  bottom: 6px;
+  margin-left: -34px;
+  z-index: 3;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.clip-collage {
+  height: 248px;
+}
+
+.clip-collage .hero-still {
+  width: 54%;
+  height: 48%;
+  left: 23%;
+  top: 0;
+}
+
+.lcd-chip {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 8px;
+  height: 40px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  z-index: 3;
+}
+
+.lcd-chip.is-off {
+  background: #1c2b22;
+  color: #9dccab;
+}
+
+.lcd-chip.is-on {
+  background: #c7e3bf;
+  color: #163324;
+  box-shadow: inset 0 0 0 3px #8fb896;
+}
+
+.basket-collage .hero-hit {
+  width: 78%;
+  height: 88%;
+  left: 11%;
+  bottom: 4%;
+}
+
+.bit-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.bit-a,
+.bit-b,
+.bit-c {
+  width: 32%;
+  height: 78%;
+  bottom: 6%;
+  text-align: center;
+  z-index: 2;
+}
+
+.bit-a { left: 0; }
+.bit-b { left: 34%; }
+.bit-c { right: 0; }
+
+.bit-a p,
+.bit-b p,
+.bit-c p {
+  margin: 2px 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+.light-collage .hero-hit {
+  width: 46%;
+  height: 72%;
+  left: 42%;
+  bottom: 8%;
+}
+
+.light-collage.is-lit {
+  filter: drop-shadow(0 0 16px rgba(255, 168, 92, 0.45));
+}
+
+.flame-over {
+  position: absolute;
+  z-index: 4;
+  left: 56%;
+  top: 6px;
+  width: 26px;
+  height: 44px;
+}
+
+.day8-collage {
+  width: min(320px, 100%);
+  height: 352px;
+}
+
+.teddy-cut {
+  width: 48%;
+  height: 42%;
+  left: 0;
+  top: 8px;
+  z-index: 1;
+}
+
+.flower-cut {
+  width: 42%;
+  height: 38%;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.love-slip {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 38%;
+  width: 86px;
+  margin: 0 0 0 -43px;
+  padding: 8px 6px 10px;
+  background: #fff4b8;
+  color: #3a2a32;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.1;
+  text-align: center;
+  box-shadow: 0 8px 14px rgba(90, 70, 20, 0.12);
+}
+
+.tray-mini {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  margin: 0;
+  padding: 0 2px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.tray-mini li {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  font-size: 0.62rem;
+  line-height: 1.1;
+}
+
+.tray-mini-photo {
+  width: 100%;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .foil-float {
@@ -1477,39 +1734,19 @@ button {
 }
 
 .foil-prize {
-  position: absolute;
   z-index: 3;
-  width: 46%;
-  left: 27%;
-  bottom: 22%;
   pointer-events: none;
 }
 
-.foil-stage.is-clear {
-  aspect-ratio: auto;
-  height: auto;
-  overflow: visible;
-  padding: 22px 12px 18px;
-}
-
-.foil-stage.is-clear .foil-prize {
-  position: relative;
-  left: auto;
-  bottom: auto;
-  width: min(200px, 70%);
-  margin: 0 auto;
-}
-
 .foil-prize img {
-  width: auto;
-  height: min(230px, 46vw);
-  max-width: 100%;
-  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  margin: 0 auto;
+  padding: 14% 10% 12%;
+  display: block;
   filter:
     drop-shadow(0 0 14px rgba(255, 255, 255, 0.95))
-    drop-shadow(0 10px 16px rgba(80, 120, 160, 0.28));
+    drop-shadow(0 10px 16px rgba(80, 120, 160, 0.22));
 }
 
 .sparkles {
