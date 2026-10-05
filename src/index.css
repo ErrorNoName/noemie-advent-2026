@@ -1485,19 +1485,28 @@ button {
   pointer-events: none;
 }
 
+.foil-stage.is-clear {
+  aspect-ratio: auto;
+  height: auto;
+  overflow: visible;
+  padding: 22px 12px 18px;
+}
+
 .foil-stage.is-clear .foil-prize {
   position: relative;
   left: auto;
   bottom: auto;
-  width: 58%;
-  margin: 6% auto;
+  width: min(200px, 70%);
+  margin: 0 auto;
 }
 
 .foil-prize img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: min(230px, 46vw);
+  max-width: 100%;
   display: block;
   object-fit: contain;
+  margin: 0 auto;
   filter:
     drop-shadow(0 0 14px rgba(255, 255, 255, 0.95))
     drop-shadow(0 10px 16px rgba(80, 120, 160, 0.28));
