@@ -51,7 +51,7 @@ export function Calendar({
 
   return (
     <div className="column relative">
-      <header className="relative px-5 pt-7">
+      <header className="relative overflow-hidden px-5 pt-7">
         <CornerScraps />
         <p className="eyebrow relative">pour toi</p>
         <div className="relative mt-1 flex items-end justify-between gap-3">
