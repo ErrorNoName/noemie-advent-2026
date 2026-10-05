@@ -1,8 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
-import { dayByNumber, teaserFor } from "../data/days.ts";
+import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
+import { playTick } from "../lib/touchSound.ts";
 import { useCloseScene } from "./scene-context.ts";
 
 const BITS = [
@@ -15,52 +16,84 @@ export function Day6() {
   const close = useCloseScene();
   const { reduced, pop } = useGentle();
   const [open, setOpen] = useState(false);
-  const basket = dayByNumber(6);
+  const [lift, setLift] = useState(0);
+  const [nudge, setNudge] = useState<string | null>(null);
+  const origin = useRef<number | null>(null);
+
+  function reveal() {
+    if (open) return;
+    setOpen(true);
+    setLift(0);
+    if (!reduced) {
+      playTick();
+      if ("vibrate" in navigator) navigator.vibrate(12);
+    }
+  }
 
   return (
     <div className="open-scene">
       <p className="eyebrow">Jour 6</p>
       <h2 className="font-serif italic">Panier gourmand</h2>
       <div className="collage basket-collage" data-open={open ? "yes" : "no"}>
-        <AnimatePresence mode="wait">
-          {open ? (
-            <motion.div key="bits" className="bit-layer" initial={false}>
-              {BITS.map((bit, index) => (
-                <motion.div
-                  key={bit.key}
-                  className={`cut ${bit.place}`}
-                  initial={{ opacity: 0, y: 16, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={reduced ? { duration: 0 } : { ...pop, delay: 0.08 + index * 0.16 }}
-                >
-                  <GiftPhoto src={bit.src} alt={bit.title} className="fill-cut" />
-                  <p>{bit.title}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
+        {open ? (
+          BITS.map((bit, index) => (
             <motion.button
-              key="basket"
+              key={bit.key}
               type="button"
-              className="cut hero-hit"
-              aria-label="Ouvrir le panier"
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={reduced ? { duration: 0 } : { duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              className={`cut ${bit.place}`}
+              initial={{ opacity: 0, y: 36, scale: 0.86 }}
+              animate={nudge === bit.key ? { opacity: 1, y: -6, scale: 1.06 } : { opacity: 1, y: 0, scale: 1 }}
+              transition={reduced ? { duration: 0 } : { ...pop, delay: nudge ? 0 : 0.12 + index * 0.2 }}
               onClick={() => {
-                setOpen(true);
-                if (!reduced && "vibrate" in navigator) navigator.vibrate(12);
+                setNudge(bit.key);
+                if (!reduced && "vibrate" in navigator) navigator.vibrate(8);
+                window.setTimeout(() => setNudge(null), reduced ? 0 : 280);
               }}
             >
-              <GiftPhoto src="stickers/jour-6/gift-basket.webp" alt="Panier" className="fill-cut" />
+              <GiftPhoto src={bit.src} alt={bit.title} className="fill-cut" />
+              <p>{bit.title}</p>
             </motion.button>
-          )}
-        </AnimatePresence>
+          ))
+        ) : (
+          <motion.button
+            type="button"
+            className="cut hero-hit"
+            aria-label="Soulever le panier"
+            style={{ touchAction: "none" }}
+            animate={{ y: -lift }}
+            transition={lift === 0 && !reduced ? { type: "spring", stiffness: 180, damping: 16 } : { duration: 0 }}
+            onPointerDown={(event) => {
+              event.currentTarget.setPointerCapture(event.pointerId);
+              origin.current = event.clientY;
+            }}
+            onPointerMove={(event) => {
+              if (origin.current == null) return;
+              setLift(Math.max(0, Math.min(110, origin.current - event.clientY)));
+            }}
+            onPointerUp={() => {
+              if (lift > 48) reveal();
+              else setLift(0);
+              origin.current = null;
+            }}
+            onPointerCancel={() => {
+              setLift(0);
+              origin.current = null;
+            }}
+          >
+            <GiftPhoto src="stickers/jour-6/gift-basket.webp" alt="Panier" className="fill-cut" />
+          </motion.button>
+        )}
       </div>
-      <p className="open-caption">{open ? "Bonbons, boisson, mini peluche." : teaserFor(6)}</p>
-      <p className="open-caption">{basket.giftPhysical}</p>
+      <p className="open-caption">{open ? "Un à un, ils se posent." : teaserFor(6)}</p>
+      <p className="open-caption">{open ? "Bonbons, boisson, mini peluche." : "Tire le panier vers le haut."}</p>
       <div className="open-actions">
+        {open ? null : (
+          <button type="button" className="btn-line" onClick={reveal}>
+            Soulever
+          </button>
+        )}
         <button type="button" className="btn-ink" onClick={close}>
-          {open ? "Tout remettre dans le panier" : "Plus tard"}
+          Revenir aux cases
         </button>
       </div>
     </div>

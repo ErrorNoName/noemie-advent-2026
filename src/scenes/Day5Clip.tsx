@@ -1,6 +1,9 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
-import { dayByNumber, giftFor, teaserFor } from "../data/days.ts";
+import { dayByNumber, teaserFor } from "../data/days.ts";
+import { useGentle } from "../hooks/useGentle.ts";
+import { playTick } from "../lib/touchSound.ts";
 import { useCloseScene } from "./scene-context.ts";
 
 function PixelHeart() {
@@ -13,9 +16,26 @@ function PixelHeart() {
 
 export function Day5() {
   const close = useCloseScene();
+  const { reduced } = useGentle();
+  const [pressed, setPressed] = useState(false);
   const [on, setOn] = useState(false);
+  const [flicker, setFlicker] = useState(false);
   const clip = dayByNumber(5);
   const spoken = clip.day === 5 ? clip.lcdDefaultMessage : "I love U";
+
+  function power() {
+    if (on || flicker) return;
+    setPressed(false);
+    setFlicker(true);
+    if (!reduced) {
+      playTick();
+      if ("vibrate" in navigator) navigator.vibrate(10);
+    }
+    window.setTimeout(() => {
+      setFlicker(false);
+      setOn(true);
+    }, reduced ? 0 : 280);
+  }
 
   return (
     <div className="open-scene">
@@ -24,12 +44,23 @@ export function Day5() {
       <div className="collage clip-collage" data-powered={on ? "yes" : "no"}>
         <GiftPhoto src="stickers/jour-5/butterfly-clip.webp" alt="" className="cut side-l" />
         <GiftPhoto src="stickers/jour-5/hairpin-flower.webp" alt="" className="cut side-r" />
-        <GiftPhoto src="stickers/jour-5/bow-hairpin.webp" alt="Barrette" className="cut hero-still" />
+        <motion.button
+          type="button"
+          className="cut hero-still clip-press"
+          aria-label="Allumer l’écran de la barrette"
+          animate={{ scale: pressed ? 0.92 : 1, rotate: pressed ? -3 : 0 }}
+          transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 16 }}
+          onPointerDown={() => setPressed(true)}
+          onPointerUp={power}
+          onPointerCancel={() => setPressed(false)}
+        >
+          <GiftPhoto src="stickers/jour-5/bow-hairpin.webp" alt="Barrette" className="fill-cut" />
+        </motion.button>
         <button
           type="button"
-          className={`lcd-chip ${on ? "is-on" : "is-off"}`}
+          className={`lcd-chip ${on ? "is-on" : "is-off"} ${flicker ? "is-flicker" : ""}`}
           aria-pressed={on}
-          onClick={() => setOn(true)}
+          onClick={power}
         >
           {on ? (
             <span className="lcd-marquee">
@@ -41,13 +72,13 @@ export function Day5() {
               </span>
             </span>
           ) : (
-            <span>tapoter</span>
+            <span>{flicker ? "···" : "éteint"}</span>
           )}
           <span className="sr-only">{on ? `NOÉMIE. ${spoken}` : "Écran éteint"}</span>
         </button>
       </div>
       <p className="open-caption">{on ? "Le prénom défile, tout petit." : teaserFor(5)}</p>
-      <p className="open-caption">{giftFor(5)}</p>
+      <p className="open-caption">Appuie sur la barrette. L’écran s’allume.</p>
       <div className="open-actions">
         <button type="button" className="btn-ink" onClick={close}>
           La garder dans les cheveux
