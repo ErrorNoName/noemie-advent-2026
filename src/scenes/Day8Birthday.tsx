@@ -1,13 +1,9 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Confetti } from "../components/Confetti.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { useCloseScene } from "./scene-context.ts";
-
-type Step = "hello" | "plush" | "note" | "tray" | "finale";
-
-const ORDER: Step[] = ["hello", "plush", "note", "tray", "finale"];
 
 function pastrySrc(item: string): string {
   const name = item.toLowerCase();
@@ -21,102 +17,127 @@ function pastrySrc(item: string): string {
 
 function pastryLabel(item: string): { title: string; note?: string } {
   const name = item.toLowerCase();
-  if (name.includes("gâteau") || name.includes("gateau")) {
-    return { title: "Gâteau chocolat", note: "lait & caramel doux" };
-  }
+  if (name.includes("éclair") || name.includes("eclair")) return { title: "Éclair" };
+  if (name.includes("gâteau") || name.includes("gateau")) return { title: "Gâteau", note: "lait & caramel doux" };
+  if (name.includes("glace")) return { title: "Glace café" };
+  if (name.includes("religieuse")) return { title: "Religieuses" };
+  if (name.includes("pêche") || name.includes("peche")) return { title: "Pêche" };
   return { title: item.charAt(0).toUpperCase() + item.slice(1) };
 }
 
 export function Day8({ breakfast, extras }: { breakfast: string[]; extras: string[] }) {
   const close = useCloseScene();
   const { reduced, pop } = useGentle();
-  const [step, setStep] = useState<Step>("hello");
-  const index = ORDER.indexOf(step);
+  const [open, setOpen] = useState(false);
+  const [pull, setPull] = useState(0);
+  const origin = useRef<number | null>(null);
+  const spring = reduced ? { duration: 0 } : pop;
 
-  function next() {
-    const following = ORDER[index + 1];
-    if (following) setStep(following);
+  function unwrap() {
+    if (open) return;
+    setOpen(true);
+    if (!reduced && "vibrate" in navigator) navigator.vibrate(16);
   }
 
   return (
-    <div className="text-center">
-      <Confetti burst={step === "finale" ? 1 : 0} />
+    <div className="open-scene">
+      <Confetti burst={open ? 1 : 0} />
       <p className="eyebrow">Jour 8 · 21 octobre</p>
-      <h2 className="mt-1 font-serif text-4xl italic">Joyeux anniversaire</h2>
-      {step === "hello" ? (
-        <div className="mt-8">
-          <div className="flex items-end justify-center gap-2" aria-hidden>
-            <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="" className="diecut h-24 w-20" />
-            <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="" className="diecut h-32 w-24" />
+      <h2 className="font-serif italic">Joyeux anniversaire</h2>
+      <div className="open-stage day8-stage" data-open={open ? "yes" : "no"}>
+        {open ? (
+          <div className="day8-settle">
+            <motion.div
+              className="day8-heroes"
+              initial={{ y: -28, opacity: 0, rotate: -6 }}
+              animate={{ y: 0, opacity: 1, rotate: 0 }}
+              transition={{ ...spring, delay: reduced ? 0 : 0.12 }}
+            >
+              <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="day8-teddy" />
+              <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="day8-flowers" />
+            </motion.div>
+            <motion.div
+              className="love-note"
+              initial={{ rotate: -18, y: -16, opacity: 0, scale: 0.86 }}
+              animate={{ rotate: -4, y: 0, opacity: 1, scale: 1 }}
+              transition={{ ...spring, delay: reduced ? 0 : 0.55 }}
+            >
+              <span className="love-tape" />
+              je t’aime
+            </motion.div>
+            <ul className="tray">
+              {breakfast.map((item, index) => {
+                const label = pastryLabel(item);
+                return (
+                  <motion.li
+                    key={item}
+                    className="tray-bit"
+                    initial={{ x: 42, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={
+                      reduced
+                        ? { duration: 0 }
+                        : { type: "spring", stiffness: 220, damping: 20, delay: 0.95 + index * 0.16 }
+                    }
+                  >
+                    <GiftPhoto src={pastrySrc(item)} alt={label.title} className="tray-photo" />
+                    <p>{label.title}</p>
+                    {label.note ? <p className="text-mute">{label.note}</p> : null}
+                  </motion.li>
+                );
+              })}
+            </ul>
           </div>
-          <p className="mt-4 font-serif text-2xl italic">Huit matins. Celui-ci est le tien.</p>
-        </div>
-      ) : null}
-      {step === "plush" || step === "note" || step === "tray" || step === "finale" ? (
-        <motion.div
-          className="mt-4 flex items-end justify-center gap-2"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={pop}
-        >
-          <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="diecut h-36 w-28" />
-          <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="diecut h-28 w-20" />
-        </motion.div>
-      ) : null}
-      {step === "note" || step === "tray" || step === "finale" ? (
-        <motion.div
-          className="love-note mt-4"
-          initial={{ rotate: -12, scale: 0.8, opacity: 0 }}
-          animate={{ rotate: -4, scale: 1, opacity: 1 }}
-          transition={pop}
-        >
-          <span className="love-tape" />
-          je t’aime
-        </motion.div>
-      ) : null}
-      {step === "note" || step === "tray" || step === "finale" ? (
-        <GiftPhoto src="stickers/jour-8/postit-2.webp" alt="Post-it" className="mx-auto mt-3 h-24 w-24 object-contain" />
-      ) : null}
-      {step === "tray" || step === "finale" ? (
-        <ul className="breakfast-grid mt-6 text-left">
-          {breakfast.map((item, itemIndex) => {
-            const label = pastryLabel(item);
-            return (
-              <motion.li
-                key={item}
-                className="item-card"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={reduced ? { duration: 0 } : { ...pop, delay: itemIndex * 0.12 }}
-              >
-                <GiftPhoto src={pastrySrc(item)} alt={label.title} className="h-14 w-full object-contain" />
-                <div>
-                  <p className="font-serif text-lg italic">{label.title}</p>
-                  {label.note ? <p className="text-sm text-mute">{label.note}</p> : null}
-                </div>
-              </motion.li>
-            );
-          })}
-        </ul>
-      ) : null}
-      {step === "finale" ? (
-        <div className="mt-6">
-          <div className="mt-4 flex justify-center gap-3">
-            <GiftPhoto src="stickers/jour-8/eclair-1.webp" alt="" className="diecut h-16 w-16" />
-            <GiftPhoto src="stickers/jour-8/cake-1.webp" alt="" className="diecut h-16 w-16" />
-            <GiftPhoto src="stickers/jour-8/peach-1.webp" alt="" className="diecut h-16 w-16" />
-          </div>
-          <p className="mt-4 text-sm text-mute">{extras.join(" · ")}</p>
-          <p className="mt-2 font-serif text-2xl italic">Tout ça, et toi.</p>
-          <button type="button" className="btn-ink mt-4" onClick={close}>
+        ) : (
+          <button
+            type="button"
+            className="gift-ribbon"
+            aria-label="Dénouer le ruban"
+            style={{ touchAction: "none" }}
+            onPointerDown={(event) => {
+              event.currentTarget.setPointerCapture(event.pointerId);
+              origin.current = event.clientY;
+            }}
+            onPointerMove={(event) => {
+              if (origin.current == null) return;
+              setPull(Math.max(0, Math.min(140, event.clientY - origin.current)));
+            }}
+            onPointerUp={() => {
+              if (pull > 70) unwrap();
+              else setPull(0);
+              origin.current = null;
+            }}
+            onPointerCancel={() => {
+              setPull(0);
+              origin.current = null;
+            }}
+          >
+            <span className="gift-box" aria-hidden />
+            <motion.span className="gift-bow" style={{ y: pull }} aria-hidden>
+              <svg viewBox="0 0 140 180">
+                <path d="M62 0h16v180H62z" fill="#e56b8a" />
+                <path d="M18 36c22 14 28 12 52 0 22 12 30 14 52 0-12 22-22 26-52 18-30 8-40 4-52-18z" fill="#f4b3c6" />
+                <circle cx="70" cy="48" r="8" fill="#fff8f2" />
+              </svg>
+            </motion.span>
+          </button>
+        )}
+      </div>
+      <p className="open-caption">
+        {open ? "La peluche, les fleurs, le mot, puis le plateau." : "Huit matins. Celui-ci est le tien."}
+      </p>
+      {open ? <p className="open-caption">{extras.join(" · ")}</p> : null}
+      <div className="open-actions">
+        {open ? (
+          <button type="button" className="btn-ink" onClick={close}>
             Merci
           </button>
-        </div>
-      ) : (
-        <button type="button" className="btn-ink mt-6" onClick={next}>
-          Continuer
-        </button>
-      )}
+        ) : (
+          <button type="button" className="btn-ink" onClick={unwrap}>
+            Dénouer le ruban
+          </button>
+        )}
+      </div>
     </div>
   );
 }

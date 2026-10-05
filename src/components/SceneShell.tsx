@@ -16,7 +16,7 @@ export function SceneShell({
   onBack: () => void;
   children: ReactNode;
 }) {
-  const { reduced, fade } = useGentle();
+  const { reduced, fade, pop } = useGentle();
   const [lid, setLid] = useState(reduced);
   const [ready, setReady] = useState(reduced);
 
@@ -30,8 +30,8 @@ export function SceneShell({
 
   useEffect(() => {
     if (reduced) return;
-    const openLid = window.setTimeout(() => setLid(true), 220);
-    const show = window.setTimeout(() => setReady(true), 1100);
+    const openLid = window.setTimeout(() => setLid(true), 180);
+    const show = window.setTimeout(() => setReady(true), 720);
     return () => {
       window.clearTimeout(openLid);
       window.clearTimeout(show);
@@ -64,11 +64,15 @@ export function SceneShell({
             ) : (
               <motion.div
                 key="lid"
-                className="grid min-h-[62dvh] place-items-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={fade}
+                className="lid-exit"
+                initial={{ opacity: 0, y: 16, rotate: -2 }}
+                animate={{ opacity: 1, y: 0, rotate: 0 }}
+                exit={
+                  reduced
+                    ? { opacity: 0 }
+                    : { opacity: 0, y: -210, x: 36, rotate: -18, scale: 0.62 }
+                }
+                transition={reduced ? { duration: 0 } : { ...pop, opacity: { duration: 0.35 } }}
                 role="status"
                 aria-label="La case s’ouvre"
               >
