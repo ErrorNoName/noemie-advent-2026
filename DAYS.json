@@ -1,0 +1,134 @@
+{
+  "project": "noemie-advent-2026",
+  "recipient": "Noémie",
+  "timezone": "Europe/Paris",
+  "startDate": "2026-10-14",
+  "endDate": "2026-10-21",
+  "birthday": "2026-10-21",
+  "uiLocale": "fr-FR",
+  "storageKey": "noemie-advent-2026:v1",
+  "devQueryParam": "dev",
+  "days": [
+    {
+      "id": 1,
+      "date": "2026-10-14",
+      "label": "Jour 1",
+      "weekdayFr": "mardi",
+      "giftPhysical": "Petite figurine (avec pochette)",
+      "ux": "teaser-noir → pochette foil (Paper Koa) → shake/reclic → reveal personnage (Lucky Koa)",
+      "refs": ["02-paper-koa-pouch.png", "03-lucky-koa-reveal.png"],
+      "stickersDir": "stickers/jour-1",
+      "teaserText": "Quelque chose t'attend…",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 2,
+      "date": "2026-10-15",
+      "label": "Jour 2",
+      "weekdayFr": "mercredi",
+      "giftPhysical": "Squishy satisfaisant",
+      "ux": "anim squeeze / bounce / jelly",
+      "refs": [],
+      "stickersDir": "stickers/jour-2",
+      "teaserText": "Appuie doucement…",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 3,
+      "date": "2026-10-16",
+      "label": "Jour 3",
+      "weekdayFr": "jeudi",
+      "giftPhysical": "Peluche",
+      "ux": "reveal soft plush (squash & stretch)",
+      "refs": [],
+      "stickersDir": "stickers/jour-3",
+      "teaserText": "Tout doux…",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 4,
+      "date": "2026-10-17",
+      "label": "Jour 4",
+      "weekdayFr": "vendredi",
+      "giftPhysical": "Machine type gacha (avec cadeaux dedans)",
+      "ux": "Gacha Shoko : coin → spin dial → capsule → message/cadeau",
+      "refs": ["01-gacha-shoko.png"],
+      "stickersDir": "stickers/jour-4",
+      "teaserText": "OPEN WHEN YOU'RE READY",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 5,
+      "date": "2026-10-18",
+      "label": "Jour 5",
+      "weekdayFr": "samedi",
+      "giftPhysical": "Barrette écran LCD (cheveux)",
+      "ux": "mockup LCD pixel — message type I ❤ U / Noémie",
+      "refs": ["05-mixtape-aesthetic.png"],
+      "stickersDir": "stickers/jour-5",
+      "teaserText": "Un petit écran pour toi…",
+      "lcdDefaultMessage": "I ❤ U",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 6,
+      "date": "2026-10-19",
+      "label": "Jour 6",
+      "weekdayFr": "dimanche",
+      "giftPhysical": "Panier : bonbons + boisson + mini peluche porte-clés",
+      "ux": "picnic basket — items qui pop un par un",
+      "refs": [],
+      "stickersDir": "stickers/jour-6",
+      "contents": ["bonbons", "boisson", "mini peluche porte-clés"],
+      "teaserText": "Un panier pour toi…",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 7,
+      "date": "2026-10-20",
+      "label": "Jour 7",
+      "weekdayFr": "lundi",
+      "giftPhysical": "Briquet aesthetic fille",
+      "ux": "reveal produit cute chrome/glitter",
+      "refs": [],
+      "stickersDir": "stickers/jour-7",
+      "teaserText": "Une petite flamme…",
+      "spoilersForbiddenUntilOpen": true
+    },
+    {
+      "id": 8,
+      "date": "2026-10-21",
+      "label": "Jour 8 — Anniversaire",
+      "weekdayFr": "mercredi",
+      "isBirthday": true,
+      "giftPhysical": "Énorme peluche + fleurs + post-it je t'aime + petit-déj",
+      "ux": "grande scène festive multi-éléments",
+      "refs": ["04-admit-two-ticket.png", "06-pacdora-blindbox.png"],
+      "stickersDir": "stickers/jour-8",
+      "breakfast": [
+        "éclair chocolat/café",
+        "gâteau chocolat (pas noir fort)",
+        "glace café",
+        "religieuses",
+        "pêche blanche"
+      ],
+      "extras": ["énorme peluche", "fleurs", "post-it je t'aime"],
+      "teaserText": "Joyeux anniversaire, Noémie 💙",
+      "spoilersForbiddenUntilOpen": true
+    }
+  ],
+  "pinterestPins": [
+    "29836416278745853",
+    "51861833204668772",
+    "325244404362848109",
+    "14988611255524466",
+    "278519558201523885",
+    "1100778333957365068",
+    "23432860626219894"
+  ],
+  "chrono": {
+    "style": "blue-balloon-digits",
+    "timezone": "Europe/Paris",
+    "targetLogic": "next_locked_day_midnight_or_birthday"
+  }
+}

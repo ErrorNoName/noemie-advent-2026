@@ -1,0 +1,4 @@
+pin_id: 14988611255524466
+url: https://fr.pinterest.com/pin/14988611255524466/
+source: CDN originals
+status: collage-original.jpg downloaded — stickers not yet harvested

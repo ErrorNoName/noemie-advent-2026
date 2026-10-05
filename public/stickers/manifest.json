@@ -1,0 +1,32 @@
+{
+  "shared": [
+    "heart.svg",
+    "star.svg",
+    "bow.svg",
+    "spark.svg"
+  ],
+  "jour-1": [
+    "foil.svg"
+  ],
+  "jour-2": [
+    "blob.svg"
+  ],
+  "jour-3": [
+    "hug.svg"
+  ],
+  "jour-4": [
+    "capsule.svg"
+  ],
+  "jour-5": [
+    "pixel.svg"
+  ],
+  "jour-6": [
+    "candy.svg"
+  ],
+  "jour-7": [
+    "flame.svg"
+  ],
+  "jour-8": [
+    "balloon.svg"
+  ]
+}

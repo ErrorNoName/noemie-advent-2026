@@ -1,0 +1,4 @@
+pin_id: 325244404362848109
+url: https://fr.pinterest.com/pin/325244404362848109/
+source: CDN originals.png (3.3MB)
+status: collage-original.png + .jpg copy — stickers not yet harvested

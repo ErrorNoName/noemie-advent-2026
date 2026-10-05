@@ -1,0 +1,7 @@
+Pin: https://fr.pinterest.com/pin/29836416278745853/
+Login: none needed (already signed in).
+Remix: YES - "Remixer ce collage" button present; opened /collage-creation-tool/.
+Découpages sidebar: present but listed ONLY "Arrière-plan" (background layer, locked). Canvas/draft stayed on "Chargement du brouillon" spinner for >30s; no cutout layers loaded.
+Thumbs saved: 0 (no masks invented).
+Collage: collage-original.jpg (pin original image, i.pinimg.com/originals/7a/b0/32/...).
+Blocker: draft never loaded / arrière-plan only. Could retry later.
