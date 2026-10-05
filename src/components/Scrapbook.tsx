@@ -1,3 +1,5 @@
+import { publicUrl } from "../lib/publicUrl.ts";
+
 const SCRAPS = [
   { src: "/pins/29836416278745853/collage-original.jpg", rot: -8 },
   { src: "/pins/51861833204668772/collage-original.jpg", rot: 7 },
@@ -18,7 +20,7 @@ export function Polaroid({
 }) {
   return (
     <div className={`polaroid ${className}`} style={{ transform: `rotate(${rot}deg)` }} aria-hidden>
-      <img src={src} alt="" loading="lazy" decoding="async" />
+      <img src={publicUrl(src)} alt="" loading="lazy" decoding="async" />
       <span className="tape" />
     </div>
   );
