@@ -11,7 +11,7 @@ npm i
 npm run dev
 ```
 
-Le site écoute sur [http://127.0.0.1:43123](http://127.0.0.1:43123).
+Le site écoute sur [http://127.0.0.1:43123/noemie-advent-2026/](http://127.0.0.1:43123/noemie-advent-2026/). Vite sert le dossier avec `base: '/noemie-advent-2026/'`, le même chemin que GitHub Pages.
 
 ```bash
 npm test
@@ -28,6 +28,8 @@ Les cases déjà ouvertes sont mémorisées dans `localStorage`, clé `noemie-ad
 ## Preview
 
 `?dev=1` ou `?preview=all` débloque les huit cases et affiche un badge **PREVIEW**. Le compte à rebours, lui, suit toujours la vraie date.
+
+`/test` ou `?test=1` ouvre les huit cases tout de suite (couvercles ouverts), sans le portail. Le bouton **Réinitialiser** efface `localStorage`. Sur GitHub Pages, `/test` passe par `404.html`, qui renvoie vers l’application.
 
 ## Compte à rebours
 
@@ -48,7 +50,11 @@ La logique est commentée dans `src/lib/time.ts`.
 
 ## Stickers
 
-`public/stickers/jour-1/` … `jour-8/` et `public/stickers/shared/` sont branchés via `public/stickers/manifest.json`. Les SVG déjà là sont des placeholders. Pour les remplacer par des découpes : dépose les PNG dans le dossier du jour et ajoute le nom du fichier dans le manifeste. Les collages Pinterest (`public/pins/`) servent de chutes scrapbook.
+Les cadeaux réels sont dans `public/stickers/jour-1/` … `jour-8/` (WebP, fond transparent). Le décor est dans `public/stickers/decor/`. Les chiffres du compte à rebours sont les ballons foil `public/timer/digit-0.webp` … `digit-9.webp`. La liste est dans `public/stickers/manifest.json`. Les crédits sont dans `public/stickers/CREDITS.md`.
+
+## GitHub Pages
+
+Le dépôt public prévu est `noemie-advent-2026`. Le workflow `.github/workflows/pages.yml` construit `dist` et le publie. L’adresse est `https://<compte>.github.io/noemie-advent-2026/` et le mode test `https://<compte>.github.io/noemie-advent-2026/test`.
 
 `refs/`, `pins/` et `stickers/` à la racine pointent vers `public/`.
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChromeBlobs } from "../components/ChromeBlobs.tsx";
-import { LighterArt } from "../components/illustrations.tsx";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
 
@@ -17,7 +17,7 @@ export function Day7() {
         <p className="mt-2 text-mute">{teaserFor(7)} La vraie est à côté.</p>
         <div className="lighter mt-6">
           {lit ? <div className="flame" aria-hidden /> : <div className="h-[46px]" />}
-          <LighterArt lit={lit} />
+          <GiftPhoto src="stickers/jour-7/zippo-silver.webp" alt="Briquet" className="gift-hero mx-auto w-28" />
         </div>
         <button type="button" className="btn-ink mt-4" onClick={() => setLit((value) => !value)} aria-pressed={lit}>
           {lit ? "Souffler" : "Allumer"}

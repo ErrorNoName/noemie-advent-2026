@@ -10,12 +10,14 @@ export function Calendar({
   now,
   opened,
   dev,
+  test = false,
   onOpen,
   onLock,
 }: {
   now: Date;
   opened: Record<string, boolean>;
   dev: boolean;
+  test?: boolean;
   onOpen: (day: AdventDay, fresh: boolean) => void;
   onLock: () => void;
 }) {
@@ -23,9 +25,18 @@ export function Calendar({
   const caseNumber = caseNumberForToday(today);
   const [hint, setHint] = useState<string | null>(null);
   const [shakeDay, setShakeDay] = useState<number | null>(null);
-  const anyLocked = days.some(
-    (day) => doorStatus({ date: day.date, today, opened: opened[day.date] === true, dev }) === "locked",
-  );
+
+  function statusFor(day: AdventDay) {
+    return doorStatus({
+      date: day.date,
+      today,
+      opened: opened[day.date] === true,
+      dev,
+      test,
+    });
+  }
+
+  const anyLocked = days.some((day) => statusFor(day) === "locked");
 
   useEffect(() => {
     if (!hint) return;
@@ -34,12 +45,7 @@ export function Calendar({
   }, [hint]);
 
   function press(day: AdventDay) {
-    const status = doorStatus({
-      date: day.date,
-      today,
-      opened: opened[day.date] === true,
-      dev,
-    });
+    const status = statusFor(day);
     if (status === "locked") {
       setShakeDay(day.day);
       window.setTimeout(() => setShakeDay((current) => (current === day.day ? null : current)), 480);
@@ -63,12 +69,7 @@ export function Calendar({
       <Countdown now={now} />
       <ol className="pips" aria-hidden>
         {days.map((day) => {
-          const status = doorStatus({
-            date: day.date,
-            today,
-            opened: opened[day.date] === true,
-            dev,
-          });
+          const status = statusFor(day);
           return <li key={day.date} className={status} />;
         })}
       </ol>
@@ -79,12 +80,7 @@ export function Calendar({
       ) : null}
       <div className="door-grid">
         {days.map((day) => {
-          const status = doorStatus({
-            date: day.date,
-            today,
-            opened: opened[day.date] === true,
-            dev,
-          });
+          const status = statusFor(day);
           const label =
             status === "locked"
               ? `Case ${day.day}, fermée jusqu’au ${formatDateKey(day.date)}`
@@ -118,7 +114,7 @@ export function Calendar({
         ) : (
           <p className="text-sm text-mute">Tout est là. Tu peux tout revoir.</p>
         )}
-        {dev ? null : (
+        {dev || test ? null : (
           <button type="button" className="btn-ghost mt-3" onClick={onLock}>
             Verrouiller
           </button>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PixelHeart } from "../components/illustrations.tsx";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { dayByNumber, giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -10,11 +10,7 @@ type Frame = (typeof FRAMES)[number];
 function Screen({ frame }: { frame: Frame }) {
   switch (frame) {
     case "love":
-      return (
-        <span className="flex items-center gap-2">
-          I <PixelHeart /> U
-        </span>
-      );
+      return <span>I ❤ U</span>;
     case "name":
       return <span>NOEMIE</span>;
     case "date":
@@ -50,12 +46,8 @@ export function Day5() {
       <p className="eyebrow">Jour 5</p>
       <h2 className="mt-1 font-serif text-4xl italic">Barrette écran</h2>
       <p className="mt-2 text-mute">{teaserFor(5)}</p>
-      <div className="lcd-clip mt-8">
-        <svg className="hair" viewBox="0 0 260 200" aria-hidden>
-          <path d="M40 10 C 90 80, 20 120, 70 200" stroke="#3a2a32" strokeWidth="26" fill="none" strokeLinecap="round" />
-          <path d="M90 0 C 140 70, 70 130, 120 200" stroke="#5a4038" strokeWidth="22" fill="none" strokeLinecap="round" />
-          <path d="M150 8 C 190 80, 130 140, 180 200" stroke="#2a2428" strokeWidth="18" fill="none" strokeLinecap="round" />
-        </svg>
+      <GiftPhoto src="stickers/jour-5/bow-hairpin.webp" alt="Barrette" className="gift-hero mt-4" />
+      <div className="lcd-clip mt-2">
         <div className="lcd">
           <div className={`lcd-screen ${reduced ? "" : "is-glitch"}`}>
             <Screen frame={frame} />
@@ -64,7 +56,11 @@ export function Day5() {
           <p className="mt-2 text-center font-pixel text-[9px] tracking-[0.2em] text-mute">LCD</p>
         </div>
       </div>
-      <p className="mt-6 font-serif text-2xl italic">{lcdMessage}, en tout petit.</p>
+      <div className="mt-3 flex justify-center gap-2">
+        <GiftPhoto src="stickers/jour-5/barrette-purple.webp" alt="" className="h-14 w-14 object-contain" />
+        <GiftPhoto src="stickers/jour-5/hair-clips.webp" alt="" className="h-14 w-14 object-contain" />
+      </div>
+      <p className="mt-4 font-serif text-2xl italic">{lcdMessage}, en tout petit.</p>
       <p className="mt-2 text-sm text-mute">{giftFor(5)}</p>
       <button type="button" className="btn-ink mt-6" onClick={close}>
         La garder dans les cheveux

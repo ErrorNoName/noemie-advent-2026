@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { MiniTicket } from "../components/MiniTicket.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor } from "../data/days.ts";
@@ -102,13 +103,7 @@ export function Day4() {
             <div className="gacha-star" aria-hidden>
               ✦
             </div>
-            <div className="gacha-caps" aria-hidden>
-              <i className="cap pink c1" />
-              <i className="cap white c2" />
-              <i className="cap mint c3" />
-              <i className="cap pink c4" />
-              <i className="cap white c5" />
-            </div>
+            <GiftPhoto src="stickers/jour-4/gacha-pastel.webp" alt="" className="gacha-photo" />
           </div>
           <div className="gacha-controls">
             <div className="gacha-price" aria-hidden>
@@ -138,12 +133,13 @@ export function Day4() {
               {phase === "capsule" || phase === "drop" ? (
                 <motion.span
                   key="ball"
-                  className="cap pink"
-                  style={{ position: "relative" }}
+                  className="relative block h-14 w-14"
                   initial={{ y: -70, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 320, damping: 14 }}
-                />
+                >
+                  <GiftPhoto src="stickers/jour-4/gashapon-capsule.webp" alt="Capsule" className="h-14 w-14 object-contain" />
+                </motion.span>
               ) : null}
             </AnimatePresence>
           </div>

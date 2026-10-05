@@ -1,12 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ChromeBlobs } from "../components/ChromeBlobs.tsx";
-import { Figurine } from "../components/illustrations.tsx";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
 
 type Step = "shadow" | "pouch" | "reveal";
+
+const HERO = "stickers/jour-1/labubu-popmart.webp";
 
 export function Day1() {
   const close = useCloseScene();
@@ -44,9 +46,7 @@ export function Day1() {
       <AnimatePresence mode="wait">
         {step === "shadow" ? (
           <motion.div key="shadow" className="mystery mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="mx-auto w-40">
-              <Figurine className="mystery-fig" label="Silhouette encore secrète" />
-            </div>
+            <GiftPhoto src={HERO} alt="" className="mystery-fig" />
             <p className="mt-2 font-serif text-2xl italic">{teaserFor(1)}</p>
             <p className="mt-1 text-sm text-white/70">Pas encore de nom. Juste une forme.</p>
             <button
@@ -117,8 +117,12 @@ export function Day1() {
             <ChromeBlobs />
             <div className="reveal-disc">
               <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={pop}>
-                <Figurine className="w-40" />
+                <GiftPhoto src={HERO} alt="Petite figurine" className="h-44 w-44 object-contain" />
               </motion.div>
+            </div>
+            <div className="relative mt-3 flex justify-center gap-3">
+              <GiftPhoto src="stickers/jour-1/labubu-bunny.webp" alt="" className="h-16 w-16 object-contain" />
+              <GiftPhoto src="stickers/jour-1/blindbox-figure.webp" alt="" className="h-16 w-16 object-contain" />
             </div>
             <p className="relative mt-4 text-center text-xs uppercase tracking-[0.2em] text-mute">pour toi · une seule</p>
             <p className="relative text-center font-serif text-2xl italic">Elle était là depuis le début.</p>

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Plush } from "../components/illustrations.tsx";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -27,7 +27,7 @@ export function Day3() {
         }
         transition={hug || reduced ? pop : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
       >
-        <Plush />
+        <GiftPhoto src="stickers/jour-3/teddy-1.webp" alt="Peluche" />
       </motion.div>
       {hug ? <p className="font-serif text-xl italic text-rose">Un câlin, reçu.</p> : null}
       <div className="mt-4 flex justify-center gap-3">

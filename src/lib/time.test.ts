@@ -83,6 +83,12 @@ describe("portes", () => {
       "available",
     );
   });
+
+  it("ouvre les huit cases en mode test, même fermées", () => {
+    expect(doorStatus({ date: "2026-10-21", today: "2026-10-05", opened: false, dev: false, test: true })).toBe(
+      "opened",
+    );
+  });
 });
 
 describe("calendrier", () => {

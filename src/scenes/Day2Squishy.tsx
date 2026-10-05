@@ -1,14 +1,21 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
+
+const FRAMES = Array.from(
+  { length: 12 },
+  (_, index) => `stickers/jour-2/pin-squishy-${String(index + 1).padStart(2, "0")}.webp`,
+);
 
 export function Day2() {
   const close = useCloseScene();
   const { reduced, pop } = useGentle();
   const [pressed, setPressed] = useState(false);
   const [count, setCount] = useState(0);
+  const frame = FRAMES[count % FRAMES.length] ?? FRAMES[0] ?? "";
 
   function release() {
     if (!pressed) return;
@@ -36,20 +43,13 @@ export function Day2() {
         onPointerLeave={release}
         onPointerCancel={release}
         animate={{
-          scaleX: pressed ? 1.32 : 1,
-          scaleY: pressed ? 0.62 : 1,
-          borderRadius: pressed ? "46% 46% 42% 42% / 42% 42% 48% 48%" : "48% 52% 46% 54% / 52% 46% 54% 48%",
+          scaleX: pressed ? 1.22 : 1,
+          scaleY: pressed ? 0.72 : 1,
         }}
         transition={pressed || reduced ? { duration: reduced ? 0 : 0.08 } : pop}
         style={{ touchAction: "none" }}
       >
-        <span className="flex flex-col items-center gap-1 text-ink">
-          <span className="flex gap-3">
-            <span className="h-2 w-2 rounded-full bg-ink" />
-            <span className="h-2 w-2 rounded-full bg-ink" />
-          </span>
-          <span className="mt-1 h-2 w-6 rounded-full border-b-2 border-ink" />
-        </span>
+        <GiftPhoto src={frame} alt="" className="h-full w-full object-contain" />
       </motion.button>
       <p className="mt-4 text-center font-serif text-2xl italic">
         {count === 0 ? "Quelque chose de satisfaisant." : `${count} ${count > 1 ? "pressions douces" : "pression douce"}`}

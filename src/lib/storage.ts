@@ -40,3 +40,12 @@ export function saveMemory(memory: AdventMemory): void {
     /* mode privé : on garde la session en mémoire */
   }
 }
+
+export function resetAdvent(): void {
+  try {
+    localStorage.removeItem(KEY);
+  } catch {
+    /* mode privé */
+  }
+  window.location.reload();
+}

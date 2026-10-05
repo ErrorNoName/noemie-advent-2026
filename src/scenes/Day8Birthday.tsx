@@ -1,32 +1,24 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Confetti } from "../components/Confetti.tsx";
-import { RoundBalloon } from "../components/BalloonDigit.tsx";
-import {
-  Bouquet,
-  CakeSlice,
-  Eclair,
-  Peach,
-  Plush,
-  Religieuse,
-  Sundae,
-} from "../components/illustrations.tsx";
+import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { ScrapRow } from "../components/Scrapbook.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
+import { publicUrl } from "../lib/publicUrl.ts";
 import { useCloseScene } from "./scene-context.ts";
 
 type Step = "hello" | "plush" | "note" | "tray" | "finale";
 
 const ORDER: Step[] = ["hello", "plush", "note", "tray", "finale"];
 
-function pastryArt(item: string) {
+function pastrySrc(item: string): string {
   const name = item.toLowerCase();
-  if (name.includes("éclair") || name.includes("eclair")) return Eclair;
-  if (name.includes("gâteau") || name.includes("gateau")) return CakeSlice;
-  if (name.includes("glace")) return Sundae;
-  if (name.includes("religieuse")) return Religieuse;
-  if (name.includes("pêche") || name.includes("peche")) return Peach;
-  return Eclair;
+  if (name.includes("éclair") || name.includes("eclair")) return "stickers/jour-8/eclair-1.webp";
+  if (name.includes("gâteau") || name.includes("gateau")) return "stickers/jour-8/cake-1.webp";
+  if (name.includes("glace")) return "stickers/jour-8/icecream-1.webp";
+  if (name.includes("religieuse")) return "stickers/jour-8/religieuse.webp";
+  if (name.includes("pêche") || name.includes("peche")) return "stickers/jour-8/peach-1.webp";
+  return "stickers/jour-8/profiterole.webp";
 }
 
 function pastryLabel(item: string): { title: string; note?: string } {
@@ -56,34 +48,41 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
       {step === "hello" ? (
         <div className="mt-8">
           <div className="flex justify-center gap-2" aria-hidden>
-            <RoundBalloon className="h-24" color="#7eb6ff" />
-            <RoundBalloon className="h-28" color="#f4a4b8" />
-            <RoundBalloon className="h-24" color="#d5dee8" />
+            <img src={publicUrl("stickers/decor/balloon.webp")} alt="" className="h-24 w-auto object-contain" />
+            <img src={publicUrl("stickers/decor/party-popper.webp")} alt="" className="h-24 w-auto object-contain" />
+            <img src={publicUrl("stickers/decor/birthday-cake.webp")} alt="" className="h-24 w-auto object-contain" />
           </div>
           <p className="mt-4 font-serif text-2xl italic">Huit matins. Celui-ci est le tien.</p>
         </div>
       ) : null}
       {step === "plush" || step === "note" || step === "tray" || step === "finale" ? (
         <motion.div
-          className="mt-4 flex items-end justify-center gap-1"
+          className="mt-4 flex items-end justify-center gap-2"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={pop}
         >
-          <Plush className="w-40" />
-          <Bouquet className="w-28" />
+          <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="gift-hero w-40" />
+          <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="gift-hero w-28" />
         </motion.div>
       ) : null}
       {step === "note" || step === "tray" || step === "finale" ? (
-        <motion.div className="sticky mt-2" initial={{ rotate: -12, scale: 0.8, opacity: 0 }} animate={{ rotate: -4, scale: 1, opacity: 1 }} transition={pop}>
+        <motion.div
+          className="sticky mt-4"
+          initial={{ rotate: -12, scale: 0.8, opacity: 0 }}
+          animate={{ rotate: -4, scale: 1, opacity: 1 }}
+          transition={pop}
+        >
           <span className="sticky-tape" />
           je t’aime
         </motion.div>
       ) : null}
+      {step === "note" || step === "tray" || step === "finale" ? (
+        <GiftPhoto src="stickers/jour-8/postit-2.webp" alt="Post-it" className="mx-auto mt-3 h-24 w-24 object-contain" />
+      ) : null}
       {step === "tray" || step === "finale" ? (
         <ul className="breakfast-grid mt-6 text-left">
           {breakfast.map((item, itemIndex) => {
-            const Art = pastryArt(item);
             const label = pastryLabel(item);
             return (
               <motion.li
@@ -93,7 +92,7 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
                 animate={{ opacity: 1, y: 0 }}
                 transition={reduced ? { duration: 0 } : { ...pop, delay: itemIndex * 0.12 }}
               >
-                <Art className="h-14 w-full" label={label.title} />
+                <GiftPhoto src={pastrySrc(item)} alt={label.title} className="h-14 w-full object-contain" />
                 <div>
                   <p className="font-serif text-lg italic">{label.title}</p>
                   {label.note ? <p className="text-sm text-mute">{label.note}</p> : null}

@@ -7,18 +7,21 @@ import { recipient, type AdventDay } from "./data/days.ts";
 import { useDevMode } from "./hooks/useDevMode.ts";
 import { useMemory } from "./hooks/useMemory.ts";
 import { useNow } from "./hooks/useNow.ts";
+import { useTestMode } from "./hooks/useTestMode.ts";
+import { resetAdvent } from "./lib/storage.ts";
 import { DayScene } from "./scenes/DayScene.tsx";
 
 type View = { name: "calendar" } | { name: "day"; day: AdventDay; fresh: boolean };
 
 export function App() {
   const dev = useDevMode();
+  const test = useTestMode();
   const now = useNow();
   const { memory, markOpened, unlock, lock } = useMemory();
   const [view, setView] = useState<View>({ name: "calendar" });
   const [burst, setBurst] = useState(0);
 
-  if (!dev && memory.codeOk !== true) {
+  if (!dev && !test && memory.codeOk !== true) {
     return (
       <div className="desk">
         <Gate recipient={recipient} onUnlock={unlock} />
@@ -39,7 +42,12 @@ export function App() {
   return (
     <div className="desk">
       <DeskScraps />
-      {dev ? <div className="preview-badge">PREVIEW</div> : null}
+      {test ? <div className="preview-badge">TEST</div> : dev ? <div className="preview-badge">PREVIEW</div> : null}
+      {test ? (
+        <button type="button" className="test-reset" onClick={resetAdvent}>
+          Réinitialiser
+        </button>
+      ) : null}
       <Confetti burst={burst} />
       {view.name === "day" ? (
         <DayScene day={view.day} onBack={closeDay} />
@@ -48,6 +56,7 @@ export function App() {
           now={now}
           opened={memory.opened}
           dev={dev}
+          test={test}
           onOpen={openDay}
           onLock={() => {
             lock();
