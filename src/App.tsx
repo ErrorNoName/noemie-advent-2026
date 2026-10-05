@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar } from "./components/Calendar.tsx";
 import { Confetti } from "./components/Confetti.tsx";
 import { Gate } from "./components/Gate.tsx";
-import { DeskScraps } from "./components/Scrapbook.tsx";
+import { BoardOrbit } from "./components/Scrapbook.tsx";
 import { recipient, type AdventDay } from "./data/days.ts";
 import { useDevMode } from "./hooks/useDevMode.ts";
 import { useMemory } from "./hooks/useMemory.ts";
@@ -41,7 +41,7 @@ export function App() {
 
   return (
     <div className="desk">
-      <DeskScraps />
+      <BoardOrbit />
       {test ? <div className="preview-badge">TEST</div> : dev ? <div className="preview-badge">PREVIEW</div> : null}
       {test ? (
         <button type="button" className="test-reset" onClick={resetAdvent}>

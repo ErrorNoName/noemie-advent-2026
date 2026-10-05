@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, type FormEvent } from "react";
 import { isGateCode } from "../lib/code.ts";
-import { ChromeBlobs } from "./ChromeBlobs.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 
 export function Gate({ recipient, onUnlock }: { recipient: string; onUnlock: () => void }) {
@@ -22,7 +21,6 @@ export function Gate({ recipient, onUnlock }: { recipient: string; onUnlock: () 
 
   return (
     <div className="column relative flex min-h-dvh flex-col justify-center px-5 py-10">
-      <ChromeBlobs />
       <motion.div
         className="relative"
         initial={{ opacity: 0, y: 16 }}

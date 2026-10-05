@@ -3,7 +3,6 @@ import { days, type AdventDay } from "../data/days.ts";
 import { doorStatus, stateLabel } from "../lib/doors.ts";
 import { caseNumberForToday, formatDateKey, formatParisLong, formatShort, parisDateKey } from "../lib/time.ts";
 import { Countdown } from "./Countdown.tsx";
-import { CornerScraps } from "./Scrapbook.tsx";
 import { Present } from "./Present.tsx";
 
 export function Calendar({
@@ -57,8 +56,8 @@ export function Calendar({
 
   return (
     <div className="column relative">
-      <header className="relative overflow-hidden px-5 pt-7">
-        <CornerScraps />
+      <header className="board-head relative px-6 pt-8">
+        <span className="washi" aria-hidden />
         <p className="eyebrow relative">pour toi</p>
         <div className="relative mt-1 flex items-end justify-between gap-3">
           <h1 className="font-serif text-[2.7rem] italic leading-none">Noémie</h1>

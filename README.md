@@ -50,7 +50,7 @@ La logique est commentée dans `src/lib/time.ts`.
 
 ## Stickers
 
-Les cadeaux réels sont dans `public/stickers/jour-1/` … `jour-8/` (WebP, fond transparent). Le décor est dans `public/stickers/decor/`. Les chiffres du compte à rebours sont les ballons foil `public/timer/digit-0.webp` … `digit-9.webp`. La liste est dans `public/stickers/manifest.json`. Les crédits sont dans `public/stickers/CREDITS.md`.
+Les cadeaux réels sont dans `public/stickers/jour-1/` … `jour-8/` (WebP, fond transparent). Les pochettes découpées sont dans `public/stickers/packages/`. Le décor vient des découpages Pinterest dans `public/stickers/decor/from-pinterest/`. Les chiffres du compte à rebours restent les ballons foil `public/timer/digit-0.webp` … `digit-9.webp`. Pas de collage entier, pas d’emoji.
 
 ## GitHub Pages
 

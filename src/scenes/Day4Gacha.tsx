@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { MiniTicket } from "../components/MiniTicket.tsx";
+import { PACK } from "../data/art.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -90,20 +91,15 @@ export function Day4() {
         <div className="gacha-body">
           <div className="gacha-window">
             <div className="gacha-poster">
-              <p className="font-balloon text-[1.15rem] leading-[0.9] font-bold text-[#e23b3b]">
-                OPEN
+              <p className="font-serif text-lg leading-tight italic text-ink">
+                Ouvre
                 <br />
-                WHEN
+                quand tu
                 <br />
-                YOU’RE
-                <br />
-                READY.
+                es prête.
               </p>
             </div>
-            <div className="gacha-star" aria-hidden>
-              ✦
-            </div>
-            <GiftPhoto src="stickers/jour-4/gacha-pastel.webp" alt="" className="gacha-photo" />
+            <GiftPhoto src={PACK.fruit} alt="" className="gacha-photo" />
           </div>
           <div className="gacha-controls">
             <div className="gacha-price" aria-hidden>
@@ -153,12 +149,16 @@ export function Day4() {
             {phase === "capsule" ? "Elle est tombée. À toi de l’ouvrir." : "Une pièce imaginaire. Un vrai petit vertige."}
           </p>
         )}
-        <button type="button" className="btn-ink" onClick={() => void play()} disabled={spinning}>
+        <button type="button" className="btn-ink btn-amber" onClick={() => void play()} disabled={spinning}>
           {buttonLabel(phase)}
         </button>
         <button type="button" className="btn-ghost" onClick={close}>
           Revenir aux cases
         </button>
+      </div>
+      <div className="mt-4 flex justify-center gap-3">
+        <GiftPhoto src={PACK.star} alt="" className="diecut h-20 w-20" />
+        <GiftPhoto src="stickers/jour-4/gashapon-capsule.webp" alt="" className="diecut h-20 w-16" />
       </div>
       <p className="mt-3 text-center text-sm text-mute">{giftFor(4)}</p>
     </div>

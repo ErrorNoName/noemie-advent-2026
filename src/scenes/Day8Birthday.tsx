@@ -2,9 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Confetti } from "../components/Confetti.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
-import { ScrapRow } from "../components/Scrapbook.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
-import { publicUrl } from "../lib/publicUrl.ts";
 import { useCloseScene } from "./scene-context.ts";
 
 type Step = "hello" | "plush" | "note" | "tray" | "finale";
@@ -47,10 +45,10 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
       <h2 className="mt-1 font-serif text-4xl italic">Joyeux anniversaire</h2>
       {step === "hello" ? (
         <div className="mt-8">
-          <div className="flex justify-center gap-2" aria-hidden>
-            <img src={publicUrl("stickers/decor/balloon.webp")} alt="" className="h-24 w-auto object-contain" />
-            <img src={publicUrl("stickers/decor/party-popper.webp")} alt="" className="h-24 w-auto object-contain" />
-            <img src={publicUrl("stickers/decor/birthday-cake.webp")} alt="" className="h-24 w-auto object-contain" />
+          <div className="flex items-end justify-center gap-2" aria-hidden>
+            <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="" className="diecut h-28 w-24" />
+            <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="" className="diecut h-36 w-28" />
+            <GiftPhoto src="stickers/jour-8/bouquet-2.webp" alt="" className="diecut h-28 w-24" />
           </div>
           <p className="mt-4 font-serif text-2xl italic">Huit matins. Celui-ci est le tien.</p>
         </div>
@@ -62,8 +60,8 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
           animate={{ opacity: 1, y: 0 }}
           transition={pop}
         >
-          <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="gift-hero w-40" />
-          <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="gift-hero w-28" />
+          <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="diecut h-44 w-36" />
+          <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="diecut h-36 w-28" />
         </motion.div>
       ) : null}
       {step === "note" || step === "tray" || step === "finale" ? (
@@ -104,7 +102,11 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
       ) : null}
       {step === "finale" ? (
         <div className="mt-6">
-          <ScrapRow />
+          <div className="mt-4 flex justify-center gap-3">
+            <GiftPhoto src="stickers/jour-8/eclair-1.webp" alt="" className="diecut h-16 w-16" />
+            <GiftPhoto src="stickers/jour-8/cake-1.webp" alt="" className="diecut h-16 w-16" />
+            <GiftPhoto src="stickers/jour-8/peach-1.webp" alt="" className="diecut h-16 w-16" />
+          </div>
           <p className="mt-4 text-sm text-mute">{extras.join(" · ")}</p>
           <p className="mt-2 font-serif text-2xl italic">Tout ça, et toi.</p>
           <button type="button" className="btn-ink mt-4" onClick={close}>

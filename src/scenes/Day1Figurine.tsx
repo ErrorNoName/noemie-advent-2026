@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ChromeBlobs } from "../components/ChromeBlobs.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { PACK } from "../data/art.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -68,7 +68,6 @@ export function Day1() {
         ) : null}
         {step === "pouch" ? (
           <motion.div key="pouch" className="relative mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ChromeBlobs />
             <p className="chrome-word relative text-center text-5xl">Unbox me</p>
             <p className="relative mt-1 text-center text-sm uppercase tracking-[0.16em] text-mute">Secoue un peu…</p>
             <button
@@ -114,15 +113,14 @@ export function Day1() {
         ) : null}
         {step === "reveal" ? (
           <motion.div key="reveal" className="relative mt-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <ChromeBlobs />
             <div className="reveal-disc">
               <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={pop}>
                 <GiftPhoto src={HERO} alt="Petite figurine" className="h-44 w-44 object-contain" />
               </motion.div>
             </div>
-            <div className="relative mt-3 flex justify-center gap-3">
-              <GiftPhoto src="stickers/jour-1/labubu-bunny.webp" alt="" className="h-16 w-16 object-contain" />
-              <GiftPhoto src="stickers/jour-1/blindbox-figure.webp" alt="" className="h-16 w-16 object-contain" />
+            <div className="relative mt-4 flex items-end justify-center gap-3">
+              <GiftPhoto src={PACK.pouch} alt="" className="diecut h-24 w-24" />
+              <GiftPhoto src="stickers/jour-1/labubu-bunny.webp" alt="" className="diecut h-20 w-20" />
             </div>
             <p className="relative mt-4 text-center text-xs uppercase tracking-[0.2em] text-mute">pour toi · une seule</p>
             <p className="relative text-center font-serif text-2xl italic">Elle était là depuis le début.</p>

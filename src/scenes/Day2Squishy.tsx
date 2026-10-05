@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { PACK } from "../data/art.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -29,6 +30,7 @@ export function Day2() {
       <p className="eyebrow text-center">Jour 2</p>
       <h2 className="mt-1 text-center font-serif text-4xl italic">Squishy</h2>
       <p className="mt-2 text-center text-mute">{teaserFor(2)} Relâche. Encore.</p>
+      <GiftPhoto src={PACK.peach} alt="" className="diecut mx-auto mt-3 h-28 w-28" />
       <motion.div
         className="squish-shadow"
         animate={{ scaleX: pressed ? 1.35 : 1, opacity: pressed ? 0.35 : 0.7 }}
