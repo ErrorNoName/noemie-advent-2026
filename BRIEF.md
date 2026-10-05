@@ -76,7 +76,7 @@ Source de vérité aussi dans `DAYS.json`.
 | 2 | 2026-10-15 | Jour 2 | Squishy satisfaisant | Anim squeeze / bounce / jelly |
 | 3 | 2026-10-16 | Jour 3 | Peluche | Reveal soft plush (squash & stretch) |
 | 4 | 2026-10-17 | Jour 4 | Machine type gacha (cadeaux dedans) | **Gacha Shoko** : coin → spin dial → capsule tombe → message/cadeau |
-| 5 | 2026-10-18 | Jour 5 | Barrette écran LCD cheveux | Mockup LCD pixel « I ❤ U » / « Noémie » |
+| 5 | 2026-10-18 | Jour 5 | Barrette écran LCD cheveux | Mockup LCD pixel « I love U » / « Noémie » |
 | 6 | 2026-10-19 | Jour 6 | Panier : bonbons + boisson + mini peluche porte-clés | Layout picnic basket, items qui pop un par un |
 | 7 | 2026-10-20 | Jour 7 | Briquet aesthetic fille | Reveal produit cute, chrome/glitter |
 | 8 | 2026-10-21 | Jour 8 — Anniversaire | Énorme peluche + fleurs + post-it « je t’aime » + **petit-déj** | Grande scène festive (voir §5.1) |

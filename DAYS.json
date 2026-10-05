@@ -63,11 +63,11 @@
       "label": "Jour 5",
       "weekdayFr": "samedi",
       "giftPhysical": "Barrette écran LCD (cheveux)",
-      "ux": "mockup LCD pixel — message type I ❤ U / Noémie",
+      "ux": "mockup LCD pixel — message I love U / Noémie",
       "refs": ["05-mixtape-aesthetic.png"],
       "stickersDir": "stickers/jour-5",
       "teaserText": "Un petit écran pour toi…",
-      "lcdDefaultMessage": "I ❤ U",
+      "lcdDefaultMessage": "I love U",
       "spoilersForbiddenUntilOpen": true
     },
     {
@@ -113,7 +113,7 @@
         "pêche blanche"
       ],
       "extras": ["énorme peluche", "fleurs", "post-it je t'aime"],
-      "teaserText": "Joyeux anniversaire, Noémie 💙",
+      "teaserText": "Joyeux anniversaire, Noémie",
       "spoilersForbiddenUntilOpen": true
     }
   ],

@@ -42,11 +42,15 @@ export function App() {
   return (
     <div className="desk">
       <BoardOrbit />
-      {test ? <div className="preview-badge">TEST</div> : dev ? <div className="preview-badge">PREVIEW</div> : null}
       {test ? (
-        <button type="button" className="test-reset" onClick={resetAdvent}>
-          Réinitialiser
-        </button>
+        <div className="test-bar">
+          <span className="test-pill">Test</span>
+          <button type="button" className="test-reset" onClick={resetAdvent}>
+            Réinitialiser
+          </button>
+        </div>
+      ) : dev ? (
+        <div className="preview-badge">PREVIEW</div>
       ) : null}
       <Confetti burst={burst} />
       {view.name === "day" ? (

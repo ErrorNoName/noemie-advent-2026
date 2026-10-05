@@ -46,9 +46,8 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
       {step === "hello" ? (
         <div className="mt-8">
           <div className="flex items-end justify-center gap-2" aria-hidden>
-            <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="" className="diecut h-28 w-24" />
-            <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="" className="diecut h-36 w-28" />
-            <GiftPhoto src="stickers/jour-8/bouquet-2.webp" alt="" className="diecut h-28 w-24" />
+            <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="" className="diecut h-24 w-20" />
+            <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="" className="diecut h-32 w-24" />
           </div>
           <p className="mt-4 font-serif text-2xl italic">Huit matins. Celui-ci est le tien.</p>
         </div>
@@ -60,18 +59,18 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
           animate={{ opacity: 1, y: 0 }}
           transition={pop}
         >
-          <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="diecut h-44 w-36" />
-          <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="diecut h-36 w-28" />
+          <GiftPhoto src="stickers/jour-8/giant-teddy-1.webp" alt="Énorme peluche" className="diecut h-36 w-28" />
+          <GiftPhoto src="stickers/jour-8/bouquet-1.webp" alt="Fleurs" className="diecut h-28 w-20" />
         </motion.div>
       ) : null}
       {step === "note" || step === "tray" || step === "finale" ? (
         <motion.div
-          className="sticky mt-4"
+          className="love-note mt-4"
           initial={{ rotate: -12, scale: 0.8, opacity: 0 }}
           animate={{ rotate: -4, scale: 1, opacity: 1 }}
           transition={pop}
         >
-          <span className="sticky-tape" />
+          <span className="love-tape" />
           je t’aime
         </motion.div>
       ) : null}

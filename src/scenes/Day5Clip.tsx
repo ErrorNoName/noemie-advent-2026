@@ -19,10 +19,6 @@ function PixelHeart() {
   );
 }
 
-function hasHeart(text: string): boolean {
-  return /\u2764|\u2665|\u2661/.test(text);
-}
-
 function Screen({ frame }: { frame: Frame }) {
   switch (frame) {
     case "love":
@@ -59,8 +55,7 @@ export function Day5() {
 
   const frame = FRAMES[index] ?? "love";
   const clip = dayByNumber(5);
-  const rawMessage = clip.day === 5 ? clip.lcdDefaultMessage : "I love U";
-  const spoken = hasHeart(rawMessage) ? "I love U" : rawMessage;
+  const spoken = clip.day === 5 ? clip.lcdDefaultMessage : "I love U";
 
   return (
     <div className="text-center">
@@ -83,13 +78,9 @@ export function Day5() {
         <GiftPhoto src="stickers/jour-5/hair-clips.webp" alt="" className="h-14 w-14 object-contain" />
       </div>
       <p className="mt-4 font-serif text-2xl italic">
-        {hasHeart(rawMessage) ? (
-          <span className="inline-flex items-center gap-1">
-            I <PixelHeart /> U
-          </span>
-        ) : (
-          spoken
-        )}
+        <span className="inline-flex items-center gap-1">
+          I <PixelHeart /> U
+        </span>
         , en tout petit.
       </p>
       <p className="mt-2 text-sm text-mute">{giftFor(5)}</p>

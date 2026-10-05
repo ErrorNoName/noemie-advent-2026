@@ -48,11 +48,17 @@ export function SceneShell({
           </button>
           <p className="font-serif italic text-mute">{formatDateKey(day.date)}</p>
         </div>
-        <div className="relative px-5 pb-16">
+        <div className="scene-stage">
           <DayStickers day={day.day} />
           <AnimatePresence mode="wait">
             {ready ? (
-              <motion.div key="content" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={fade}>
+              <motion.div
+                key="content"
+                className="scene-copy"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={fade}
+              >
                 {children}
               </motion.div>
             ) : (
