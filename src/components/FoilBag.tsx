@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playCrinkle } from "../lib/touchSound.ts";
 import { publicUrl } from "../lib/publicUrl.ts";
@@ -42,13 +42,13 @@ export function FoilBag({ onClear }: { onClear: () => void }) {
   const [shakes, setShakes] = useState(0);
   const [phase, setPhase] = useState<Phase>("sealed");
   const [pose, setPose] = useState({ rotate: 0, sx: 1, sy: 1 });
-  const [shine, setShine] = useState({ x: 38, y: 24 });
   const stageRef = useRef<HTMLDivElement>(null);
+  const seal = useAnimation();
   const lastShake = useRef(0);
   const cleared = useRef(false);
   const shakesRef = useRef(0);
   const phaseRef = useRef<Phase>("sealed");
-  const bumpRef = useRef<(x: number, y: number, sound: boolean) => void>(() => undefined);
+  const bumpRef = useRef<(x: number, _y: number, sound: boolean) => void>(() => undefined);
   const timers = useRef<number[]>([]);
 
   useEffect(() => {
@@ -63,30 +63,43 @@ export function FoilBag({ onClear }: { onClear: () => void }) {
   }, []);
 
   useEffect(() => {
-    bumpRef.current = (clientX, clientY, sound) => {
+    bumpRef.current = (clientX, _clientY, sound) => {
       if (phaseRef.current !== "sealed") return;
       const box = stageRef.current?.getBoundingClientRect();
       const nx = box && box.width > 0 ? (clientX - box.left) / box.width - 0.5 : 0;
-      const ny = box && box.height > 0 ? (clientY - box.top) / box.height - 0.5 : 0;
-      if (box) {
-        setShine({
-          x: Math.round(((clientX - box.left) / box.width) * 100),
-          y: Math.round(((clientY - box.top) / box.height) * 100),
-        });
-      }
-      setPose({ rotate: nx * 18 - ny * 4, sx: 1.14, sy: 0.78 });
-      const settle = window.setTimeout(() => setPose({ rotate: 0, sx: 1, sy: 1 }), reduced ? 0 : 220);
-      timers.current.push(settle);
       if (sound && !reduced) playCrinkle();
       if (!reduced && "vibrate" in navigator) navigator.vibrate(12);
 
       const next = shakesRef.current + 1;
       shakesRef.current = next;
       setShakes(next);
-      if (next < need) return;
+      if (next < need) {
+        setPose({ rotate: nx * 12, sx: 1.08, sy: 0.84 });
+        void seal.start({
+          y: [0, -14, 0],
+          scaleY: [1, 1.65, 1],
+          transition: { duration: reduced ? 0 : 0.46, times: [0, 0.32, 1] },
+        });
+        const settle = window.setTimeout(() => setPose({ rotate: 0, sx: 1, sy: 1 }), reduced ? 0 : 240);
+        timers.current.push(settle);
+        return;
+      }
 
+      setPose({ rotate: nx * 6, sx: 0.96, sy: 1.1 });
+      void seal.start({ y: -18, scaleY: 1.85, transition: { duration: reduced ? 0 : 0.28 } });
       phaseRef.current = "tear";
       setPhase("tear");
+      const peel = window.setTimeout(() => {
+        void seal.start({
+          y: -120,
+          x: 26,
+          rotate: -18,
+          opacity: 0,
+          scaleY: 1,
+          transition: { duration: reduced ? 0 : 0.5, ease: [0.4, 0, 0.2, 1] },
+        });
+      }, reduced ? 0 : 300);
+      timers.current.push(peel);
       const riseAt = window.setTimeout(() => {
         phaseRef.current = "rise";
         setPhase("rise");
@@ -101,7 +114,7 @@ export function FoilBag({ onClear }: { onClear: () => void }) {
       }, reduced ? 0 : 1500);
       timers.current.push(riseAt, awayAt);
     };
-  }, [need, onClear, reduced]);
+  }, [need, onClear, reduced, seal]);
 
   useEffect(() => {
     const onMotion = (event: DeviceMotionEvent) => {
@@ -119,15 +132,6 @@ export function FoilBag({ onClear }: { onClear: () => void }) {
     return () => window.removeEventListener("devicemotion", onMotion);
   }, []);
 
-  function aim(event: ReactPointerEvent<HTMLButtonElement>) {
-    const box = stageRef.current?.getBoundingClientRect();
-    if (!box || box.width === 0) return;
-    setShine({
-      x: Math.round(((event.clientX - box.left) / box.width) * 100),
-      y: Math.round(((event.clientY - box.top) / box.height) * 100),
-    });
-  }
-
   function askMotion() {
     const motionEvent = DeviceMotionEvent as unknown as { requestPermission?: () => Promise<string> };
     if (typeof motionEvent.requestPermission === "function") {
@@ -135,11 +139,12 @@ export function FoilBag({ onClear }: { onClear: () => void }) {
     }
   }
 
-  const shineStyle = { "--sx": `${shine.x}%`, "--sy": `${shine.y}%` } as CSSProperties;
   const pouchGone = phase === "away";
   const prizeUp = phase === "rise" || phase === "away";
+  const pouchSrc = publicUrl(POUCH);
 
   return (
+    <div className="foil-live">
     <div className="foil-stage" ref={stageRef} data-phase={phase}>
       <motion.img
         className="foil-figurine"
@@ -157,39 +162,33 @@ export function FoilBag({ onClear }: { onClear: () => void }) {
         animate={
           pouchGone
             ? { y: 210, opacity: 0, rotate: 10, scale: 0.9 }
-            : { y: phase === "sealed" ? [0, -6, 0] : 0, opacity: 1, rotate: pose.rotate, scaleX: pose.sx, scaleY: pose.sy }
+            : { y: 0, opacity: 1, rotate: pose.rotate, scaleX: pose.sx, scaleY: pose.sy }
         }
         transition={
           pouchGone
             ? { duration: reduced ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] }
-            : phase === "sealed"
-              ? { y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" }, rotate: { type: "spring", stiffness: 520, damping: 12 }, scaleX: { type: "spring", stiffness: 520, damping: 12 }, scaleY: { type: "spring", stiffness: 520, damping: 12 } }
-              : { type: "spring", stiffness: 420, damping: 18 }
+            : { type: "spring", stiffness: 460, damping: 14 }
         }
       >
         <button
           type="button"
           className="foil-hit"
           aria-label="Secouer la pochette Noémie Gift"
-          onPointerDown={(event) => {
-            askMotion();
-            aim(event);
-          }}
-          onPointerMove={aim}
+          onPointerDown={askMotion}
           onClick={(event) => bumpRef.current(event.clientX, event.clientY, true)}
         >
-          <img src={publicUrl(POUCH)} alt="" draggable={false} />
-          <span className="foil-shine" style={shineStyle} aria-hidden />
+          <img className="foil-photo foil-body" src={pouchSrc} alt="" draggable={false} />
+          <motion.img
+            className="foil-photo foil-seal"
+            src={pouchSrc}
+            alt=""
+            draggable={false}
+            animate={seal}
+            initial={{ y: 0, scaleY: 1, opacity: 1 }}
+          />
         </button>
-        <motion.span
-          className="foil-strip"
-          aria-hidden
-          initial={false}
-          animate={phase === "sealed" ? { y: 0, x: 0, rotate: 0, opacity: 1 } : { y: -86, x: 36, rotate: -16, opacity: 0 }}
-          transition={reduced ? { duration: 0 } : { duration: 0.62, ease: [0.2, 0.8, 0.2, 1] }}
-        />
-        <span className={`foil-slit ${phase === "sealed" ? "" : "is-open"}`} aria-hidden />
       </motion.div>
+    </div>
       {phase === "sealed" ? (
         <div className="foil-pips" aria-hidden>
           {Array.from({ length: 3 }, (_, index) => (
