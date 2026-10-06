@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { MemoryCamera } from "../components/MemoryCamera.tsx";
 import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -32,8 +34,8 @@ export function Day6() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 6</p>
-      <h2 className="font-serif italic">Panier gourmand</h2>
+      <CollageText as="p" text="Jour 6" size="kicker" />
+      <CollageText as="h2" text="Panier gourmand" size="title" />
       <div className="collage basket-collage" data-open={open ? "yes" : "no"}>
         {open ? (
           BITS.map((bit, index) => (
@@ -86,6 +88,7 @@ export function Day6() {
       </div>
       <p className="open-caption">{open ? "Un à un, ils se posent." : teaserFor(6)}</p>
       <p className="open-caption">{open ? "Bonbons, boisson, mini peluche." : "Tire le panier vers le haut."}</p>
+      <MemoryCamera day={6} revealed={open} />
       <div className="open-actions">
         {open ? null : (
           <button type="button" className="btn-line" onClick={reveal}>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
@@ -36,8 +37,8 @@ export function Day7() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 7</p>
-      <h2 className="font-serif italic">Briquet</h2>
+      <CollageText as="p" text="Jour 7" size="kicker" />
+      <CollageText as="h2" text="Briquet" size="title" />
       <div className={`lighter-live ${lit ? "is-lit" : ""}`} data-lit={lit ? "yes" : "no"}>
         <div className="lighter-photo">
           <GiftPhoto src="stickers/jour-7/zippo-silver.webp" alt="Briquet" className="lighter-img" />

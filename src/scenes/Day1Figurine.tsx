@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { FoilBag } from "../components/FoilBag.tsx";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -10,8 +11,8 @@ export function Day1() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 1</p>
-      <h2 className="font-serif italic">Figurine surprise</h2>
+      <CollageText as="p" text="Jour 1" size="kicker" />
+      <CollageText as="h2" text="Figurine surprise" size="title" />
       <div className="open-stage">
         <FoilBag
           key={run}

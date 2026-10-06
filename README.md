@@ -48,6 +48,14 @@ La logique est commentée dans `src/lib/time.ts`.
 3. Aucune variable d’environnement.
 4. Le site est en `noindex`. Garde le lien pour vous deux.
 
+## Lettres découpées
+
+Les titres (Noémie, Pour toi, Jour N, les dates, Souvenirs, Joyeux anniversaire) sont composés en collage : découpes Pinterest pour W, E, I, N, O, R et S, glyphes papier Resource Boy pour le reste. La licence Resource Boy est dans `public/letters/LICENSE-ResourceBoy.txt`. Le chiffre 8, absent du jeu, est un petit carton dans la police du texte. Un accent (É) est la lettre E plus une marque papier, pas un emoji.
+
+## Souvenirs
+
+Trente photos dans `public/souvenirs/` (album 1 : 6, album 2 : 24), au plus 1600 px. Les jours 2, 4, 6 et 8 montrent un appareil après le cadeau : Polaroid, jetable, compact, argentique. Le déclenchement fait un flash et développe un tirage. La galerie Souvenirs, depuis l’accueil, ne montre que les jours déjà débloqués. `/test` les ouvre tous. Les appareils sont des emplacements : les découpes remplaceront le dessin quand elles arriveront.
+
 ## Stickers
 
 Les cadeaux réels sont dans `public/stickers/jour-1/` … `jour-8/` (WebP, fond transparent). Les pochettes découpées sont dans `public/stickers/packages/`. Le décor vient des découpages Pinterest dans `public/stickers/decor/from-pinterest/`. Les chiffres du compte à rebours restent les ballons foil `public/timer/digit-0.webp` … `digit-9.webp`. Pas de collage entier, pas d’emoji.

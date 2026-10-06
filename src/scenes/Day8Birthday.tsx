@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { Confetti } from "../components/Confetti.tsx";
+import { MemoryCamera } from "../components/MemoryCamera.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -47,8 +49,8 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
   return (
     <div className="open-scene">
       <Confetti burst={open ? 1 : 0} />
-      <p className="eyebrow">Jour 8 · 21 octobre</p>
-      <h2 className="font-serif italic">Joyeux anniversaire</h2>
+      <CollageText as="p" text="Jour 8" size="kicker" />
+      <CollageText as="h2" text="Joyeux anniversaire" size="title" />
       <div className="collage day8-collage" data-open={open ? "yes" : "no"}>
         {open ? (
           <>
@@ -122,6 +124,7 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
       </div>
       <p className="open-caption">{open ? extras.join(" · ") : "Tire le cadeau vers le haut."}</p>
       <p className="open-caption">{open ? "Gâteau chocolat, lait et caramel doux." : "La peluche, les fleurs, le mot, puis le plateau."}</p>
+      <MemoryCamera day={8} revealed={open} />
       <div className="open-actions">
         {open ? null : (
           <button type="button" className="btn-line" onClick={unwrap}>

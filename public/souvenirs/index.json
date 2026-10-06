@@ -1,0 +1,184 @@
+{
+  "photos": [
+    {
+      "file": "souvenirs/album-1/mem-001.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 1
+    },
+    {
+      "file": "souvenirs/album-1/mem-002.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 2
+    },
+    {
+      "file": "souvenirs/album-1/mem-003.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 3
+    },
+    {
+      "file": "souvenirs/album-1/mem-004.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 4
+    },
+    {
+      "file": "souvenirs/album-1/mem-005.jpg",
+      "width": 1170,
+      "height": 1560,
+      "order": 5
+    },
+    {
+      "file": "souvenirs/album-1/mem-006.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 6
+    },
+    {
+      "file": "souvenirs/album-2/mem-001.jpg",
+      "width": 1170,
+      "height": 1560,
+      "order": 7
+    },
+    {
+      "file": "souvenirs/album-2/mem-002.jpg",
+      "width": 1170,
+      "height": 1560,
+      "order": 8
+    },
+    {
+      "file": "souvenirs/album-2/mem-003.jpg",
+      "width": 1170,
+      "height": 1560,
+      "order": 9
+    },
+    {
+      "file": "souvenirs/album-2/mem-004.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 10
+    },
+    {
+      "file": "souvenirs/album-2/mem-005.jpg",
+      "width": 1202,
+      "height": 1600,
+      "order": 11
+    },
+    {
+      "file": "souvenirs/album-2/mem-006.jpg",
+      "width": 878,
+      "height": 1560,
+      "order": 12
+    },
+    {
+      "file": "souvenirs/album-2/mem-007.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 13
+    },
+    {
+      "file": "souvenirs/album-2/mem-008.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 14
+    },
+    {
+      "file": "souvenirs/album-2/mem-009.jpg",
+      "width": 1205,
+      "height": 1600,
+      "order": 15
+    },
+    {
+      "file": "souvenirs/album-2/mem-010.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 16
+    },
+    {
+      "file": "souvenirs/album-2/mem-011.jpg",
+      "width": 722,
+      "height": 1600,
+      "order": 17
+    },
+    {
+      "file": "souvenirs/album-2/mem-012.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 18
+    },
+    {
+      "file": "souvenirs/album-2/mem-013.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 19
+    },
+    {
+      "file": "souvenirs/album-2/mem-014.jpg",
+      "width": 1600,
+      "height": 1205,
+      "order": 20
+    },
+    {
+      "file": "souvenirs/album-2/mem-015.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 21
+    },
+    {
+      "file": "souvenirs/album-2/mem-016.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 22
+    },
+    {
+      "file": "souvenirs/album-2/mem-017.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 23
+    },
+    {
+      "file": "souvenirs/album-2/mem-018.jpg",
+      "width": 1200,
+      "height": 1600,
+      "order": 24
+    },
+    {
+      "file": "souvenirs/album-2/mem-019.jpg",
+      "width": 1200,
+      "height": 1600,
+      "order": 25
+    },
+    {
+      "file": "souvenirs/album-2/mem-020.jpg",
+      "width": 1170,
+      "height": 1560,
+      "order": 26
+    },
+    {
+      "file": "souvenirs/album-2/mem-021.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 27
+    },
+    {
+      "file": "souvenirs/album-2/mem-022.jpg",
+      "width": 1600,
+      "height": 900,
+      "order": 28
+    },
+    {
+      "file": "souvenirs/album-2/mem-023.jpg",
+      "width": 900,
+      "height": 1600,
+      "order": 29
+    },
+    {
+      "file": "souvenirs/album-2/mem-024.jpg",
+      "width": 1600,
+      "height": 1205,
+      "order": 30
+    }
+  ]
+}

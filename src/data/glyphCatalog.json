@@ -1,0 +1,224 @@
+{
+  "native": {
+    "W": [
+      "letters/pin/pin-cutout-01-W.png"
+    ],
+    "E": [
+      "letters/pin/pin-cutout-02-E.png",
+      "letters/pin/pin-cutout-03-E.png",
+      "letters/pin/pin-cutout-04-E.png",
+      "letters/pin/pin-cutout-05-E.png",
+      "letters/pin/pin-cutout-06-E.png"
+    ],
+    "I": [
+      "letters/pin/pin-cutout-07-I.png",
+      "letters/pin/pin-cutout-08-I.png",
+      "letters/pin/pin-cutout-09-I.png",
+      "letters/pin/pin-cutout-10-I.png"
+    ],
+    "N": [
+      "letters/pin/pin-cutout-11-N.png",
+      "letters/pin/pin-cutout-12-N.png"
+    ],
+    "O": [
+      "letters/pin/pin-cutout-13-O.png",
+      "letters/pin/pin-cutout-14-O.png"
+    ],
+    "R": [
+      "letters/pin/pin-cutout-15-R.png",
+      "letters/pin/pin-cutout-16-R.png"
+    ],
+    "S": [
+      "letters/pin/pin-cutout-17-S.png",
+      "letters/pin/pin-cutout-18-S.png",
+      "letters/pin/pin-cutout-19-S.png",
+      "letters/pin/pin-cutout-20-S.png"
+    ]
+  },
+  "paper": {
+    "0": [
+      "letters/paper/rb-0-01.png",
+      "letters/paper/rb-0-02.png",
+      "letters/paper/rb-0-03.png"
+    ],
+    "1": [
+      "letters/paper/rb-1-01.png",
+      "letters/paper/rb-1-03.png"
+    ],
+    "2": [
+      "letters/paper/rb-2-01.png",
+      "letters/paper/rb-2-03.png"
+    ],
+    "3": [
+      "letters/paper/rb-3-01.png",
+      "letters/paper/rb-3-02.png",
+      "letters/paper/rb-3-03.png"
+    ],
+    "4": [
+      "letters/paper/rb-4-01.png",
+      "letters/paper/rb-4-02.png",
+      "letters/paper/rb-4-03.png"
+    ],
+    "5": [
+      "letters/paper/rb-5-01.png",
+      "letters/paper/rb-5-02.png",
+      "letters/paper/rb-5-03.png"
+    ],
+    "6": [
+      "letters/paper/rb-6-01.png",
+      "letters/paper/rb-6-02.png",
+      "letters/paper/rb-6-03.png"
+    ],
+    "7": [
+      "letters/paper/rb-7-01.png",
+      "letters/paper/rb-7-02.png",
+      "letters/paper/rb-7-03.png"
+    ],
+    "9": [
+      "letters/paper/rb-9-01.png",
+      "letters/paper/rb-9-02.png"
+    ],
+    "A": [
+      "letters/paper/rb-A-01.png",
+      "letters/paper/rb-A-02.png",
+      "letters/paper/rb-A-03.png"
+    ],
+    "B": [
+      "letters/paper/rb-B-01.png",
+      "letters/paper/rb-B-02.png"
+    ],
+    "C": [
+      "letters/paper/rb-C-01.png",
+      "letters/paper/rb-C-02.png",
+      "letters/paper/rb-C-03.png"
+    ],
+    "D": [
+      "letters/paper/rb-D-02.png",
+      "letters/paper/rb-D-03.png"
+    ],
+    "E": [
+      "letters/paper/rb-E-02.png"
+    ],
+    "F": [
+      "letters/paper/rb-F-01.png",
+      "letters/paper/rb-F-02.png",
+      "letters/paper/rb-F-03.png"
+    ],
+    "G": [
+      "letters/paper/rb-G-01.png",
+      "letters/paper/rb-G-02.png",
+      "letters/paper/rb-G-03.png"
+    ],
+    "H": [
+      "letters/paper/rb-H-02.png",
+      "letters/paper/rb-H-03.png"
+    ],
+    "I": [
+      "letters/paper/rb-I-01.png",
+      "letters/paper/rb-I-02.png",
+      "letters/paper/rb-I-03.png"
+    ],
+    "J": [
+      "letters/paper/rb-J-01.png",
+      "letters/paper/rb-J-02.png",
+      "letters/paper/rb-J-03.png"
+    ],
+    "K": [
+      "letters/paper/rb-K-01.png",
+      "letters/paper/rb-K-02.png",
+      "letters/paper/rb-K-03.png"
+    ],
+    "L": [
+      "letters/paper/rb-L-01.png",
+      "letters/paper/rb-L-02.png",
+      "letters/paper/rb-L-03.png"
+    ],
+    "M": [
+      "letters/paper/rb-M-02.png",
+      "letters/paper/rb-M-03.png"
+    ],
+    "N": [
+      "letters/paper/rb-N-01.png",
+      "letters/paper/rb-N-02.png",
+      "letters/paper/rb-N-03.png"
+    ],
+    "O": [
+      "letters/paper/rb-O-03.png"
+    ],
+    "P": [
+      "letters/paper/rb-P-01.png",
+      "letters/paper/rb-P-03.png"
+    ],
+    "Q": [
+      "letters/paper/rb-Q-01.png",
+      "letters/paper/rb-Q-02.png",
+      "letters/paper/rb-Q-03.png"
+    ],
+    "R": [
+      "letters/paper/rb-R-01.png",
+      "letters/paper/rb-R-02.png",
+      "letters/paper/rb-R-03.png"
+    ],
+    "S": [
+      "letters/paper/rb-S-01.png",
+      "letters/paper/rb-S-02.png",
+      "letters/paper/rb-S-03.png"
+    ],
+    "T": [
+      "letters/paper/rb-T-01.png",
+      "letters/paper/rb-T-02.png",
+      "letters/paper/rb-T-03.png"
+    ],
+    "U": [
+      "letters/paper/rb-U-01.png",
+      "letters/paper/rb-U-02.png",
+      "letters/paper/rb-U-03.png"
+    ],
+    "V": [
+      "letters/paper/rb-V-01.png",
+      "letters/paper/rb-V-02.png",
+      "letters/paper/rb-V-03.png"
+    ],
+    "W": [
+      "letters/paper/rb-W-02.png",
+      "letters/paper/rb-W-03.png"
+    ],
+    "X": [
+      "letters/paper/rb-X-01.png",
+      "letters/paper/rb-X-03.png"
+    ],
+    "Y": [
+      "letters/paper/rb-Y-01.png",
+      "letters/paper/rb-Y-02.png",
+      "letters/paper/rb-Y-03.png"
+    ],
+    "Z": [
+      "letters/paper/rb-Z-01.png",
+      "letters/paper/rb-Z-02.png",
+      "letters/paper/rb-Z-03.png"
+    ],
+    "&": [
+      "letters/paper/rb-special-_Special_Characters-Ampersand_01.png",
+      "letters/paper/rb-special-_Special_Characters-Ampersand_02.png"
+    ],
+    "@": [
+      "letters/paper/rb-special-_Special_Characters-At_Sign_01.png",
+      "letters/paper/rb-special-_Special_Characters-At_Sign_02.png"
+    ],
+    ",": [
+      "letters/paper/rb-special-_Special_Characters-Comma_01.png",
+      "letters/paper/rb-special-_Special_Characters-Comma_02.png"
+    ],
+    "!": [
+      "letters/paper/rb-special-_Special_Characters-Exclamation_Mark_02.png"
+    ],
+    "?": [
+      "letters/paper/rb-special-_Special_Characters-Question_Mark_01.png",
+      "letters/paper/rb-special-_Special_Characters-Question_Mark_02.png"
+    ],
+    "\"": [
+      "letters/paper/rb-special-_Special_Characters-Quotation_Mark_01.png",
+      "letters/paper/rb-special-_Special_Characters-Quotation_Mark_02.png"
+    ]
+  }
+}

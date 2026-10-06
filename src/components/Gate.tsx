@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, type FormEvent } from "react";
+import { CollageText } from "./CollageText.tsx";
 import { isGateCode } from "../lib/code.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 
@@ -32,7 +33,7 @@ export function Gate({ recipient, onUnlock }: { recipient: string; onUnlock: () 
           <span className="ticket-notch right" />
           <p className="eyebrow">Admit two</p>
           <p className="mt-3 font-serif text-sm uppercase tracking-[0.18em] text-mute">Tu es invitée</p>
-          <h1 className="mt-2 font-serif text-5xl italic leading-none text-ink">Pour {recipient}</h1>
+          <CollageText as="h1" text={`Pour ${recipient}`} size="title" align="start" />
           <p className="mt-4 text-[1.05rem] leading-relaxed text-ink">
             Huit matins, du 14 au 21 octobre.
             <br />

@@ -1,23 +1,30 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Calendar } from "./components/Calendar.tsx";
 import { Confetti } from "./components/Confetti.tsx";
 import { Gate } from "./components/Gate.tsx";
 import { BoardOrbit } from "./components/Scrapbook.tsx";
+import { ShotProvider } from "./components/ShotStore.tsx";
+import { SouvenirsGallery } from "./components/SouvenirsGallery.tsx";
 import { recipient, type AdventDay } from "./data/days.ts";
 import { useDevMode } from "./hooks/useDevMode.ts";
 import { useMemory } from "./hooks/useMemory.ts";
 import { useNow } from "./hooks/useNow.ts";
 import { useTestMode } from "./hooks/useTestMode.ts";
+import { parisDateKey } from "./lib/time.ts";
+import { unlockedSouvenirDays } from "./lib/souvenirs.ts";
 import { resetAdvent } from "./lib/storage.ts";
 import { DayScene } from "./scenes/DayScene.tsx";
 
-type View = { name: "calendar" } | { name: "day"; day: AdventDay; fresh: boolean };
+type View =
+  | { name: "calendar" }
+  | { name: "day"; day: AdventDay; fresh: boolean }
+  | { name: "souvenirs" };
 
 export function App() {
   const dev = useDevMode();
   const test = useTestMode();
   const now = useNow();
-  const { memory, markOpened, unlock, lock } = useMemory();
+  const { memory, markOpened, unlock, lock, setShotCount } = useMemory();
   const [view, setView] = useState<View>({ name: "calendar" });
   const [burst, setBurst] = useState(0);
 
@@ -39,7 +46,45 @@ export function App() {
     setView({ name: "calendar" });
   }
 
+  const daysOpen = unlockedSouvenirDays({
+    today: parisDateKey(now),
+    opened: memory.opened,
+    dev,
+    test,
+  });
+
+  let screen: ReactNode;
+  switch (view.name) {
+    case "day":
+      screen = <DayScene day={view.day} onBack={closeDay} />;
+      break;
+    case "souvenirs":
+      screen = <SouvenirsGallery daysOpen={daysOpen} onBack={() => setView({ name: "calendar" })} />;
+      break;
+    case "calendar":
+      screen = (
+        <Calendar
+          now={now}
+          opened={memory.opened}
+          dev={dev}
+          test={test}
+          onOpen={openDay}
+          onSouvenirs={() => setView({ name: "souvenirs" })}
+          onLock={() => {
+            lock();
+            setView({ name: "calendar" });
+          }}
+        />
+      );
+      break;
+    default: {
+      const unexpected: never = view;
+      screen = unexpected;
+    }
+  }
+
   return (
+    <ShotProvider value={{ shots: memory.shots, setShotCount }}>
     <div className="desk">
       <BoardOrbit />
       {test ? (
@@ -53,21 +98,8 @@ export function App() {
         <div className="preview-badge">PREVIEW</div>
       ) : null}
       <Confetti burst={burst} />
-      {view.name === "day" ? (
-        <DayScene day={view.day} onBack={closeDay} />
-      ) : (
-        <Calendar
-          now={now}
-          opened={memory.opened}
-          dev={dev}
-          test={test}
-          onOpen={openDay}
-          onLock={() => {
-            lock();
-            setView({ name: "calendar" });
-          }}
-        />
-      )}
+      {screen}
     </div>
+    </ShotProvider>
   );
 }

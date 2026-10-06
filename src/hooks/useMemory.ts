@@ -24,5 +24,12 @@ export function useMemory() {
     setMemory((prev) => ({ ...prev, codeOk: undefined }));
   }, []);
 
-  return { memory, markOpened, unlock, lock };
+  const setShotCount = useCallback((day: number, count: number) => {
+    setMemory((prev) => ({
+      ...prev,
+      shots: { ...prev.shots, [String(day)]: count },
+    }));
+  }, []);
+
+  return { memory, markOpened, unlock, lock, setShotCount };
 }

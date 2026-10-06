@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useRef, useState, type PointerEvent } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { MemoryCamera } from "../components/MemoryCamera.tsx";
 import { giftFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -74,8 +76,8 @@ export function Day4() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 4</p>
-      <h2 className="font-serif italic">Machine gacha</h2>
+      <CollageText as="p" text="Jour 4" size="kicker" />
+      <CollageText as="h2" text="Machine gacha" size="title" />
       <div className="gacha-stage" data-phase={phase} data-steps={steps}>
         <GiftPhoto src="stickers/jour-4/gacha-pastel.webp" alt="" className="gacha-still" />
         <div className="gacha-globe" aria-hidden>
@@ -174,6 +176,7 @@ export function Day4() {
       </div>
       <p className="open-caption">{hint(phase)}</p>
       {phase === "open" && note ? <p className="open-kicker">{note}</p> : null}
+      <MemoryCamera day={4} revealed={phase === "open"} />
       <p className="open-caption">{giftFor(4)}</p>
       <div className="open-actions">
         {phase === "open" ? (

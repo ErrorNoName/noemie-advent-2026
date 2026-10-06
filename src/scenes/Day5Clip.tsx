@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { dayByNumber, teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
@@ -39,8 +40,8 @@ export function Day5() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 5</p>
-      <h2 className="font-serif italic">Barrette écran</h2>
+      <CollageText as="p" text="Jour 5" size="kicker" />
+      <CollageText as="h2" text="Barrette écran" size="title" />
       <div className="collage clip-collage" data-powered={on ? "yes" : "no"}>
         <GiftPhoto src="stickers/jour-5/butterfly-clip.webp" alt="" className="cut side-l" />
         <GiftPhoto src="stickers/jour-5/hairpin-flower.webp" alt="" className="cut side-r" />

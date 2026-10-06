@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
@@ -29,8 +30,8 @@ export function Day3() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 3</p>
-      <h2 className="font-serif italic">Peluche</h2>
+      <CollageText as="p" text="Jour 3" size="kicker" />
+      <CollageText as="h2" text="Peluche" size="title" />
       <div className="collage plush-collage">
         <GiftPhoto src="stickers/jour-3/teddy-blue.webp" alt="" className="cut side-l" />
         <GiftPhoto src="stickers/jour-3/teddy-heart.webp" alt="" className="cut side-r" />

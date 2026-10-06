@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { days, type AdventDay } from "../data/days.ts";
 import { doorStatus, stateLabel } from "../lib/doors.ts";
 import { caseNumberForToday, formatDateKey, formatParisLong, formatShort, parisDateKey } from "../lib/time.ts";
+import { CollageText } from "./CollageText.tsx";
 import { Countdown } from "./Countdown.tsx";
 import { Present } from "./Present.tsx";
 
@@ -11,6 +12,7 @@ export function Calendar({
   dev,
   test = false,
   onOpen,
+  onSouvenirs,
   onLock,
 }: {
   now: Date;
@@ -18,6 +20,7 @@ export function Calendar({
   dev: boolean;
   test?: boolean;
   onOpen: (day: AdventDay, fresh: boolean) => void;
+  onSouvenirs: () => void;
   onLock: () => void;
 }) {
   const today = parisDateKey(now);
@@ -58,12 +61,12 @@ export function Calendar({
     <div className="column relative">
       <header className="board-head relative px-6 pt-8">
         <span className="washi" aria-hidden />
-        <p className="eyebrow relative">pour toi</p>
-        <div className="relative mt-1 flex items-end justify-between gap-3">
-          <h1 className="font-serif text-[2.7rem] italic leading-none">Noémie</h1>
+        <CollageText as="p" text="Pour toi" size="kicker" align="start" />
+        <div className="board-name relative mt-1 flex flex-wrap items-end justify-between gap-3">
+          <CollageText as="h1" text="Noémie" size="display" align="start" />
           <p className="pb-1 text-sm text-mute">Case {caseNumber} / 8</p>
         </div>
-        <p className="relative mt-2 font-serif text-xl">{formatParisLong(now)}</p>
+        <CollageText as="p" text={formatParisLong(now)} size="date" align="start" />
       </header>
       <Countdown now={now} />
       <ol className="pips" aria-hidden>
@@ -113,6 +116,9 @@ export function Calendar({
         ) : (
           <p className="text-sm text-mute">Tout est là. Tu peux tout revoir.</p>
         )}
+        <button type="button" className="btn-line souvenir-link" onClick={onSouvenirs}>
+          Souvenirs
+        </button>
         {dev || test ? null : (
           <button type="button" className="btn-ghost mt-3" onClick={onLock}>
             Verrouiller

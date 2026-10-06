@@ -3,6 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { AdventDay } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { formatDateKey } from "../lib/time.ts";
+import { CollageText } from "./CollageText.tsx";
 import { Present } from "./Present.tsx";
 import { DayStickers } from "./Stickers.tsx";
 import { SceneCloseContext } from "../scenes/scene-context.ts";
@@ -46,7 +47,7 @@ export function SceneShell({
             <span aria-hidden>← </span>
             Retour
           </button>
-          <p className="font-serif italic text-mute">{formatDateKey(day.date)}</p>
+          <CollageText as="p" text={formatDateKey(day.date)} size="date" align="end" />
         </div>
         <div className="scene-stage">
           <DayStickers day={day.day} />

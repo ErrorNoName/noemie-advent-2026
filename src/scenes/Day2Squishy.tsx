@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { MemoryCamera } from "../components/MemoryCamera.tsx";
 import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -27,8 +29,8 @@ export function Day2() {
 
   return (
     <div className="open-scene">
-      <p className="eyebrow">Jour 2</p>
-      <h2 className="font-serif italic">Squishy</h2>
+      <CollageText as="p" text="Jour 2" size="kicker" />
+      <CollageText as="h2" text="Squishy" size="title" />
       <div className="collage squish-collage">
         <GiftPhoto src={PAL} alt="" className="cut side-l" />
         <motion.button
@@ -59,6 +61,7 @@ export function Day2() {
         {pressed ? "Ça cède sous le doigt." : count === 0 ? teaserFor(2) : "Relâche. Ça remonte tout seul."}
       </p>
       <p className="open-kicker">{count === 0 ? "Maintiens pour écraser." : "Boule anti-stress"}</p>
+      <MemoryCamera day={2} revealed={count > 0} />
       <div className="open-actions">
         <button type="button" className="btn-ink" onClick={close}>
           Garder la main douce

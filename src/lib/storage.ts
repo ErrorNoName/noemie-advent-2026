@@ -6,10 +6,22 @@ export interface AdventMemory {
   opened: Record<string, boolean>;
   lastVisit: string;
   codeOk?: boolean;
+  shots: Record<string, number>;
 }
 
 function emptyMemory(): AdventMemory {
-  return { opened: {}, lastVisit: new Date().toISOString() };
+  return { opened: {}, lastVisit: new Date().toISOString(), shots: {} };
+}
+
+function readShots(value: unknown): Record<string, number> {
+  if (!value || typeof value !== "object") return {};
+  const shots: Record<string, number> = {};
+  for (const [day, count] of Object.entries(value)) {
+    if ((day === "2" || day === "4" || day === "6" || day === "8") && typeof count === "number" && count >= 0) {
+      shots[day] = Math.floor(count);
+    }
+  }
+  return shots;
 }
 
 export function loadMemory(): AdventMemory {
@@ -27,6 +39,7 @@ export function loadMemory(): AdventMemory {
       opened,
       lastVisit: typeof parsed.lastVisit === "string" ? parsed.lastVisit : new Date().toISOString(),
       codeOk: parsed.codeOk === true ? true : undefined,
+      shots: readShots(parsed.shots),
     };
   } catch {
     return emptyMemory();

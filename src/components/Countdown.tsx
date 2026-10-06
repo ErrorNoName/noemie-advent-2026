@@ -1,4 +1,5 @@
 import { BalloonColon, BalloonDigit } from "./BalloonDigit.tsx";
+import { CollageText } from "./CollageText.tsx";
 import { ariaRemaining, getCountdownTarget, splitRemaining } from "../lib/time.ts";
 
 function Pair({ value }: { value: number }) {
@@ -28,7 +29,7 @@ export function Countdown({ now }: { now: Date }) {
     return (
       <section className="px-4 pt-3 text-center" aria-label="Joyeux anniversaire. Toutes les cases sont débloquées.">
         <p className="font-serif text-3xl italic text-ink">C’est ouvert</p>
-        <p className="mt-1 text-sm text-mute">{target.caption}</p>
+        <CollageText as="p" text={target.caption} size="title" />
       </section>
     );
   }
