@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { useCloseScene } from "./scene-context.ts";
@@ -67,6 +68,7 @@ export function Day3() {
             : null}
         </AnimatePresence>
       </div>
+      <PeelStickers day={3} revealed={hug} />
       <p className="open-caption">{hug ? "Un câlin, reçu." : teaserFor(3)}</p>
       <p className="open-caption">{giftFor(3)}</p>
       <div className="open-actions">

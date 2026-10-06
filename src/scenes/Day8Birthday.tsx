@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { Confetti } from "../components/Confetti.tsx";
 import { MemoryCamera } from "../components/MemoryCamera.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -122,6 +123,7 @@ export function Day8({ breakfast, extras }: { breakfast: string[]; extras: strin
           </motion.button>
         )}
       </div>
+      <PeelStickers day={8} revealed={open} />
       <p className="open-caption">{open ? extras.join(" · ") : "Tire le cadeau vers le haut."}</p>
       <p className="open-caption">{open ? "Gâteau chocolat, lait et caramel doux." : "La peluche, les fleurs, le mot, puis le plateau."}</p>
       <MemoryCamera day={8} revealed={open} />

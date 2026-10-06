@@ -1,0 +1,354 @@
+{
+  "common": [
+    {
+      "file": "stickers/experience/common/bow-43731c1e79.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/bow-52f84cb8bc.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/bow-b87bbab29b.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-01.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-02.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-03.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-04.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-05.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-06.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-07.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-08.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-09.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-10.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-11.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-12.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-13.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-14.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-15.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-16.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-17.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-18.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-19.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-20.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-21.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-22.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-23.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-24.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-25.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-26.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-27.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-28.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-29.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-30.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-31.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-32.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-33.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-34.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-35.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/from-pins/pin-decor-36.png",
+      "source": "pinterest-cutout"
+    },
+    {
+      "file": "stickers/experience/common/polaroid-frame-3ceacdba57.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/polaroid-frame-4cd4182f8f.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/polaroid-frame-ee212aa17f.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/star-142234aa31.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/star-4be0d18012.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/ticket-68261c9f9e.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/ticket-c125f98f2e.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/ticket-c70b23b63a.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/washi-112dcd66fb.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/washi-63e038e043.png",
+      "source": "product-or-decor-png"
+    },
+    {
+      "file": "stickers/experience/common/washi-77a18f74c3.png",
+      "source": "product-or-decor-png"
+    }
+  ],
+  "days": {
+    "1": [
+      {
+        "file": "stickers/experience/jour-1/from-gifts/blindbox-figure.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-1/from-gifts/labubu-bunny.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-1/from-gifts/labubu-costume.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-1/from-gifts/labubu-popmart.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-1/pin-078576-polka-pouch-button.png",
+        "source": "pinterest-native"
+      },
+      {
+        "file": "stickers/experience/jour-1/pin-524810-kiss-print-parcels.png",
+        "source": "pinterest-native"
+      },
+      {
+        "file": "stickers/experience/jour-1/pin-524810-kraft-pink-bow.png",
+        "source": "pinterest-native"
+      }
+    ],
+    "2": [
+      {
+        "file": "stickers/experience/jour-2/from-gifts/pin-squishy-01.png",
+        "source": "pinterest-native"
+      },
+      {
+        "file": "stickers/experience/jour-2/from-gifts/pin-squishy-02.png",
+        "source": "pinterest-native"
+      },
+      {
+        "file": "stickers/experience/jour-2/from-gifts/pin-squishy-03.png",
+        "source": "pinterest-native"
+      },
+      {
+        "file": "stickers/experience/jour-2/from-gifts/pin-squishy-04.png",
+        "source": "pinterest-native"
+      }
+    ],
+    "3": [
+      {
+        "file": "stickers/experience/jour-3/from-gifts/teddy-1.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-3/from-gifts/teddy-2.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-3/from-gifts/teddy-blue.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-3/from-gifts/teddy-heart.png",
+        "source": "real-product-png"
+      }
+    ],
+    "4": [
+      {
+        "file": "stickers/experience/jour-4/from-gifts/gacha-openclipart.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-4/from-gifts/gacha-pastel.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-4/from-gifts/gashapon-capsule.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-4/from-gifts/ic-09347.png",
+        "source": "real-product-png"
+      }
+    ],
+    "5": [
+      {
+        "file": "stickers/experience/jour-5/from-gifts/barrette-purple.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-5/from-gifts/bow-hairpin.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-5/from-gifts/butterfly-clip.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-5/from-gifts/hair-clips.png",
+        "source": "real-product-png"
+      }
+    ],
+    "6": [
+      {
+        "file": "stickers/experience/jour-6/from-gifts/bubble-tea-1.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-6/from-gifts/bubble-tea-2.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-6/from-gifts/candy-basket.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-6/from-gifts/gift-basket.png",
+        "source": "real-product-png"
+      }
+    ],
+    "7": [
+      {
+        "file": "stickers/experience/jour-7/from-gifts/lighter-orange.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-7/from-gifts/zippo-silver.png",
+        "source": "real-product-png"
+      }
+    ],
+    "8": [
+      {
+        "file": "stickers/experience/jour-8/from-gifts/bouquet-1.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-8/from-gifts/bouquet-2.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-8/from-gifts/cake-1.png",
+        "source": "real-product-png"
+      },
+      {
+        "file": "stickers/experience/jour-8/from-gifts/cake-2.png",
+        "source": "real-product-png"
+      }
+    ]
+  }
+}

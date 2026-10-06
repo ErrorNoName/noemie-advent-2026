@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { MemoryCamera } from "../components/MemoryCamera.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -86,6 +87,7 @@ export function Day6() {
           </motion.button>
         )}
       </div>
+      <PeelStickers day={6} revealed={open} />
       <p className="open-caption">{open ? "Un à un, ils se posent." : teaserFor(6)}</p>
       <p className="open-caption">{open ? "Bonbons, boisson, mini peluche." : "Tire le panier vers le haut."}</p>
       <MemoryCamera day={6} revealed={open} />

@@ -52,6 +52,12 @@ La logique est commentée dans `src/lib/time.ts`.
 
 Les titres (Noémie, Pour toi, Jour N, les dates, Souvenirs, Joyeux anniversaire) sont composés en collage : découpes Pinterest pour W, E, I, N, O, R et S, glyphes papier Resource Boy pour le reste. La licence Resource Boy est dans `public/letters/LICENSE-ResourceBoy.txt`. Le chiffre 8, absent du jeu, est un petit carton dans la police du texte. Un accent (É) est la lettre E plus une marque papier, pas un emoji.
 
+## Stickers d’ouverture
+
+`public/stickers/experience/` garde les 50 découpes communes et les stickers de chaque jour. Ils restent dans les rails de 42 px, ou dans une rangée sous le cadeau une fois qu’il est ouvert : ils se décollent l’un après l’autre, avec une petite ombre. Le premier se laisse tirer dans cette rangée, le deuxième s’agite au toucher. Rien ne passe sur le titre ni sur le cadeau. Le jour 7 ne pose pas un second briquet.
+
+Les tirages Souvenirs portent un petit sticker composé dans le navigateur : contour blanc, ombre douce, une découpe déjà là, parfois un mot en lettres collage, dans les couleurs du papier.
+
 ## Souvenirs
 
 Trente photos dans `public/souvenirs/` (album 1 : 6, album 2 : 24), au plus 1600 px. Les jours 2, 4, 6 et 8 montrent un appareil après le cadeau : Polaroid, jetable, compact, argentique. Le déclenchement fait un flash et développe un tirage. La galerie Souvenirs, depuis l’accueil, ne montre que les jours déjà débloqués. `/test` les ouvre tous. Les appareils sont des emplacements : les découpes remplaceront le dessin quand elles arriveront.

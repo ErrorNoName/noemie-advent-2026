@@ -737,6 +737,62 @@ button {
     drop-shadow(0 6px 10px rgba(58, 42, 50, 0.12));
 }
 
+.peel-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px 10px;
+  width: 100%;
+  min-height: 62px;
+  margin: 2px 0 0;
+}
+
+.peel-sticker {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.peel-sticker.is-still {
+  cursor: default;
+}
+
+.scene-copy .peel-sticker img {
+  width: 56px;
+  height: 56px;
+  max-width: none;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 3px 4px rgba(58, 42, 50, 0.22));
+  pointer-events: none;
+}
+
+.print-deco {
+  position: absolute;
+  left: 2px;
+  bottom: 2px;
+  z-index: 4;
+  width: 34px;
+  height: 34px;
+  max-width: 34px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.memory-print.is-polaroid .print-deco {
+  left: 8px;
+  bottom: 1px;
+  width: 36px;
+  height: 24px;
+}
+
 .scene-copy {
   position: relative;
   z-index: 2;

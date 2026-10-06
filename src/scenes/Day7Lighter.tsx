@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playSpark } from "../lib/touchSound.ts";
@@ -98,6 +99,7 @@ export function Day7() {
           </button>
         </div>
       </div>
+      <PeelStickers day={7} revealed={lit} />
       <p className="open-caption">{lit ? "La flamme tient, et elle penche avec le téléphone." : teaserFor(7)}</p>
       <p className="open-caption">{lit ? "Maintiens la molette pour la garder vive." : "Frotte la molette."}</p>
       <div className="open-actions">

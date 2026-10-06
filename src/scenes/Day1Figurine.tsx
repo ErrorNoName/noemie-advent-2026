@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { FoilBag } from "../components/FoilBag.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { giftFor, teaserFor } from "../data/days.ts";
 import { useCloseScene } from "./scene-context.ts";
 
@@ -21,6 +22,7 @@ export function Day1() {
           }}
         />
       </div>
+      <PeelStickers day={1} revealed={clear} />
       <p className="open-caption">
         {clear ? "Elle était là depuis le début." : `${teaserFor(1)} Tapote, ou secoue le téléphone.`}
       </p>

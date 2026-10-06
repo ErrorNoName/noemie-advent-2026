@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { MemoryCamera } from "../components/MemoryCamera.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -57,6 +58,7 @@ export function Day2() {
           <GiftPhoto src={HERO} alt="Squishy" className="fill-cut" />
         </motion.button>
       </div>
+      <PeelStickers day={2} revealed={count > 0} />
       <p className="open-caption">
         {pressed ? "Ça cède sous le doigt." : count === 0 ? teaserFor(2) : "Relâche. Ça remonte tout seul."}
       </p>

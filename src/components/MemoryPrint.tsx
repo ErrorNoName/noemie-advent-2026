@@ -1,6 +1,7 @@
 import type { MemoryPhoto } from "../lib/souvenirs.ts";
 import { stampText } from "../lib/souvenirs.ts";
 import { publicUrl } from "../lib/publicUrl.ts";
+import { PrintDeco } from "./PrintDeco.tsx";
 
 export function MemoryPrint({
   photo,
@@ -33,6 +34,7 @@ export function MemoryPrint({
         {photo.kind === "digital" ? <span className="print-vignette" /> : null}
         {stamp ? <span className={`print-stamp is-${photo.kind}`}>{stamp}</span> : null}
       </span>
+      <PrintDeco order={photo.order} />
     </figure>
   );
 }

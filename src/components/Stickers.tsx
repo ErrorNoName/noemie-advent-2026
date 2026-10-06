@@ -1,13 +1,10 @@
-import { DECOR } from "../data/decorList.ts";
+import { railStickers } from "../lib/experience.ts";
 import { publicUrl } from "../lib/publicUrl.ts";
 
 const ROT = [-8, 7, -5, 6];
 
 export function DayStickers({ day }: { day: number }) {
-  const start = ((day - 1) * 4) % DECOR.length;
-  const picks = [0, 1, 2, 3]
-    .map((offset) => DECOR[(start + offset) % DECOR.length])
-    .filter((src) => src !== undefined);
+  const picks = railStickers(day);
   const left = picks.slice(0, 2);
   const right = picks.slice(2, 4);
 

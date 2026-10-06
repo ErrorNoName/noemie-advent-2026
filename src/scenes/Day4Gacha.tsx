@@ -3,6 +3,7 @@ import { useRef, useState, type PointerEvent } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { MemoryCamera } from "../components/MemoryCamera.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { giftFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -174,6 +175,7 @@ export function Day4() {
           </button>
         ) : null}
       </div>
+      <PeelStickers day={4} revealed={phase === "open"} />
       <p className="open-caption">{hint(phase)}</p>
       {phase === "open" && note ? <p className="open-kicker">{note}</p> : null}
       <MemoryCamera day={4} revealed={phase === "open"} />

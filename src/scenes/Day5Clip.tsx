@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
+import { PeelStickers } from "../components/PeelStickers.tsx";
 import { dayByNumber, teaserFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
 import { playTick } from "../lib/touchSound.ts";
@@ -78,6 +79,7 @@ export function Day5() {
           <span className="sr-only">{on ? `NOÉMIE. ${spoken}` : "Écran éteint"}</span>
         </button>
       </div>
+      <PeelStickers day={5} revealed={on} />
       <p className="open-caption">{on ? "Le prénom défile, tout petit." : teaserFor(5)}</p>
       <p className="open-caption">Appuie sur la barrette. L’écran s’allume.</p>
       <div className="open-actions">
