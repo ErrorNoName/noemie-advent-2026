@@ -3277,28 +3277,66 @@ button.lcd-screen {
 }
 
 .souvenir-dialog {
-  width: min(420px, 92vw);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
   border: 0;
-  padding: 16px;
-  background: #fff8f2;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.souvenir-dialog:focus,
+.souvenir-dialog:focus-visible {
+  outline: 0;
 }
 
 .souvenir-dialog::backdrop {
-  background: rgba(58, 42, 50, 0.48);
+  background: rgba(42, 28, 36, 0.55);
 }
 
-.souvenir-dialog .btn-ink {
-  margin-top: 12px;
-  width: 100%;
+.souvenir-close {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  right: 16px;
+  z-index: 2;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #fff8f2;
+  cursor: pointer;
 }
 
 .souvenir-dialog .device-frame {
-  width: min(100%, 300px);
-  margin: 8px auto 0;
+  width: min(84vw, 460px, calc(64vh * var(--frame-ratio, 1)));
+  max-height: 64vh;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: none;
 }
 
 .souvenir-dialog .device-frame.is-small {
-  width: min(48%, 150px);
+  width: min(34vw, 128px, calc(36vh * var(--frame-ratio, 0.5)));
+  max-height: 36vh;
+}
+
+.souvenir-dialog .device-shell {
+  filter: none;
+}
+
+.souvenir-dialog .device-screen {
+  background: transparent;
 }
 
 @media (max-width: 420px) {

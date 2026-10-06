@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  DEVICE_ASSET_DIR,
   allDevices,
   deviceForDay,
   galleryDevice,
@@ -19,7 +20,7 @@ describe("devices", () => {
     expect(framed).toHaveLength(16);
     expect(decor).toHaveLength(6);
     for (const device of devices) {
-      expect(device.file.startsWith("stickers/devices/")).toBe(true);
+      expect(device.file.startsWith(`${DEVICE_ASSET_DIR}/`)).toBe(true);
       expect(device.file.endsWith(".png")).toBe(true);
     }
     for (const device of framed) {

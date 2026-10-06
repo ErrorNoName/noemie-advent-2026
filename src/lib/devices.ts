@@ -1,6 +1,20 @@
 import raw from "../data/devices.json" with { type: "json" };
 import type { SouvenirDay } from "./souvenirs.ts";
 
+/**
+ * Folder for the camera and screen cutouts.
+ * Drop upscaled PNGs here under the same file names, or point this at a new
+ * folder such as "stickers/devices/hd". Screen boxes stay fractions of the
+ * image, so the photo keeps the same place.
+ */
+export const DEVICE_ASSET_DIR = "stickers/devices";
+
+function cutoutFile(file: string, role: string): string {
+  if (role === "decor") return file;
+  const name = file.slice(file.lastIndexOf("/") + 1);
+  return `${DEVICE_ASSET_DIR}/${name}`;
+}
+
 export const DEVICE_FILTERS = [
   "compact",
   "kawaii",
@@ -63,7 +77,7 @@ function parseDevice(entry: (typeof raw.devices)[number]): DeviceCut {
   }
   return {
     id: entry.id,
-    file: entry.file,
+    file: cutoutFile(entry.file, entry.role),
     width: entry.width,
     height: entry.height,
     role: entry.role,

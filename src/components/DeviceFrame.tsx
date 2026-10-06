@@ -96,7 +96,10 @@ export function DeviceFrame({
       className={`device-frame${device.small ? " is-small" : ""}`}
       data-device={device.id}
       data-filter={filter}
-      style={{ aspectRatio: `${device.width} / ${device.height}` }}
+      style={{
+        aspectRatio: `${device.width} / ${device.height}`,
+        ["--frame-ratio" as string]: String(device.width / device.height),
+      }}
     >
       <span
         className="device-screen"

@@ -67,14 +67,21 @@ export function SouvenirsGallery({
         </ul>
       )}
       {open ? (
-        <dialog ref={dialog} className="souvenir-dialog" aria-label={`Souvenir ${open.order}`}>
+        <dialog
+          ref={dialog}
+          className="souvenir-dialog"
+          aria-label={`Souvenir ${open.order}`}
+          onClick={(event) => {
+            if (event.target === dialog.current) dialog.current?.close();
+          }}
+        >
           <DeviceFrame
             device={galleryDevice(open.order)}
             photo={open}
             pin={pinFor(open.order)}
             eager
           />
-          <button type="button" className="btn-ink" onClick={() => dialog.current?.close()}>
+          <button type="button" className="souvenir-close" onClick={() => dialog.current?.close()}>
             Fermer
           </button>
         </dialog>
