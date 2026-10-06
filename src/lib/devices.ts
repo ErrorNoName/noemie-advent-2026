@@ -122,6 +122,41 @@ export function pinFor(order: number): DeviceCut {
   return found;
 }
 
+/**
+ * How the memory photo sits in the shell.
+ * The upscaled cutouts keep a solid screen, so the photo is drawn on top
+ * and clipped to this inset and corner radius (fractions of the screen box).
+ */
+export interface ScreenFit {
+  inset: number;
+  radius: number;
+}
+
+const SCREEN_FIT: Record<string, ScreenFit> = {
+  "hello-kitty": { inset: 0.014, radius: 0.05 },
+  "word-window": { inset: 0.02, radius: 0.05 },
+  "music-player": { inset: 0.016, radius: 0.045 },
+  "switch-lite": { inset: 0.014, radius: 0.05 },
+  "ps-vita": { inset: 0.014, radius: 0.045 },
+  tamagotchi: { inset: 0.03, radius: 0.34 },
+  "vertical-phone": { inset: 0.02, radius: 0.07 },
+  mp3: { inset: 0.016, radius: 0.05 },
+  iphone: { inset: 0.012, radius: 0.09 },
+  ipod: { inset: 0.016, radius: 0.04 },
+  "silver-cybershot": { inset: 0.016, radius: 0.05 },
+  "retro-tv": { inset: 0.018, radius: 0.16 },
+  nokia: { inset: 0.016, radius: 0.045 },
+  "pink-cybershot": { inset: 0.014, radius: 0.05 },
+  "flip-phone": { inset: 0.04, radius: 0.3 },
+  canon: { inset: 0.02, radius: 0.08 },
+};
+
+export function screenFit(id: string): ScreenFit {
+  const fit = SCREEN_FIT[id];
+  if (!fit) throw new Error(`Cadre d’écran manquant pour ${id}`);
+  return fit;
+}
+
 export function pinAnchor(order: number): { x: number; rotate: number } {
   const slot = mix(order + 3) % 3;
   const x = slot === 0 ? 32 : slot === 1 ? 50 : 68;

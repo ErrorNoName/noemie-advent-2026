@@ -3,6 +3,7 @@ import {
   lcdDate,
   pinAnchor,
   recClock,
+  screenFit,
   type DeviceCut,
   type DeviceFilter,
 } from "../lib/devices.ts";
@@ -86,6 +87,8 @@ export function DeviceFrame({
   const screen = device.screen;
   const filter = device.filter;
   if (!screen || !filter) return null;
+  const fit = screenFit(device.id);
+  const inset = fit.inset;
   const anchor = pin ? pinAnchor(photo?.order ?? 1) : null;
   const pinStyle: CSSProperties | undefined = anchor
     ? { left: `${anchor.x}%`, ["--pin-rot" as string]: `${anchor.rotate}deg` }
@@ -104,10 +107,11 @@ export function DeviceFrame({
       <span
         className="device-screen"
         style={{
-          left: `${screen.x * 100}%`,
-          top: `${screen.y * 100}%`,
-          width: `${screen.w * 100}%`,
-          height: `${screen.h * 100}%`,
+          left: `${(screen.x + screen.w * inset) * 100}%`,
+          top: `${(screen.y + screen.h * inset) * 100}%`,
+          width: `${screen.w * (1 - inset * 2) * 100}%`,
+          height: `${screen.h * (1 - inset * 2) * 100}%`,
+          borderRadius: `${fit.radius * 100}%`,
         }}
       >
         {photo ? (

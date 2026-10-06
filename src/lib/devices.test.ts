@@ -7,6 +7,7 @@ import {
   lcdDate,
   pinFor,
   recClock,
+  screenFit,
 } from "./devices.ts";
 
 const CAMERAS = ["hello-kitty", "pink-cybershot", "silver-cybershot", "canon"];
@@ -38,6 +39,17 @@ describe("devices", () => {
     expect(decor.every((device) => device.screen == null && device.filter == null)).toBe(true);
     expect(decor.find((device) => device.id === "paperclip")?.small).toBe(true);
     expect(framed.find((device) => device.id === "vertical-phone")?.small).toBe(true);
+    for (const device of framed) {
+      const fit = screenFit(device.id);
+      const screen = device.screen;
+      if (!screen) throw new Error(device.id);
+      expect(fit.inset).toBeGreaterThanOrEqual(0);
+      expect(fit.inset).toBeLessThan(0.08);
+      expect(fit.radius).toBeGreaterThanOrEqual(0);
+      expect(fit.radius).toBeLessThanOrEqual(0.5);
+      expect(screen.w * (1 - fit.inset * 2)).toBeGreaterThan(0.15);
+      expect(screen.h * (1 - fit.inset * 2)).toBeGreaterThan(0.15);
+    }
   });
 
   it("assigns the four cameras to days 2, 4, 6 and 8, and the other screens to the gallery", () => {
