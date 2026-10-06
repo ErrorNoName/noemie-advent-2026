@@ -21,7 +21,12 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-function dieCut(ctx: CanvasRenderingContext2D, image: HTMLImageElement, x: number, y: number, size: number) {
+function dieCut(ctx: CanvasRenderingContext2D, image: HTMLImageElement, x: number, y: number, box: number) {
+  const scale = Math.min(box / image.width, box / image.height);
+  const width = image.width * scale;
+  const height = image.height * scale;
+  const left = x + (box - width) / 2;
+  const top = y + (box - height) / 2;
   const offsets = [
     [-7, 0],
     [7, 0],
@@ -38,10 +43,10 @@ function dieCut(ctx: CanvasRenderingContext2D, image: HTMLImageElement, x: numbe
   ctx.shadowBlur = 14;
   ctx.shadowOffsetY = 6;
   for (const [dx, dy] of offsets) {
-    ctx.drawImage(image, x + (dx ?? 0), y + (dy ?? 0), size, size);
+    ctx.drawImage(image, left + (dx ?? 0), top + (dy ?? 0), width, height);
   }
   ctx.restore();
-  ctx.drawImage(image, x, y, size, size);
+  ctx.drawImage(image, left, top, width, height);
 }
 
 async function drawRecipe(recipe: StickerRecipe): Promise<string> {

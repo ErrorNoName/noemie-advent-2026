@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { useGentle } from "../hooks/useGentle.ts";
-import { peelStickers, type PeelPlay } from "../lib/experience.ts";
+import { composedSticker } from "../lib/composeSticker.ts";
+import { peelStickers, type PeelPlay, type PeelSize, type PeelSticker } from "../lib/experience.ts";
 import { publicUrl } from "../lib/publicUrl.ts";
 
 function Peel({
@@ -9,11 +10,13 @@ function Peel({
   play,
   delay,
   bounds,
+  size = "regular",
 }: {
   src: string;
   play: PeelPlay;
   delay: number;
   bounds: RefObject<HTMLDivElement | null>;
+  size?: PeelSize;
 }) {
   const { reduced } = useGentle();
   const [tick, setTick] = useState(0);
@@ -22,7 +25,7 @@ function Peel({
   return (
     <motion.button
       type="button"
-      className={`peel-sticker is-${play}`}
+      className={`peel-sticker is-${play} is-${size}`}
       aria-label={play === "drag" ? "Déplacer le sticker" : play === "tap" ? "Agiter le sticker" : undefined}
       aria-hidden={interactive ? undefined : true}
       tabIndex={interactive ? 0 : -1}
@@ -46,8 +49,59 @@ function Peel({
         if (play === "tap" || play === "drag") setTick((value) => value + 1);
       }}
     >
-      <img src={publicUrl(src)} alt="" draggable={false} />
+      <img src={src.startsWith("data:") ? src : publicUrl(src)} alt="" width={120} height={120} draggable={false} />
     </motion.button>
+  );
+}
+
+function GeneratedPeel({
+  order,
+  delay,
+  bounds,
+}: {
+  order: number;
+  delay: number;
+  bounds: RefObject<HTMLDivElement | null>;
+}) {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => {
+    let live = true;
+    void composedSticker(order).then((url) => {
+      if (live && url) setSrc(url);
+    });
+    return () => {
+      live = false;
+    };
+  }, [order]);
+  if (!src) return <span className="peel-sticker is-pending" aria-hidden />;
+  return <Peel src={src} play="tap" delay={delay} bounds={bounds} />;
+}
+
+export function MagazinePeel({
+  stickers,
+  generated = [],
+}: {
+  stickers: PeelSticker[];
+  generated?: number[];
+}) {
+  const bounds = useRef<HTMLDivElement>(null);
+  if (stickers.length === 0 && generated.length === 0) return null;
+  return (
+    <div className="mag-row" ref={bounds}>
+      {stickers.map((sticker, index) => (
+        <Peel
+          key={sticker.src}
+          src={sticker.src}
+          play={sticker.play}
+          size={sticker.size}
+          delay={index * 0.1}
+          bounds={bounds}
+        />
+      ))}
+      {generated.map((order, index) => (
+        <GeneratedPeel key={order} order={order} delay={(stickers.length + index) * 0.1} bounds={bounds} />
+      ))}
+    </div>
   );
 }
 
@@ -63,6 +117,7 @@ export function PeelStickers({ day, revealed }: { day: number; revealed: boolean
           key={sticker.src}
           src={sticker.src}
           play={sticker.play}
+          size={sticker.size}
           delay={index * 0.12}
           bounds={bounds}
         />

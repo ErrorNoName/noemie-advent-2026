@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Calendar } from "./components/Calendar.tsx";
+import { CollageBackdrop } from "./components/CollageBackdrop.tsx";
 import { Confetti } from "./components/Confetti.tsx";
 import { Gate } from "./components/Gate.tsx";
 import { BoardOrbit } from "./components/Scrapbook.tsx";
@@ -30,7 +31,8 @@ export function App() {
 
   if (!dev && !test && memory.codeOk !== true) {
     return (
-      <div className="desk">
+      <div className="desk is-gate">
+        <CollageBackdrop tone="gate" />
         <Gate recipient={recipient} onUnlock={unlock} />
       </div>
     );
@@ -53,12 +55,15 @@ export function App() {
     test,
   });
 
+  let tone: "home" | "day" | "souvenirs" = "home";
   let screen: ReactNode;
   switch (view.name) {
     case "day":
+      tone = "day";
       screen = <DayScene day={view.day} onBack={closeDay} />;
       break;
     case "souvenirs":
+      tone = "souvenirs";
       screen = <SouvenirsGallery daysOpen={daysOpen} onBack={() => setView({ name: "calendar" })} />;
       break;
     case "calendar":
@@ -85,7 +90,8 @@ export function App() {
 
   return (
     <ShotProvider value={{ shots: memory.shots, setShotCount }}>
-    <div className="desk">
+    <div className={`desk is-${tone}`}>
+      <CollageBackdrop tone={tone} />
       <BoardOrbit />
       {test ? (
         <div className="test-bar">

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { galleryDevice, pinFor } from "../lib/devices.ts";
+import { souvenirStickers } from "../lib/experience.ts";
 import { allMemories, type MemoryPhoto, type SouvenirDay } from "../lib/souvenirs.ts";
 import { CollageText } from "./CollageText.tsx";
 import { DeviceFrame } from "./DeviceFrame.tsx";
+import { MagazinePeel } from "./PeelStickers.tsx";
 
 export function SouvenirsGallery({
   daysOpen,
@@ -47,6 +49,7 @@ export function SouvenirsGallery({
             : `${photos.length} ${photos.length > 1 ? "tirages débloqués" : "tirage débloqué"}.`}
         </p>
       </header>
+      <MagazinePeel stickers={souvenirStickers()} generated={[2, 3]} />
       {photos.length === 0 ? null : (
         <ul className="souvenir-grid">
           {photos.map((photo) => (

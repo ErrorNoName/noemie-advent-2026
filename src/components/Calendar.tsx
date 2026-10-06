@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { days, type AdventDay } from "../data/days.ts";
 import { doorStatus, stateLabel } from "../lib/doors.ts";
+import { homeStickers } from "../lib/experience.ts";
 import { caseNumberForToday, formatDateKey, formatParisLong, formatShort, parisDateKey } from "../lib/time.ts";
 import { CollageText } from "./CollageText.tsx";
 import { Countdown } from "./Countdown.tsx";
+import { MagazinePeel } from "./PeelStickers.tsx";
 import { Present } from "./Present.tsx";
 
 export function Calendar({
@@ -75,6 +77,7 @@ export function Calendar({
           return <li key={day.date} className={status} />;
         })}
       </ol>
+      <MagazinePeel stickers={homeStickers()} generated={[1]} />
       {hint ? (
         <p className="hint-banner" role="status">
           {hint}

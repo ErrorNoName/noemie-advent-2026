@@ -1,0 +1,68 @@
+{
+  "panels": [
+    {
+      "id": "bg1",
+      "pin": "https://fr.pinterest.com/pin/1103733821220104703/",
+      "width": 540,
+      "height": 960,
+      "sources": [
+        {
+          "file": "backgrounds/bg1-540.webp",
+          "width": 540
+        },
+        {
+          "file": "backgrounds/bg1-960.webp",
+          "width": 960
+        }
+      ]
+    },
+    {
+      "id": "bg2",
+      "pin": "https://fr.pinterest.com/pin/963348176553443317/",
+      "width": 540,
+      "height": 960,
+      "sources": [
+        {
+          "file": "backgrounds/bg2-540.webp",
+          "width": 540
+        },
+        {
+          "file": "backgrounds/bg2-960.webp",
+          "width": 960
+        }
+      ]
+    },
+    {
+      "id": "bg3",
+      "pin": "https://fr.pinterest.com/pin/710302172525554571/",
+      "width": 540,
+      "height": 960,
+      "sources": [
+        {
+          "file": "backgrounds/bg3-540.webp",
+          "width": 540
+        },
+        {
+          "file": "backgrounds/bg3-960.webp",
+          "width": 960
+        }
+      ]
+    },
+    {
+      "id": "bg4",
+      "pin": "https://fr.pinterest.com/pin/668221663511127159/",
+      "width": 540,
+      "height": 960,
+      "sources": [
+        {
+          "file": "backgrounds/bg4-540.webp",
+          "width": 540
+        },
+        {
+          "file": "backgrounds/bg4-960.webp",
+          "width": 960
+        }
+      ]
+    }
+  ]
+}

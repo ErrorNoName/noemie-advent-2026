@@ -2,9 +2,12 @@ import catalog from "../data/experience.json" with { type: "json" };
 
 export type PeelPlay = "drag" | "tap" | "still";
 
+export type PeelSize = "regular" | "cat" | "lips";
+
 export interface PeelSticker {
   src: string;
   play: PeelPlay;
+  size?: PeelSize;
 }
 
 const WASH = ["#F7D7E2", "#FFF8F2", "#F3DDB4", "#F6E7C8", "#E7F0F4", "#F8D5E0"] as const;
@@ -43,6 +46,17 @@ export function railStickers(day: number): readonly string[] {
   });
 }
 
+const CATS = {
+  orange: "stickers/cats/cat-orange.webp",
+  tabby: "stickers/cats/cat-tabby.webp",
+  white: "stickers/cats/cat-white.webp",
+  butterfly: "stickers/cats/butterfly.webp",
+  strawberry: "stickers/cats/strawberry.webp",
+  flower: "stickers/cats/flower.webp",
+  jelly: "stickers/cats/jelly.webp",
+  lips: "stickers/cats/lips.webp",
+} as const;
+
 function row(sources: string[]): PeelSticker[] {
   return sources.map((src, index) => {
     let play: PeelPlay = "still";
@@ -52,11 +66,60 @@ function row(sources: string[]): PeelSticker[] {
   });
 }
 
+function catSticker(src: string, size: PeelSize = "cat"): PeelSticker {
+  return { src, play: "tap", size };
+}
+
+/** Magazine cats on the home board, under the date and clear of the doors. */
+export function homeStickers(): PeelSticker[] {
+  return [
+    catSticker(CATS.orange),
+    catSticker(CATS.tabby),
+    catSticker(CATS.white),
+    catSticker(CATS.butterfly, "regular"),
+    catSticker(CATS.strawberry, "regular"),
+  ];
+}
+
+/** Cats and small clippings above the souvenir grid, not on the prints. */
+export function souvenirStickers(): PeelSticker[] {
+  return [
+    catSticker(CATS.orange),
+    catSticker(CATS.tabby),
+    catSticker(CATS.white),
+    catSticker(CATS.flower, "regular"),
+    catSticker(CATS.jelly, "regular"),
+    catSticker(CATS.strawberry, "regular"),
+    catSticker(CATS.lips, "lips"),
+  ];
+}
+
+function dayCat(day: number): PeelSticker | null {
+  switch (day) {
+    case 1:
+      return catSticker(CATS.orange);
+    case 3:
+      return catSticker(CATS.tabby);
+    case 5:
+      return catSticker(CATS.white);
+    case 8:
+      return catSticker(CATS.butterfly, "regular");
+    default:
+      return null;
+  }
+}
+
 /**
  * Stickers that peel in under the gift, in the flow, never on top of it.
  * Day 7 stays with bows and stars: the scene already has its one lighter.
  */
 export function peelStickers(day: number): PeelSticker[] {
+  const extra = dayCat(day);
+  const stickers = peelBase(day);
+  return extra ? [...stickers, extra] : stickers;
+}
+
+function peelBase(day: number): PeelSticker[] {
   switch (day) {
     case 1:
       return row([
@@ -113,14 +176,14 @@ export function peelStickers(day: number): PeelSticker[] {
 }
 
 export const STICKER_RECIPES: readonly StickerRecipe[] = [
-  { id: "toi", cutout: commonFile("bow-43731c1e79"), word: "TOI", wash: WASH[0] },
-  { id: "star", cutout: commonFile("star-142234aa31"), word: "", wash: WASH[1] },
-  { id: "oui", cutout: commonFile("bow-52f84cb8bc"), word: "OUI", wash: WASH[2] },
-  { id: "washi", cutout: commonFile("washi-112dcd66fb"), word: "", wash: WASH[4] },
-  { id: "jour", cutout: commonFile("star-4be0d18012"), word: "JOUR", wash: WASH[5] },
-  { id: "pin", cutout: commonFile("pin-decor-02"), word: "", wash: WASH[1] },
-  { id: "doux", cutout: commonFile("bow-b87bbab29b"), word: "DOUX", wash: WASH[3] },
-  { id: "non", cutout: commonFile("pin-decor-08"), word: "NON", wash: WASH[0] },
+  { id: "toi", cutout: CATS.orange, word: "TOI", wash: WASH[0] },
+  { id: "tabby", cutout: CATS.tabby, word: "OUI", wash: WASH[1] },
+  { id: "neige", cutout: CATS.white, word: "", wash: WASH[2] },
+  { id: "fleur", cutout: CATS.flower, word: "DOUX", wash: WASH[3] },
+  { id: "papillon", cutout: CATS.butterfly, word: "", wash: WASH[4] },
+  { id: "fraise", cutout: CATS.strawberry, word: "JOUR", wash: WASH[5] },
+  { id: "jelly", cutout: CATS.jelly, word: "NON", wash: WASH[0] },
+  { id: "bisou", cutout: CATS.lips, word: "", wash: WASH[1] },
 ];
 
 export function recipeFor(order: number): StickerRecipe {

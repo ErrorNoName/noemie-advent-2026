@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { experienceCounts, peelStickers, railStickers, recipeFor } from "./experience.ts";
+import { experienceCounts, homeStickers, peelStickers, railStickers, recipeFor, souvenirStickers } from "./experience.ts";
 
 describe("experience stickers", () => {
   it("keeps the fifty common cuts and the per-day counts", () => {
@@ -25,12 +25,21 @@ describe("experience stickers", () => {
     const day7 = peelStickers(7).map((item) => item.src).join(" ");
     expect(day7.includes("lighter")).toBe(false);
     expect(day7.includes("zippo")).toBe(false);
+    expect(peelStickers(1).some((item) => item.src.includes("cat-orange"))).toBe(true);
+    expect(peelStickers(3).some((item) => item.src.includes("cat-tabby"))).toBe(true);
+    expect(peelStickers(5).some((item) => item.src.includes("cat-white"))).toBe(true);
+    expect(peelStickers(8).some((item) => item.src.includes("butterfly"))).toBe(true);
+    expect(peelStickers(7).some((item) => item.src.includes("stickers/cats/"))).toBe(false);
     expect(peelStickers(2)[0]?.play).toBe("drag");
     expect(peelStickers(2)[1]?.play).toBe("tap");
+    expect(homeStickers().filter((item) => item.size === "cat")).toHaveLength(3);
+    expect(souvenirStickers().some((item) => item.size === "lips")).toBe(true);
+    expect(souvenirStickers().every((item) => item.play === "tap")).toBe(true);
   });
 
   it("cycles souvenir recipes from the site palette", () => {
     expect(recipeFor(1).word).toBe("TOI");
+    expect(recipeFor(1).cutout).toContain("cats/cat-orange");
     expect(recipeFor(9).id).toBe(recipeFor(1).id);
     expect(recipeFor(2).wash.startsWith("#")).toBe(true);
   });

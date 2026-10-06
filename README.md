@@ -52,6 +52,17 @@ La logique est commentée dans `src/lib/time.ts`.
 
 Les titres (Noémie, Pour toi, Jour N, les dates, Souvenirs, Joyeux anniversaire) sont composés en collage : découpes Pinterest pour W, E, I, N, O, R et S, glyphes papier Resource Boy pour le reste. La licence Resource Boy est dans `public/letters/LICENSE-ResourceBoy.txt`. Le chiffre 8, absent du jeu, est un petit carton dans la police du texte. Un accent (É) est la lettre E plus une marque papier, pas un emoji.
 
+## Fond collage
+
+Quatre collages Pinterest, en bandes verticales décalées derrière toutes les pages, avec un voile pastel. Le fond est plus présent à l’accueil, très discret dans une case. Les fichiers sont des WebP 540 et 960 px dans `public/backgrounds/`.
+
+- bg1 [pin 1103733821220104703](https://fr.pinterest.com/pin/1103733821220104703/)
+- bg2 [pin 963348176553443317](https://fr.pinterest.com/pin/963348176553443317/)
+- bg3 [pin 710302172525554571](https://fr.pinterest.com/pin/710302172525554571/)
+- bg4 [pin 668221663511127159](https://fr.pinterest.com/pin/668221663511127159/)
+
+Les trois chats du magazine (roux, tigré, blanc), le papillon, la fraise, la fleur vichy, le bonbon et les lèvres roses viennent du collage bg3. Ils se décollent sous la date à l’accueil et au-dessus des Souvenirs. Un toucher les agite. Les jours 1, 3, 5 et 8 en gardent un sous le cadeau, jamais sur le titre. Les lèvres restent petites. Le générateur de stickers reprend ces découpes.
+
 ## Stickers d’ouverture
 
 `public/stickers/experience/` garde les 50 découpes communes et les stickers de chaque jour. Ils restent dans les rails de 42 px, ou dans une rangée sous le cadeau une fois qu’il est ouvert : ils se décollent l’un après l’autre, avec une petite ombre. Le premier se laisse tirer dans cette rangée, le deuxième s’agite au toucher. Rien ne passe sur le titre ni sur le cadeau. Le jour 7 ne pose pas un second briquet.
