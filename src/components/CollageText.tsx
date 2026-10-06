@@ -58,6 +58,13 @@ function PieceView({ piece }: { piece: CollagePiece }) {
           {piece.accent ? <PaperAccent kind={piece.accent} /> : null}
         </span>
       );
+    case "eight":
+      return (
+        <span className="glyph glyph-eight" style={style}>
+          <img className="eight-loop is-top" src={publicUrl(piece.loops[0])} alt="" draggable={false} />
+          <img className="eight-loop is-bottom" src={publicUrl(piece.loops[1])} alt="" draggable={false} />
+        </span>
+      );
     case "tag":
       return (
         <span className="glyph glyph-tag" style={style}>

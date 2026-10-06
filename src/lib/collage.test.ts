@@ -14,12 +14,15 @@ describe("layoutCollage", () => {
     expect(accent && accent.kind === "glyph" ? accent.char : "").toBe("E");
   });
 
-  it("uses a paper tag for the missing 8 and keeps a word stable", () => {
+  it("builds the 8 from two paper loops and keeps a word stable", () => {
     const once = layoutCollage("Jour 8");
     const twice = layoutCollage("Jour 8");
     expect(once).toEqual(twice);
-    const tag = once.flatMap((word) => word.pieces).find((piece) => piece.kind === "tag");
-    expect(tag && tag.kind === "tag" ? tag.char : "").toBe("8");
+    const eight = once.flatMap((word) => word.pieces).find((piece) => piece.kind === "eight");
+    expect(eight && eight.kind === "eight" ? [...eight.loops] : []).toEqual([
+      "letters/paper/rb-0-01.png",
+      "letters/paper/rb-0-01.png",
+    ]);
     const jourA = layoutCollage("Jour 1")[0]?.pieces;
     const jourB = layoutCollage("Jour 2")[0]?.pieces;
     expect(jourA).toEqual(jourB);

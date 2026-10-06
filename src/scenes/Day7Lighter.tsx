@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { PeelStickers } from "../components/PeelStickers.tsx";
@@ -11,12 +11,15 @@ export function Day7() {
   const close = useCloseScene();
   const { reduced } = useGentle();
   const [lit, setLit] = useState(false);
+  const [lidOpen, setLidOpen] = useState(false);
   const [held, setHeld] = useState(false);
   const [spin, setSpin] = useState(0);
   const [sparks, setSparks] = useState(0);
   const [tilt, setTilt] = useState(0);
   const start = useRef<{ x: number; y: number } | null>(null);
   const moved = useRef(0);
+  const timer = useRef<number | null>(null);
+  const opening = useRef(false);
 
   useEffect(() => {
     const onTilt = (event: DeviceOrientationEvent) => {
@@ -27,8 +30,14 @@ export function Day7() {
     return () => window.removeEventListener("deviceorientation", onTilt);
   }, []);
 
-  function light() {
-    setLit(true);
+  useEffect(() => {
+    const pending = timer;
+    return () => {
+      if (pending.current !== null) window.clearTimeout(pending.current);
+    };
+  }, []);
+
+  function spark() {
     setSparks((value) => value + 1);
     if (!reduced) {
       playSpark();
@@ -36,17 +45,56 @@ export function Day7() {
     }
   }
 
+  function light() {
+    if (lit || opening.current) return;
+    spark();
+    if (!lidOpen) {
+      setLidOpen(true);
+      if (reduced) {
+        setLit(true);
+        return;
+      }
+      opening.current = true;
+      timer.current = window.setTimeout(() => {
+        opening.current = false;
+        timer.current = null;
+        setLit(true);
+      }, 520);
+      return;
+    }
+    setLit(true);
+  }
+
+  function blow() {
+    if (timer.current !== null) window.clearTimeout(timer.current);
+    timer.current = null;
+    opening.current = false;
+    setLit(false);
+  }
+
   return (
     <div className="open-scene">
       <CollageText as="p" text="Jour 7" size="kicker" />
       <CollageText as="h2" text="Briquet" size="title" />
-      <div className={`lighter-live ${lit ? "is-lit" : ""}`} data-lit={lit ? "yes" : "no"}>
-        <div className="lighter-photo">
-          <GiftPhoto src="stickers/jour-7/zippo-silver.webp" alt="Briquet" className="lighter-img" />
+      <div
+        className={`lighter-live ${lidOpen ? "is-open" : ""} ${lit ? "is-lit" : ""}`}
+        data-lid={lidOpen ? "open" : "shut"}
+        data-lit={lit ? "yes" : "no"}
+      >
+        <div className="zippo">
+          <GiftPhoto src="stickers/jour-7/zippo-silver.webp" alt="" className="zippo-plate zippo-body" />
+          <div className={`zippo-lid ${lidOpen ? "is-open" : ""}`}>
+            <GiftPhoto src="stickers/jour-7/zippo-silver.webp" alt="Briquet" className="zippo-plate" />
+          </div>
+          {lidOpen ? (
+            <span className="zippo-chimney" aria-hidden>
+              <span className="zippo-wick" />
+            </span>
+          ) : null}
           {lit ? (
             <span
               className={`flame-anchor ${held ? "is-held" : ""}`}
-              style={{ transform: `translate(-50%, -100%) rotate(${tilt}deg)` }}
+              style={{ "--flame-tilt": `${tilt}deg` } as CSSProperties}
               aria-hidden
             >
               <svg viewBox="0 0 40 64" className="flame-svg">
@@ -104,7 +152,7 @@ export function Day7() {
       <p className="open-caption">{lit ? "Maintiens la molette pour la garder vive." : "Frotte la molette."}</p>
       <div className="open-actions">
         {lit ? (
-          <button type="button" className="btn-line" onClick={() => setLit(false)}>
+          <button type="button" className="btn-line" onClick={blow}>
             Souffler
           </button>
         ) : (

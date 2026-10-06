@@ -23,6 +23,7 @@ interface Jitter {
 
 export type CollagePiece =
   | (Jitter & { kind: "glyph"; char: string; src: string; pool: "native" | "paper"; accent?: Accent })
+  | (Jitter & { kind: "eight"; loops: readonly [string, string] })
   | (Jitter & { kind: "tag"; char: string; accent?: Accent })
   | (Jitter & { kind: "tick"; tick: Tick });
 
@@ -110,6 +111,12 @@ function piecesForWord(word: string, wordIndex: number): CollagePiece[] {
     const baseRaw = decomposed[0] ?? char;
     const accent = accentOf(decomposed.slice(1));
     const lookup = /[a-z]/i.test(baseRaw) ? baseRaw.toUpperCase() : baseRaw;
+    if (lookup === "8") {
+      const loop = "letters/paper/rb-0-01.png";
+      pieces.push({ kind: "eight", loops: [loop, loop], key, ...motion });
+      pieceIndex += 1;
+      continue;
+    }
     const pool = filesFor(lookup);
     if (!pool) {
       pieces.push({ kind: "tag", char: lookup, accent, key, ...motion });

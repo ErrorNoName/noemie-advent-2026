@@ -1748,8 +1748,8 @@ button {
 
 .gacha-stage {
   position: relative;
-  width: min(220px, 100%);
-  height: 320px;
+  width: min(168px, 70%);
+  aspect-ratio: 300 / 664;
   margin: 0 auto;
 }
 
@@ -1761,58 +1761,112 @@ button {
   pointer-events: none;
 }
 
-.gacha-globe {
+.gacha-window {
   position: absolute;
-  left: 18%;
-  right: 18%;
-  top: 8%;
-  height: 42%;
+  left: 17%;
+  width: 66%;
+  top: 16%;
+  height: 27%;
+  overflow: hidden;
+  border-radius: 46% 46% 38% 38%;
   pointer-events: none;
+  z-index: 2;
 }
 
-.gacha-pill {
+.gacha-shift {
   position: absolute;
-  width: 16px;
-  height: 22px;
-  border-radius: 10px;
-  border: 1px solid rgba(58, 42, 50, 0.25);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  width: 151.5%;
+  height: 370%;
+  left: -25.8%;
+  top: -59.3%;
+  max-width: none;
+  object-fit: fill;
 }
 
-.gacha-knob {
+.gacha-stage[data-steps]:not([data-steps="0"]) .gacha-shift {
+  animation: globe-tumble 0.48s ease;
+}
+
+.gacha-window .gacha-pill {
   position: absolute;
-  left: 50%;
-  bottom: 16%;
-  width: 54px;
-  height: 54px;
-  margin-left: -27px;
+  width: 30px;
+  height: 40px;
+  margin: -8px 0 0 -10px;
+}
+
+.gacha-stage[data-steps]:not([data-steps="0"]) .gacha-pill {
+  animation: pill-tumble 0.5s ease;
+}
+
+.gacha-capsule {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 1px rgba(42, 36, 40, 0.25));
+}
+
+.gacha-stage .gacha-knob {
+  position: absolute;
+  top: 64%;
+  left: 74%;
+  bottom: auto;
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
   border-radius: 50%;
   border: 3px solid #2a2428;
   padding: 0;
   cursor: grab;
-  background: radial-gradient(circle at 35% 30%, #9fd0ea, #3c7ea8 70%);
-  z-index: 3;
+  background: radial-gradient(circle at 35% 30%, #fff8f2, #f4b4c8 46%, #d4537a 78%);
+  box-shadow:
+    0 5px 0 #2a2428,
+    0 8px 10px rgba(42, 36, 40, 0.18);
+  z-index: 4;
+  overflow: visible;
 }
 
-.gacha-rotor,
-.gacha-tab {
-  display: block;
-}
-
-.gacha-rotor {
+.gacha-pop {
   position: absolute;
   inset: 0;
 }
 
-.gacha-tab {
+.gacha-stage[data-steps]:not([data-steps="0"]) .gacha-pop {
+  animation: knob-pop 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gacha-stage .gacha-rotor {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #f7c2d2 42%, #e07a9a);
+  border: 2px solid #2a2428;
+}
+
+.gacha-arm {
   position: absolute;
   left: 50%;
-  top: 5px;
-  width: 8px;
-  height: 14px;
-  margin-left: -4px;
-  border-radius: 4px;
+  bottom: 46%;
+  width: 12px;
+  height: 38px;
+  margin-left: -6px;
   background: #fff8f2;
+  border: 2px solid #2a2428;
+  border-radius: 7px;
+}
+
+.gacha-handle {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2a2428;
+  box-shadow: 0 2px 0 #2a2428;
 }
 
 .capsule-live {
@@ -1928,26 +1982,93 @@ button {
   display: block;
 }
 
-.flame-anchor {
+.zippo {
+  position: relative;
+  width: 100%;
+}
+
+.zippo-plate {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.zippo-body {
+  clip-path: inset(41% 0 0 0);
+}
+
+.zippo-lid {
   position: absolute;
-  left: 58%;
-  top: 1.4%;
-  width: 28px;
-  height: 48px;
+  inset: 0;
+  transform-origin: 50% 41%;
+  transition: transform 0.52s cubic-bezier(0.45, 0.02, 0.2, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.zippo-lid .zippo-plate {
+  height: 100%;
+  object-fit: fill;
+  clip-path: inset(0 0 59% 0);
+}
+
+.zippo-lid.is-open {
+  transform: perspective(680px) rotateX(66deg);
+}
+
+.zippo-chimney {
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  width: 26px;
+  height: 16px;
+  transform: translate(-50%, -100%);
+  border: 1px solid #2a2428;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  background:
+    linear-gradient(90deg, transparent 0 2px, rgba(42, 36, 40, 0.28) 2px 3px, transparent 3px) 0 0 / 6px 100%,
+    linear-gradient(#eef3f6, #9aa6b0);
   z-index: 3;
   pointer-events: none;
-  transform-origin: center bottom;
-  transform: translate(-50%, -100%);
+}
+
+.zippo-wick {
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 3px;
+  height: 8px;
+  margin-left: -1.5px;
+  border-radius: 1px;
+  background: #24180f;
+}
+
+.flame-anchor .flame-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.flame-anchor {
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  width: 22px;
+  height: 40px;
+  z-index: 4;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  transform: translate(-50%, calc(-100% - 2px)) rotate(var(--flame-tilt, 0deg));
 }
 
 .flame-anchor.is-held {
-  height: 58px;
+  height: 50px;
 }
 
 .lighter-live .flint-wheel {
   position: absolute;
-  left: 58%;
-  top: 11%;
+  left: 50%;
+  top: 47%;
   width: 36px;
   height: 36px;
   margin: 0 0 0 -18px;
@@ -1956,7 +2077,7 @@ button {
   padding: 0;
   background: radial-gradient(circle at 35% 30%, #e7edf2, #8d98a3 62%, #4e565e);
   cursor: grab;
-  z-index: 4;
+  z-index: 5;
 }
 
 .lighter-live .flint-face {
@@ -1992,6 +2113,27 @@ button {
 @keyframes spark-out {
   from { opacity: 1; }
   to { opacity: 0; translate: 0 -8px; }
+}
+
+@keyframes globe-tumble {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  28% { transform: translate(11px, -9px) rotate(8deg); }
+  58% { transform: translate(-10px, 7px) rotate(-9deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes pill-tumble {
+  0% { transform: rotate(var(--r, 0deg)) translate(0, 0); }
+  35% { transform: rotate(calc(var(--r, 0deg) + 48deg)) translate(6px, -12px); }
+  70% { transform: rotate(calc(var(--r, 0deg) - 28deg)) translate(-8px, 8px); }
+  100% { transform: rotate(var(--r, 0deg)) translate(0, 0); }
+}
+
+@keyframes knob-pop {
+  0% { transform: scale(1) translateY(0); }
+  32% { transform: scale(0.9) translateY(3px); }
+  64% { transform: scale(1.1) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); }
 }
 
 .lighter-live.is-lit {
@@ -2724,6 +2866,34 @@ button.lcd-screen {
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     0 2px 3px rgba(58, 42, 50, 0.16);
   clip-path: polygon(3% 8%, 97% 0, 100% 88%, 94% 100%, 0 93%);
+}
+
+.glyph-eight {
+  width: calc(var(--glyph-h) * 0.82);
+  height: var(--glyph-h);
+  position: relative;
+  display: inline-block;
+}
+
+.collage-text .glyph-eight .eight-loop {
+  position: absolute;
+  left: -8%;
+  width: 116%;
+  height: 64%;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 1px 0 rgba(58, 42, 50, 0.16));
+}
+
+.collage-text .glyph-eight .eight-loop.is-top {
+  top: -6%;
+  transform: rotate(-7deg) scale(0.98);
+}
+
+.collage-text .glyph-eight .eight-loop.is-bottom {
+  bottom: -10%;
+  transform: rotate(6deg) scale(1.06);
 }
 
 .glyph-tick.is-apostrophe,

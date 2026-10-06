@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { useRef, useState, type PointerEvent } from "react";
+import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { CollageText } from "../components/CollageText.tsx";
 import { GiftPhoto } from "../components/GiftPhoto.tsx";
 import { MemoryCamera } from "../components/MemoryCamera.tsx";
 import { PeelStickers } from "../components/PeelStickers.tsx";
 import { giftFor } from "../data/days.ts";
 import { useGentle } from "../hooks/useGentle.ts";
+import { publicUrl } from "../lib/publicUrl.ts";
 import { playTick } from "../lib/touchSound.ts";
 import { useCloseScene } from "./scene-context.ts";
 
@@ -15,11 +16,11 @@ const NOTES = [
   "Garde ce papier pour un jour mou.",
 ];
 
-const PILLS = [
-  { x: 18, y: 28, color: "#f4a7c2" },
-  { x: 58, y: 18, color: "#fff8f2" },
-  { x: 34, y: 48, color: "#b7ddd4" },
-  { x: 70, y: 42, color: "#f6d7a4" },
+const CAPSULES = [
+  { x: 12, y: 18, r: -18 },
+  { x: 46, y: 6, r: 14 },
+  { x: 68, y: 28, r: -8 },
+  { x: 28, y: 46, r: 22 },
 ];
 
 type Phase = "crank" | "drop" | "held" | "open";
@@ -47,10 +48,11 @@ export function Day4() {
   const close = useCloseScene();
   const { reduced, pop } = useGentle();
   const [phase, setPhase] = useState<Phase>("crank");
-  const [angle, setAngle] = useState(0);
+  const [knobDeg, setKnobDeg] = useState(0);
   const [steps, setSteps] = useState(0);
+  const [tick, setTick] = useState(0);
   const [noteIndex, setNoteIndex] = useState(0);
-  const drag = useRef<{ last: number; carry: number } | null>(null);
+  const drag = useRef<{ last: number; carry: number; travel: number } | null>(null);
   const stepsRef = useRef(0);
   const phaseRef = useRef<Phase>("crank");
   const note = NOTES[noteIndex] ?? NOTES[0];
@@ -60,11 +62,11 @@ export function Day4() {
     return Math.atan2(event.clientY - (rect.top + rect.height / 2), event.clientX - (rect.left + rect.width / 2));
   }
 
-  function addStep(dir: number) {
+  function addStep() {
     if (phaseRef.current !== "crank") return;
     stepsRef.current += 1;
     setSteps(stepsRef.current);
-    setAngle((value) => value + dir * 45);
+    setTick((value) => value + 1);
     if (stepsRef.current >= STEPS) {
       phaseRef.current = "drop";
       setPhase("drop");
@@ -81,18 +83,22 @@ export function Day4() {
       <CollageText as="h2" text="Machine gacha" size="title" />
       <div className="gacha-stage" data-phase={phase} data-steps={steps}>
         <GiftPhoto src="stickers/jour-4/gacha-pastel.webp" alt="" className="gacha-still" />
-        <div className="gacha-globe" aria-hidden>
-          {PILLS.map((pill, index) => (
+        <div className="gacha-window" aria-hidden>
+          <img
+            key={tick}
+            className="gacha-shift"
+            src={publicUrl("stickers/jour-4/gacha-pastel.webp")}
+            alt=""
+            draggable={false}
+          />
+          {CAPSULES.map((capsule) => (
             <span
-              key={pill.color}
+              key={`${tick}-${capsule.x}`}
               className="gacha-pill"
-              style={{
-                left: `${pill.x}%`,
-                top: `${pill.y}%`,
-                background: pill.color,
-                transform: `translate(${Math.sin((angle + index * 40) / 28) * 7}px, ${Math.cos((angle + index * 20) / 24) * 6}px) rotate(${angle / 10}deg)`,
-              }}
-            />
+              style={{ left: `${capsule.x}%`, top: `${capsule.y}%`, "--r": `${capsule.r}deg` } as CSSProperties}
+            >
+              <GiftPhoto src="stickers/jour-4/gashapon-capsule.webp" alt="" className="gacha-capsule" />
+            </span>
           ))}
         </div>
         {phase === "crank" ? (
@@ -103,7 +109,7 @@ export function Day4() {
             style={{ touchAction: "none" }}
             onPointerDown={(event) => {
               event.currentTarget.setPointerCapture(event.pointerId);
-              drag.current = { last: pointAngle(event), carry: 0 };
+              drag.current = { last: pointAngle(event), carry: 0, travel: 0 };
             }}
             onPointerMove={(event) => {
               if (!drag.current || phase !== "crank") return;
@@ -113,23 +119,32 @@ export function Day4() {
               if (delta < -Math.PI) delta += Math.PI * 2;
               drag.current.last = next;
               drag.current.carry += delta;
+              drag.current.travel += Math.abs(delta);
+              setKnobDeg((value) => value + (delta * 180) / Math.PI);
               const step = Math.PI / 4;
               while (drag.current.carry >= step) {
                 drag.current.carry -= step;
-                addStep(1);
+                addStep();
               }
               while (drag.current.carry <= -step) {
                 drag.current.carry += step;
-                addStep(-1);
+                addStep();
               }
             }}
             onPointerUp={() => {
-              if (drag.current && Math.abs(drag.current.carry) < 0.2) addStep(1);
+              if (drag.current && drag.current.travel < 0.35) {
+                addStep();
+                setKnobDeg((value) => value + 45);
+              }
               drag.current = null;
             }}
           >
-            <span className="gacha-rotor" style={{ transform: `rotate(${angle}deg)` }}>
-              <span className="gacha-tab" />
+            <span key={tick} className="gacha-pop">
+              <span className="gacha-rotor" style={{ transform: `rotate(${knobDeg}deg)` }}>
+                <span className="gacha-arm">
+                  <span className="gacha-handle" />
+                </span>
+              </span>
             </span>
           </button>
         ) : null}
@@ -186,7 +201,7 @@ export function Day4() {
             type="button"
             className="btn-line"
             onClick={() => {
-              setAngle(0);
+              setKnobDeg(0);
               stepsRef.current = 0;
               phaseRef.current = "crank";
               setSteps(0);
