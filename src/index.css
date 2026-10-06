@@ -2653,9 +2653,10 @@ button.lcd-screen {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px 10px;
+  gap: 28px 12px;
   margin: 8px 0 0;
-  padding: 0 16px 28px;
+  padding: 18px 16px 28px;
+  align-items: end;
 }
 
 .souvenir-open {
@@ -2694,6 +2695,290 @@ button.lcd-screen {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.camera-stage {
+  width: min(246px, 92%);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.camera-stage[data-full="yes"] {
+  cursor: default;
+}
+
+.device-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.device-frame.is-small {
+  width: 58%;
+  margin-inline: auto;
+}
+
+.device-screen {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  background: #efeae4;
+  container-type: size;
+}
+
+.device-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.device-photo.is-compact {
+  filter: saturate(0.78) contrast(1.14) brightness(1.02) hue-rotate(14deg);
+}
+
+.device-photo.is-kawaii {
+  filter: saturate(1.22) contrast(0.9) brightness(1.1) sepia(0.16) hue-rotate(-8deg);
+}
+
+.device-photo.is-album {
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.device-photo.is-crt {
+  filter: saturate(1.28) contrast(1.16) sepia(0.1) hue-rotate(-8deg);
+}
+
+.device-photo.is-gloss {
+  filter: saturate(1.24) contrast(1.08) brightness(1.06);
+}
+
+.device-photo.is-document {
+  filter: saturate(0.72) contrast(1.06) brightness(1.02) hue-rotate(8deg);
+}
+
+.device-photo.is-handset {
+  filter: saturate(0.9) contrast(1.05) brightness(1.02) hue-rotate(6deg);
+}
+
+.device-photo.is-phone,
+.device-photo.is-pixel {
+  inset: auto;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  image-rendering: pixelated;
+  transform-origin: top left;
+}
+
+.device-photo.is-phone {
+  width: 20%;
+  height: 20%;
+  transform: scale(5);
+  filter: contrast(1.22) saturate(0.6) brightness(0.98);
+}
+
+.device-photo.is-pixel {
+  width: 12.5%;
+  height: 12.5%;
+  transform: scale(8);
+  filter: contrast(1.4) saturate(0.5) brightness(1.06);
+}
+
+.device-shell {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 12px rgba(58, 42, 50, 0.14));
+}
+
+.scene-copy .device-frame img {
+  max-width: none;
+}
+
+.device-pin {
+  position: absolute;
+  z-index: 4;
+  top: -7%;
+  width: 42%;
+  height: auto;
+  transform: translateX(-50%) rotate(var(--pin-rot, -4deg));
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px rgba(58, 42, 50, 0.28));
+}
+
+.device-pin.is-pushpin {
+  width: 28%;
+  top: -12%;
+}
+
+.device-pin.is-binder-clip,
+.device-pin.is-bulldog-clip {
+  width: 32%;
+  top: -9%;
+}
+
+.device-pin.is-polka-bow,
+.device-pin.is-satin-bow {
+  width: 46%;
+  top: -10%;
+}
+
+.device-pin.is-paperclip,
+.device-pin.is-small {
+  width: 16%;
+  top: -2%;
+}
+
+.fx-vignette,
+.fx-bloom,
+.fx-scan,
+.fx-chroma,
+.fx-gloss,
+.fx-dither,
+.fx-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fx-vignette {
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.45);
+}
+
+.fx-bloom {
+  background: radial-gradient(circle at 50% 42%, rgba(255, 214, 226, 0.55), transparent 64%);
+  mix-blend-mode: screen;
+}
+
+.fx-scan {
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.22) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
+
+.fx-chroma {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 80, 0.22),
+    transparent 16%,
+    transparent 84%,
+    rgba(0, 190, 255, 0.22)
+  );
+  mix-blend-mode: screen;
+}
+
+.fx-gloss {
+  background: linear-gradient(118deg, transparent 36%, rgba(255, 255, 255, 0.48) 48%, transparent 60%);
+}
+
+.fx-dither {
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  background-image:
+    linear-gradient(45deg, rgba(0, 0, 0, 0.45) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.45) 25%, transparent 25%);
+  background-size: 2px 2px;
+}
+
+.fx-noise {
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.fx-stamp,
+.fx-rec {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  font-size: clamp(6px, 11cqmin, 13px);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.fx-stamp {
+  right: 5%;
+  bottom: 7%;
+  color: #e9fff3;
+  font-family: var(--font-pixel);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+}
+
+.fx-stamp.is-phone {
+  color: #ffb020;
+  font-family: "Courier New", ui-monospace, monospace;
+  font-weight: 700;
+}
+
+.fx-rec {
+  top: 6%;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ff3b30;
+  font-family: "Courier New", ui-monospace, monospace;
+  font-weight: 700;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.85);
+}
+
+.fx-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff2a2a;
+  box-shadow: 0 0 4px rgba(255, 40, 40, 0.8);
+}
+
+.fx-album {
+  position: absolute;
+  z-index: 2;
+  left: 7%;
+  right: 7%;
+  bottom: 8%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.fx-play {
+  width: 0;
+  height: 0;
+  border-left: 7px solid #fff;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45));
+}
+
+.fx-track {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.fx-bar {
+  display: block;
+  width: 38%;
+  height: 100%;
+  background: #fff;
+}
+
+.device-photo.is-fresh {
+  animation: develop-device 0.7s ease;
 }
 
 .camera-placeholder svg {
@@ -2880,6 +3165,15 @@ button.lcd-screen {
   width: 100%;
 }
 
+.souvenir-dialog .device-frame {
+  width: min(100%, 300px);
+  margin: 8px auto 0;
+}
+
+.souvenir-dialog .device-frame.is-small {
+  width: min(48%, 150px);
+}
+
 @media (max-width: 420px) {
   .collage-text[data-size="display"] {
     --glyph-h: 42px;
@@ -2912,6 +3206,15 @@ button.lcd-screen {
   }
   100% {
     filter: sepia(0.32) saturate(0.75) contrast(0.9) brightness(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes develop-device {
+  from {
+    opacity: 0.15;
+  }
+  to {
     opacity: 1;
   }
 }

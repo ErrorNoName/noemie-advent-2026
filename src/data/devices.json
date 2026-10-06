@@ -1,0 +1,326 @@
+{
+  "devices": [
+    {
+      "id": "polka-bow",
+      "file": "stickers/devices/01-pale-polka-bow.png",
+      "width": 180,
+      "height": 90,
+      "role": "decor",
+      "filter": null,
+      "screen": null,
+      "small": false,
+      "label": "nœud à pois"
+    },
+    {
+      "id": "satin-bow",
+      "file": "stickers/devices/02-pink-satin-bow.png",
+      "width": 235,
+      "height": 131,
+      "role": "decor",
+      "filter": null,
+      "screen": null,
+      "small": false,
+      "label": "nœud satin"
+    },
+    {
+      "id": "hello-kitty",
+      "file": "stickers/devices/03-hello-kitty-camera.png",
+      "width": 363,
+      "height": 301,
+      "role": "camera",
+      "filter": "kawaii",
+      "screen": {
+        "x": 0.146,
+        "y": 0.2492,
+        "w": 0.4545,
+        "h": 0.412
+      },
+      "small": false,
+      "label": "appareil Hello Kitty"
+    },
+    {
+      "id": "word-window",
+      "file": "stickers/devices/04-pink-word-window.png",
+      "width": 413,
+      "height": 381,
+      "role": "screen",
+      "filter": "document",
+      "screen": {
+        "x": 0.0581,
+        "y": 0.3071,
+        "w": 0.9346,
+        "h": 0.5879
+      },
+      "small": false,
+      "label": "fenêtre Word"
+    },
+    {
+      "id": "music-player",
+      "file": "stickers/devices/05-pink-music-player-ui.png",
+      "width": 213,
+      "height": 341,
+      "role": "screen",
+      "filter": "album",
+      "screen": {
+        "x": 0.1362,
+        "y": 0.132,
+        "w": 0.7512,
+        "h": 0.5044
+      },
+      "small": false,
+      "label": "lecteur rose"
+    },
+    {
+      "id": "pushpin",
+      "file": "stickers/devices/07-pink-pushpin.png",
+      "width": 139,
+      "height": 139,
+      "role": "decor",
+      "filter": null,
+      "screen": null,
+      "small": false,
+      "label": "punaise"
+    },
+    {
+      "id": "binder-clip",
+      "file": "stickers/devices/08-black-binder-clip.png",
+      "width": 94,
+      "height": 114,
+      "role": "decor",
+      "filter": null,
+      "screen": null,
+      "small": false,
+      "label": "pince relieuse"
+    },
+    {
+      "id": "paperclip",
+      "file": "stickers/devices/09-silver-paperclip-LOWRES.png",
+      "width": 32,
+      "height": 120,
+      "role": "decor",
+      "filter": null,
+      "screen": null,
+      "small": true,
+      "label": "trombone"
+    },
+    {
+      "id": "bulldog-clip",
+      "file": "stickers/devices/10-silver-bulldog-clip.png",
+      "width": 158,
+      "height": 132,
+      "role": "decor",
+      "filter": null,
+      "screen": null,
+      "small": false,
+      "label": "pince bulldog"
+    },
+    {
+      "id": "switch-lite",
+      "file": "stickers/devices/11-pink-switch-lite.png",
+      "width": 370,
+      "height": 164,
+      "role": "screen",
+      "filter": "gloss",
+      "screen": {
+        "x": 0.2189,
+        "y": 0.1463,
+        "w": 0.5622,
+        "h": 0.7195
+      },
+      "small": false,
+      "label": "Switch Lite"
+    },
+    {
+      "id": "ps-vita",
+      "file": "stickers/devices/12-white-ps-vita.png",
+      "width": 336,
+      "height": 157,
+      "role": "screen",
+      "filter": "gloss",
+      "screen": {
+        "x": 0.2024,
+        "y": 0.1019,
+        "w": 0.6012,
+        "h": 0.7325
+      },
+      "small": false,
+      "label": "PS Vita"
+    },
+    {
+      "id": "tamagotchi",
+      "file": "stickers/devices/13-pink-tamagotchi.png",
+      "width": 208,
+      "height": 226,
+      "role": "screen",
+      "filter": "pixel",
+      "screen": {
+        "x": 0.149,
+        "y": 0.2212,
+        "w": 0.524,
+        "h": 0.4867
+      },
+      "small": false,
+      "label": "Tamagotchi"
+    },
+    {
+      "id": "vertical-phone",
+      "file": "stickers/devices/14-silver-vertical-phone-LOWRES.png",
+      "width": 54,
+      "height": 120,
+      "role": "screen",
+      "filter": "phone",
+      "screen": {
+        "x": 0.0741,
+        "y": 0.2,
+        "w": 0.7222,
+        "h": 0.4083
+      },
+      "small": true,
+      "label": "téléphone vertical"
+    },
+    {
+      "id": "mp3",
+      "file": "stickers/devices/15-pink-mp3-stars.png",
+      "width": 185,
+      "height": 326,
+      "role": "screen",
+      "filter": "album",
+      "screen": {
+        "x": 0.3189,
+        "y": 0.089,
+        "w": 0.5568,
+        "h": 0.4202
+      },
+      "small": false,
+      "label": "lecteur MP3"
+    },
+    {
+      "id": "iphone",
+      "file": "stickers/devices/16-black-iphone-outline.png",
+      "width": 173,
+      "height": 341,
+      "role": "screen",
+      "filter": "handset",
+      "screen": {
+        "x": 0.0809,
+        "y": 0.0352,
+        "w": 0.8382,
+        "h": 0.9238
+      },
+      "small": false,
+      "label": "iPhone"
+    },
+    {
+      "id": "ipod",
+      "file": "stickers/devices/17-white-ipod.png",
+      "width": 162,
+      "height": 254,
+      "role": "screen",
+      "filter": "album",
+      "screen": {
+        "x": 0.0864,
+        "y": 0.0591,
+        "w": 0.8148,
+        "h": 0.4094
+      },
+      "small": false,
+      "label": "iPod"
+    },
+    {
+      "id": "silver-cybershot",
+      "file": "stickers/devices/18-silver-sony-cybershot.png",
+      "width": 334,
+      "height": 217,
+      "role": "camera",
+      "filter": "compact",
+      "screen": {
+        "x": 0.0689,
+        "y": 0.212,
+        "w": 0.5868,
+        "h": 0.6728
+      },
+      "small": false,
+      "label": "Cyber-shot argent"
+    },
+    {
+      "id": "retro-tv",
+      "file": "stickers/devices/19-pink-retro-tv.png",
+      "width": 341,
+      "height": 225,
+      "role": "screen",
+      "filter": "crt",
+      "screen": {
+        "x": 0.0674,
+        "y": 0.0933,
+        "w": 0.654,
+        "h": 0.8222
+      },
+      "small": false,
+      "label": "télé rose"
+    },
+    {
+      "id": "nokia",
+      "file": "stickers/devices/20-silver-nokia-phone.png",
+      "width": 154,
+      "height": 264,
+      "role": "screen",
+      "filter": "phone",
+      "screen": {
+        "x": 0.1883,
+        "y": 0.1439,
+        "w": 0.6494,
+        "h": 0.4735
+      },
+      "small": false,
+      "label": "Nokia"
+    },
+    {
+      "id": "pink-cybershot",
+      "file": "stickers/devices/21-pink-sony-cybershot.png",
+      "width": 355,
+      "height": 233,
+      "role": "camera",
+      "filter": "compact",
+      "screen": {
+        "x": 0.0901,
+        "y": 0.2318,
+        "w": 0.5718,
+        "h": 0.6438
+      },
+      "small": false,
+      "label": "Cyber-shot rose"
+    },
+    {
+      "id": "flip-phone",
+      "file": "stickers/devices/22-silver-flip-phone.png",
+      "width": 222,
+      "height": 398,
+      "role": "screen",
+      "filter": "phone",
+      "screen": {
+        "x": 0.4595,
+        "y": 0.1633,
+        "w": 0.3919,
+        "h": 0.2538
+      },
+      "small": false,
+      "label": "téléphone à clapet"
+    },
+    {
+      "id": "canon",
+      "file": "stickers/devices/23-silver-canon-camera-stars.png",
+      "width": 420,
+      "height": 320,
+      "role": "camera",
+      "filter": "compact",
+      "screen": {
+        "x": 0.1476,
+        "y": 0.35,
+        "w": 0.3833,
+        "h": 0.3688
+      },
+      "small": false,
+      "label": "Canon étoilé"
+    }
+  ]
+}

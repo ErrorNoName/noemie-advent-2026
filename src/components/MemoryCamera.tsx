@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useGentle } from "../hooks/useGentle.ts";
-import { cameraKind, cameraLabel, memoriesForDay, type SouvenirDay } from "../lib/souvenirs.ts";
-import { CameraBody } from "./CameraBody.tsx";
-import { MemoryPrint } from "./MemoryPrint.tsx";
+import { deviceForDay } from "../lib/devices.ts";
+import { memoriesForDay, type SouvenirDay } from "../lib/souvenirs.ts";
+import { DeviceFrame } from "./DeviceFrame.tsx";
 import { useShots } from "./ShotStore.tsx";
 
 export function MemoryCamera({ day, revealed }: { day: SouvenirDay; revealed: boolean }) {
@@ -15,9 +15,9 @@ export function MemoryCamera({ day, revealed }: { day: SouvenirDay; revealed: bo
   const [freshId, setFreshId] = useState<string | null>(null);
   const drag = useRef<number | null>(null);
   const { reduced } = useGentle();
-  const kind = cameraKind(day);
+  const device = deviceForDay(day);
   const safeIndex = shot === 0 ? 0 : Math.min(Math.max(index, 0), shot - 1);
-  const current = photos[safeIndex];
+  const current = shot > 0 ? photos[safeIndex] : null;
   const full = shot >= photos.length;
 
   if (!revealed) return null;
@@ -44,48 +44,59 @@ export function MemoryCamera({ day, revealed }: { day: SouvenirDay; revealed: bo
   }
 
   return (
-    <section className="memory-roll" data-camera={kind} data-shot={shot}>
+    <section className="memory-roll" data-camera={device.id} data-shot={shot}>
       {flash ? <span className="camera-flash" /> : null}
-      <button
-        type="button"
-        className="camera-hit"
-        onClick={shoot}
-        disabled={full}
+      <div
+        className="camera-stage"
+        role="button"
+        tabIndex={0}
+        data-full={full ? "yes" : "no"}
         aria-label={
           full
-            ? `Toute la pellicule ${cameraLabel(kind)} est développée`
-            : `Déclencher le ${cameraLabel(kind)}, souvenir ${shot + 1} sur ${photos.length}`
+            ? `Toute la pellicule du ${device.label} est développée`
+            : `Déclencher le ${device.label}, souvenir ${shot + 1} sur ${photos.length}`
         }
+        onPointerDown={(event) => {
+          drag.current = event.clientX;
+          event.currentTarget.setPointerCapture(event.pointerId);
+        }}
+        onPointerUp={(event) => {
+          if (drag.current == null) return;
+          const delta = event.clientX - drag.current;
+          drag.current = null;
+          if (delta <= -36) {
+            nudge(1);
+            return;
+          }
+          if (delta >= 36) {
+            nudge(-1);
+            return;
+          }
+          shoot();
+        }}
+        onPointerCancel={() => {
+          drag.current = null;
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            shoot();
+          } else if (event.key === "ArrowRight") {
+            nudge(1);
+          } else if (event.key === "ArrowLeft") {
+            nudge(-1);
+          }
+        }}
       >
-        <CameraBody kind={kind} />
-      </button>
+        <DeviceFrame device={device} photo={current ?? null} fresh={freshId === current?.id} eager />
+      </div>
       <p className="open-caption">
         {full
-          ? "Toute la pellicule de ce jour est là. Fais défiler les tirages."
+          ? "Toute la pellicule de ce jour est là. Fais glisser l’écran."
           : shot === 0
-            ? "Appuie sur l’appareil. Le souvenir se développe."
+            ? "Appuie sur l’appareil. Le souvenir se développe dans l’écran."
             : `${shot} sur ${photos.length}. Encore un déclenchement.`}
       </p>
-      {current && shot > 0 ? (
-        <div
-          className={`print-deck${shot > 1 ? " has-more" : ""}`}
-          onPointerDown={(event) => {
-            drag.current = event.clientX;
-          }}
-          onPointerUp={(event) => {
-            if (drag.current == null) return;
-            const delta = event.clientX - drag.current;
-            drag.current = null;
-            if (delta <= -40) nudge(1);
-            else if (delta >= 40) nudge(-1);
-          }}
-          onPointerCancel={() => {
-            drag.current = null;
-          }}
-        >
-          <MemoryPrint photo={current} fresh={freshId === current.id} eager contain />
-        </div>
-      ) : null}
       {shot > 1 ? (
         <div className="print-nav">
           <button type="button" className="btn-ghost" onClick={() => nudge(-1)} disabled={safeIndex === 0}>

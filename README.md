@@ -56,11 +56,9 @@ Les titres (Noémie, Pour toi, Jour N, les dates, Souvenirs, Joyeux anniversaire
 
 `public/stickers/experience/` garde les 50 découpes communes et les stickers de chaque jour. Ils restent dans les rails de 42 px, ou dans une rangée sous le cadeau une fois qu’il est ouvert : ils se décollent l’un après l’autre, avec une petite ombre. Le premier se laisse tirer dans cette rangée, le deuxième s’agite au toucher. Rien ne passe sur le titre ni sur le cadeau. Le jour 7 ne pose pas un second briquet.
 
-Les tirages Souvenirs portent un petit sticker composé dans le navigateur : contour blanc, ombre douce, une découpe déjà là, parfois un mot en lettres collage, dans les couleurs du papier.
-
 ## Souvenirs
 
-Trente photos dans `public/souvenirs/` (album 1 : 6, album 2 : 24), au plus 1600 px. Les jours 2, 4, 6 et 8 montrent un appareil après le cadeau : Polaroid, jetable, compact, argentique. Le déclenchement fait un flash et développe un tirage. La galerie Souvenirs, depuis l’accueil, ne montre que les jours déjà débloqués. `/test` les ouvre tous. Les appareils sont des emplacements : les découpes remplaceront le dessin quand elles arriveront.
+Trente photos dans `public/souvenirs/` (album 1 : 6, album 2 : 24), au plus 1600 px. Les jours 2, 4, 6 et 8 déclenchent un vrai appareil après le cadeau : Hello Kitty, Cyber-shot rose, Cyber-shot argent, Canon étoilé. Un appui fait un flash, et la photo se développe dans l’écran. La galerie Souvenirs, depuis l’accueil, ouvre chaque tirage débloqué dans un autre appareil (téléphone, iPod, télé, console…), tenu par un nœud, une punaise ou une pince. Le trombone et le petit téléphone vertical restent petits. Les rectangles d’écran sont dans `src/data/devices.json`. `/test` ouvre tous les jours.
 
 ## Stickers
 

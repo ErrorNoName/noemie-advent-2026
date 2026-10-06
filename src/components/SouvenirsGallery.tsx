@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { galleryDevice, pinFor } from "../lib/devices.ts";
 import { allMemories, type MemoryPhoto, type SouvenirDay } from "../lib/souvenirs.ts";
 import { CollageText } from "./CollageText.tsx";
-import { MemoryPrint } from "./MemoryPrint.tsx";
+import { DeviceFrame } from "./DeviceFrame.tsx";
 
 export function SouvenirsGallery({
   daysOpen,
@@ -56,7 +57,7 @@ export function SouvenirsGallery({
                 aria-label={`Souvenir ${photo.order}, jour ${photo.day}`}
                 onClick={() => setOpen(photo)}
               >
-                <MemoryPrint photo={photo} />
+                <DeviceFrame device={galleryDevice(photo.order)} photo={photo} pin={pinFor(photo.order)} />
               </button>
             </li>
           ))}
@@ -64,7 +65,12 @@ export function SouvenirsGallery({
       )}
       {open ? (
         <dialog ref={dialog} className="souvenir-dialog" aria-label={`Souvenir ${open.order}`}>
-          <MemoryPrint photo={open} eager contain />
+          <DeviceFrame
+            device={galleryDevice(open.order)}
+            photo={open}
+            pin={pinFor(open.order)}
+            eager
+          />
           <button type="button" className="btn-ink" onClick={() => dialog.current?.close()}>
             Fermer
           </button>
