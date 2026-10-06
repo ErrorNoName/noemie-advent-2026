@@ -2941,7 +2941,7 @@ button.lcd-screen {
 }
 
 .glyph-eight {
-  width: calc(var(--glyph-h) * 0.78);
+  width: calc(var(--glyph-h) * 0.74);
   height: var(--glyph-h);
   position: relative;
   display: inline-block;
@@ -2950,31 +2950,29 @@ button.lcd-screen {
 
 .collage-text .glyph-eight .eight-loop {
   position: absolute;
-  left: 0;
-  width: 100%;
-  height: 58%;
+  left: -8%;
+  width: 116%;
+  height: 74%;
   max-width: none;
-  object-fit: contain;
-  object-position: center bottom;
+  object-fit: fill;
   mix-blend-mode: multiply;
   filter:
-    contrast(1.85)
-    brightness(0.82)
-    drop-shadow(0.6px 0 0 rgba(42, 36, 40, 0.7))
-    drop-shadow(-0.6px 0 0 rgba(42, 36, 40, 0.55));
+    contrast(1.45)
+    drop-shadow(0.7px 0 0 rgba(32, 22, 26, 0.85))
+    drop-shadow(-0.7px 0 0 rgba(32, 22, 26, 0.85))
+    drop-shadow(0 0.7px 0 rgba(32, 22, 26, 0.7));
 }
 
 .collage-text .glyph-eight .eight-loop.is-top {
-  top: 0;
-  transform: rotate(-4deg) scale(1.08);
-  transform-origin: center bottom;
+  top: -2%;
+  height: 68%;
+  transform: none;
 }
 
 .collage-text .glyph-eight .eight-loop.is-bottom {
-  bottom: 0;
-  height: 58%;
-  transform: rotate(3deg) scale(1.12);
-  transform-origin: center bottom;
+  /* The paper zero's ink stops about 11% above the image edge. */
+  bottom: -8%;
+  transform: none;
 }
 
 .glyph-tick.is-apostrophe,

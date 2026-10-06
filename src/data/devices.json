@@ -2,7 +2,7 @@
   "devices": [
     {
       "id": "polka-bow",
-      "file": "stickers/devices/01-pale-polka-bow.png",
+      "file": "stickers/devices/01-pale-polka-bow.webp",
       "width": 180,
       "height": 90,
       "role": "decor",
@@ -13,7 +13,7 @@
     },
     {
       "id": "satin-bow",
-      "file": "stickers/devices/02-pink-satin-bow.png",
+      "file": "stickers/devices/02-pink-satin-bow.webp",
       "width": 235,
       "height": 131,
       "role": "decor",
@@ -24,7 +24,7 @@
     },
     {
       "id": "hello-kitty",
-      "file": "stickers/devices/03-hello-kitty-camera.png",
+      "file": "stickers/devices/03-hello-kitty-camera.webp",
       "width": 363,
       "height": 301,
       "role": "camera",
@@ -40,7 +40,7 @@
     },
     {
       "id": "word-window",
-      "file": "stickers/devices/04-pink-word-window.png",
+      "file": "stickers/devices/04-pink-word-window.webp",
       "width": 413,
       "height": 381,
       "role": "screen",
@@ -56,7 +56,7 @@
     },
     {
       "id": "music-player",
-      "file": "stickers/devices/05-pink-music-player-ui.png",
+      "file": "stickers/devices/05-pink-music-player-ui.webp",
       "width": 213,
       "height": 341,
       "role": "screen",
@@ -72,7 +72,7 @@
     },
     {
       "id": "pushpin",
-      "file": "stickers/devices/07-pink-pushpin.png",
+      "file": "stickers/devices/07-pink-pushpin.webp",
       "width": 139,
       "height": 139,
       "role": "decor",
@@ -83,7 +83,7 @@
     },
     {
       "id": "binder-clip",
-      "file": "stickers/devices/08-black-binder-clip.png",
+      "file": "stickers/devices/08-black-binder-clip.webp",
       "width": 94,
       "height": 114,
       "role": "decor",
@@ -94,7 +94,7 @@
     },
     {
       "id": "paperclip",
-      "file": "stickers/devices/09-silver-paperclip-LOWRES.png",
+      "file": "stickers/devices/09-silver-paperclip-LOWRES.webp",
       "width": 32,
       "height": 120,
       "role": "decor",
@@ -105,7 +105,7 @@
     },
     {
       "id": "bulldog-clip",
-      "file": "stickers/devices/10-silver-bulldog-clip.png",
+      "file": "stickers/devices/10-silver-bulldog-clip.webp",
       "width": 158,
       "height": 132,
       "role": "decor",
@@ -116,7 +116,7 @@
     },
     {
       "id": "switch-lite",
-      "file": "stickers/devices/11-pink-switch-lite.png",
+      "file": "stickers/devices/11-pink-switch-lite.webp",
       "width": 370,
       "height": 164,
       "role": "screen",
@@ -132,7 +132,7 @@
     },
     {
       "id": "ps-vita",
-      "file": "stickers/devices/12-white-ps-vita.png",
+      "file": "stickers/devices/12-white-ps-vita.webp",
       "width": 336,
       "height": 157,
       "role": "screen",
@@ -148,7 +148,7 @@
     },
     {
       "id": "tamagotchi",
-      "file": "stickers/devices/13-pink-tamagotchi.png",
+      "file": "stickers/devices/13-pink-tamagotchi.webp",
       "width": 208,
       "height": 226,
       "role": "screen",
@@ -164,7 +164,7 @@
     },
     {
       "id": "vertical-phone",
-      "file": "stickers/devices/14-silver-vertical-phone-LOWRES.png",
+      "file": "stickers/devices/14-silver-vertical-phone-LOWRES.webp",
       "width": 54,
       "height": 120,
       "role": "screen",
@@ -180,7 +180,7 @@
     },
     {
       "id": "mp3",
-      "file": "stickers/devices/15-pink-mp3-stars.png",
+      "file": "stickers/devices/15-pink-mp3-stars.webp",
       "width": 185,
       "height": 326,
       "role": "screen",
@@ -196,7 +196,7 @@
     },
     {
       "id": "iphone",
-      "file": "stickers/devices/16-black-iphone-outline.png",
+      "file": "stickers/devices/16-black-iphone-outline.webp",
       "width": 173,
       "height": 341,
       "role": "screen",
@@ -212,7 +212,7 @@
     },
     {
       "id": "ipod",
-      "file": "stickers/devices/17-white-ipod.png",
+      "file": "stickers/devices/17-white-ipod.webp",
       "width": 162,
       "height": 254,
       "role": "screen",
@@ -228,7 +228,7 @@
     },
     {
       "id": "silver-cybershot",
-      "file": "stickers/devices/18-silver-sony-cybershot.png",
+      "file": "stickers/devices/18-silver-sony-cybershot.webp",
       "width": 334,
       "height": 217,
       "role": "camera",
@@ -244,7 +244,7 @@
     },
     {
       "id": "retro-tv",
-      "file": "stickers/devices/19-pink-retro-tv.png",
+      "file": "stickers/devices/19-pink-retro-tv.webp",
       "width": 341,
       "height": 225,
       "role": "screen",
@@ -260,7 +260,7 @@
     },
     {
       "id": "nokia",
-      "file": "stickers/devices/20-silver-nokia-phone.png",
+      "file": "stickers/devices/20-silver-nokia-phone.webp",
       "width": 154,
       "height": 264,
       "role": "screen",
@@ -276,7 +276,7 @@
     },
     {
       "id": "pink-cybershot",
-      "file": "stickers/devices/21-pink-sony-cybershot.png",
+      "file": "stickers/devices/21-pink-sony-cybershot.webp",
       "width": 355,
       "height": 233,
       "role": "camera",
@@ -292,7 +292,7 @@
     },
     {
       "id": "flip-phone",
-      "file": "stickers/devices/22-silver-flip-phone.png",
+      "file": "stickers/devices/22-silver-flip-phone.webp",
       "width": 222,
       "height": 398,
       "role": "screen",
@@ -308,7 +308,7 @@
     },
     {
       "id": "canon",
-      "file": "stickers/devices/23-silver-canon-camera-stars.png",
+      "file": "stickers/devices/23-silver-canon-camera-stars.webp",
       "width": 420,
       "height": 320,
       "role": "camera",

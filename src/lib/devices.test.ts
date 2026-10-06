@@ -21,7 +21,7 @@ describe("devices", () => {
     expect(decor).toHaveLength(6);
     for (const device of devices) {
       expect(device.file.startsWith(`${DEVICE_ASSET_DIR}/`)).toBe(true);
-      expect(device.file.endsWith(".png")).toBe(true);
+      expect(device.file.endsWith(".webp")).toBe(true);
     }
     for (const device of framed) {
       expect(device.screen).toBeTruthy();
