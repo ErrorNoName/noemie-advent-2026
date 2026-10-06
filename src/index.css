@@ -1556,13 +1556,16 @@ button {
 @keyframes flicker {
   0%,
   100% {
-    transform: scaleY(1) scaleX(1);
+    transform: scaleY(1) scaleX(1) rotate(-2deg);
   }
-  40% {
-    transform: scaleY(1.08) scaleX(0.92) rotate(-2deg);
+  25% {
+    transform: scaleY(1.22) scaleX(0.82) rotate(5deg);
   }
-  70% {
-    transform: scaleY(0.92) scaleX(1.06) rotate(2deg);
+  50% {
+    transform: scaleY(0.78) scaleX(1.16) rotate(-6deg);
+  }
+  75% {
+    transform: scaleY(1.14) scaleX(0.88) rotate(3deg);
   }
 }
 
@@ -1671,6 +1674,54 @@ button {
   right: 0;
   top: 8%;
   z-index: 1;
+}
+
+.squish-collage {
+  width: min(300px, 100%);
+  height: 320px;
+  overflow: visible;
+}
+
+.squish-collage .hero-hit {
+  width: 76%;
+  height: auto;
+  aspect-ratio: 840 / 812;
+  left: 12%;
+  bottom: 4%;
+  z-index: 2;
+}
+
+.squish-collage .side-l,
+.squish-collage .side-r {
+  width: 18%;
+  height: 22%;
+  top: auto;
+  bottom: 8%;
+  z-index: 1;
+}
+
+.squish-collage .side-r {
+  right: 0;
+  left: auto;
+}
+
+.squish-collage .squish-pad {
+  position: absolute;
+  left: 24%;
+  right: 24%;
+  bottom: 8px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(90, 62, 36, 0.18);
+  filter: blur(6px);
+  z-index: 0;
+  transform: scaleX(1);
+  transition: transform 1.15s cubic-bezier(0.22, 0.12, 0.18, 1);
+}
+
+.squish-collage .squish-pad.is-pressed {
+  transform: scaleX(1.45);
+  transition-duration: 0.16s;
 }
 
 .foil-live {
@@ -1999,36 +2050,42 @@ button {
 
 .zippo-lid {
   position: absolute;
-  inset: 0;
-  transform-origin: 50% 41%;
-  transition: transform 0.52s cubic-bezier(0.45, 0.02, 0.2, 1);
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 41%;
+  transform-origin: 50% 100%;
+  transition: transform 0.55s cubic-bezier(0.45, 0.02, 0.2, 1);
   pointer-events: none;
   z-index: 2;
 }
 
 .zippo-lid .zippo-plate {
-  height: 100%;
+  width: 100%;
+  height: 244%;
+  max-width: none;
   object-fit: fill;
+  object-position: top center;
   clip-path: inset(0 0 59% 0);
 }
 
 .zippo-lid.is-open {
-  transform: perspective(680px) rotateX(66deg);
+  transform: perspective(420px) rotateX(62deg);
 }
 
 .zippo-chimney {
   position: absolute;
   left: 50%;
   top: 41%;
-  width: 26px;
-  height: 16px;
+  width: 36px;
+  height: 22px;
   transform: translate(-50%, -100%);
   border: 1px solid #2a2428;
   border-bottom: 0;
-  border-radius: 3px 3px 0 0;
+  border-radius: 4px 4px 0 0;
   background:
-    linear-gradient(90deg, transparent 0 2px, rgba(42, 36, 40, 0.28) 2px 3px, transparent 3px) 0 0 / 6px 100%,
-    linear-gradient(#eef3f6, #9aa6b0);
+    linear-gradient(90deg, transparent 0 3px, rgba(42, 36, 40, 0.35) 3px 4px, transparent 4px) 0 0 / 8px 100%,
+    linear-gradient(#eef3f6, #8e9aa4);
   z-index: 3;
   pointer-events: none;
 }
@@ -2047,22 +2104,25 @@ button {
 .flame-anchor .flame-svg {
   width: 100%;
   height: 100%;
+  overflow: visible;
+  transform-origin: 50% 100%;
+  animation: flame-sway 0.62s ease-in-out infinite;
 }
 
 .flame-anchor {
   position: absolute;
   left: 50%;
   top: 41%;
-  width: 22px;
-  height: 40px;
+  width: 52px;
+  height: 92px;
   z-index: 4;
   pointer-events: none;
   transform-origin: 50% 100%;
-  transform: translate(-50%, calc(-100% - 2px)) rotate(var(--flame-tilt, 0deg));
+  transform: translate(-50%, -100%) rotate(var(--flame-tilt, 0deg));
 }
 
 .flame-anchor.is-held {
-  height: 50px;
+  height: 108px;
 }
 
 .lighter-live .flint-wheel {
@@ -2113,6 +2173,12 @@ button {
 @keyframes spark-out {
   from { opacity: 1; }
   to { opacity: 0; translate: 0 -8px; }
+}
+
+@keyframes flame-sway {
+  0%,
+  100% { transform: rotate(-4deg) scaleY(1); }
+  50% { transform: rotate(5deg) scaleY(1.08); }
 }
 
 @keyframes globe-tumble {
@@ -2601,15 +2667,21 @@ button.lcd-screen {
 }
 
 .flame-outer {
-  fill: #ffb25a;
+  fill: #ff8a2a;
   transform-origin: center bottom;
-  animation: flicker 0.55s infinite;
+  animation: flicker 0.42s infinite;
+}
+
+.flame-mid {
+  fill: #ffc14a;
+  transform-origin: center bottom;
+  animation: flicker 0.33s infinite reverse;
 }
 
 .flame-inner {
-  fill: #fff4c8;
+  fill: #fff6d0;
   transform-origin: center bottom;
-  animation: flicker 0.42s infinite reverse;
+  animation: flicker 0.28s infinite;
 }
 
 .flint-wheel {
@@ -2869,31 +2941,40 @@ button.lcd-screen {
 }
 
 .glyph-eight {
-  width: calc(var(--glyph-h) * 0.82);
+  width: calc(var(--glyph-h) * 0.78);
   height: var(--glyph-h);
   position: relative;
   display: inline-block;
+  align-self: flex-end;
 }
 
 .collage-text .glyph-eight .eight-loop {
   position: absolute;
-  left: -8%;
-  width: 116%;
-  height: 64%;
+  left: 0;
+  width: 100%;
+  height: 58%;
   max-width: none;
   object-fit: contain;
+  object-position: center bottom;
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 1px 0 rgba(58, 42, 50, 0.16));
+  filter:
+    contrast(1.85)
+    brightness(0.82)
+    drop-shadow(0.6px 0 0 rgba(42, 36, 40, 0.7))
+    drop-shadow(-0.6px 0 0 rgba(42, 36, 40, 0.55));
 }
 
 .collage-text .glyph-eight .eight-loop.is-top {
-  top: -6%;
-  transform: rotate(-7deg) scale(0.98);
+  top: 0;
+  transform: rotate(-4deg) scale(1.08);
+  transform-origin: center bottom;
 }
 
 .collage-text .glyph-eight .eight-loop.is-bottom {
-  bottom: -10%;
-  transform: rotate(6deg) scale(1.06);
+  bottom: 0;
+  height: 58%;
+  transform: rotate(3deg) scale(1.12);
+  transform-origin: center bottom;
 }
 
 .glyph-tick.is-apostrophe,
@@ -3477,13 +3558,15 @@ button.lcd-screen {
   position: absolute;
   top: max(12px, env(safe-area-inset-top));
   right: 16px;
-  z-index: 2;
-  min-height: 44px;
-  padding: 0 4px;
+  z-index: 5;
+  min-height: 40px;
+  padding: 0 16px;
   border: 0;
-  background: transparent;
-  box-shadow: none;
+  border-radius: 999px;
+  background: #3a2a32;
+  box-shadow: 0 6px 16px rgba(42, 36, 40, 0.35);
   color: #fff8f2;
+  font-weight: 560;
   cursor: pointer;
 }
 

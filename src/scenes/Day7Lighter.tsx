@@ -98,8 +98,9 @@ export function Day7() {
               aria-hidden
             >
               <svg viewBox="0 0 40 64" className="flame-svg">
-                <path className="flame-outer" d="M20 2c8 12 14 16 14 30a14 14 0 0 1-28 0c0-8 4-14 8-20 2 6 4 8 6 8 0-8 0-12 0-18z" />
-                <path className="flame-inner" d="M20 24c4 6 6 8 6 14a6 6 0 0 1-12 0c0-4 2-6 4-10 1 3 1 4 2 4 0-4 0-6 0-8z" />
+                <path className="flame-outer" d="M20 0c9 10 16 18 16 32a16 16 0 0 1-32 0c0-10 5-16 9-24 2 7 4 9 7 9 0-8 0-12 0-17z" />
+                <path className="flame-mid" d="M20 16c6 8 9 12 9 20a9 9 0 0 1-18 0c0-6 3-10 6-16 1 4 2 5 3 5 0-4 0-6 0-9z" />
+                <path className="flame-inner" d="M20 28c3 5 5 7 5 12a5 5 0 0 1-10 0c0-4 2-6 3-9 1 2 1 3 2 3 0-3 0-5 0-6z" />
               </svg>
             </span>
           ) : null}
