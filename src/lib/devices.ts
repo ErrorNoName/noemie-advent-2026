@@ -3,9 +3,9 @@ import type { SouvenirDay } from "./souvenirs.ts";
 
 /**
  * Folder for the camera and screen cutouts.
- * Drop upscaled PNGs here under the same file names, or point this at a new
- * folder such as "stickers/devices/hd". Screen boxes stay fractions of the
- * image, so the photo keeps the same place.
+ * The files here are WebP copies of the upscaled cutouts, long side at most
+ * 1400px, with the original transparency kept. Screen boxes stay fractions
+ * of the image, so the photo keeps the same place.
  */
 export const DEVICE_ASSET_DIR = "stickers/devices";
 
